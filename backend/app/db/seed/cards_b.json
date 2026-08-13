@@ -1,0 +1,971 @@
+[
+  {
+    "title": "Why do SSDs wear out?",
+    "category_slug": "engineering",
+    "one_sentence_answer": "Every write forces electrons through a thin insulating layer, and each crossing damages that insulation slightly until the cell can no longer reliably hold a charge.",
+    "summary": "Flash memory stores data as trapped electric charge behind an insulator. Writing means violently pushing charge through that insulator, which is why storage that has no moving parts still has a finite lifespan.",
+    "difficulty": "intermediate",
+    "reading_minutes": 6,
+    "curiosity_score": 0.63,
+    "confidence": 0.9,
+    "confidence_reason": "Flash endurance mechanisms are documented in semiconductor device literature and manufacturer specifications; endurance figures vary by cell type and process node and are given as ranges.",
+    "tags": [
+      "storage",
+      "flash",
+      "hardware",
+      "wear"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "An SSD stores each bit as a small amount of electric charge held in a tiny trap, surrounded by an insulating layer that keeps the charge from leaking away. To write new data, the drive has to force electrons through that insulating layer and into the trap — and to erase, it forces them back out again. Every time electrons are pushed through, they knock the insulating material about slightly, like footsteps wearing a groove in a stone step. One crossing does essentially nothing. A few thousand crossings leave the insulation leaky enough that the trap no longer holds its charge reliably, and the drive stops trusting that cell. Nothing is spinning, nothing is rubbing, and yet the drive genuinely wears out — because writing is a physically destructive act at the scale where the data lives."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Picture a room whose door is not a door at all but a paper wall you have to punch through every time you want to move furniture in or out. Once in a while, fine — you patch it and carry on. Do it thousands of times and the wall is more hole than paper, and it can no longer keep the room separate from the corridor. That is the tunnel oxide in a flash cell: a barrier that is deliberately breached on every write and never fully repairs. Where this stops being accurate: the damage is not a visible hole. It is charge getting stuck inside the insulating material itself, which distorts the electric fields the drive uses to read the cell, so the failure looks like the drive misreading values rather than the charge simply falling out."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "This is why SSD specifications quote a rating in terabytes written rather than a lifetime in years. A consumer 1 TB drive might be rated for 600 terabytes written. Writing 20 gigabytes a day, which is heavy for ordinary use, that is over eighty years — so for most people the drive will be replaced for being small long before it is worn out. But change the workload and the picture changes fast. A database server rewriting the same records constantly, or a video editor scratching hundreds of gigabytes of temporary files a day, can consume that budget in a few years. It is also why the same physical drive is sold with different endurance ratings depending on whether it stores one bit per cell or four: packing more bits into each cell means distinguishing more charge levels, which leaves far less margin for the insulation to have degraded."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "A NAND flash cell is a transistor with an extra electrically isolated gate — a floating gate, or in newer designs a charge-trap layer — sitting between the control gate and the channel. Charge stored there shifts the voltage at which the transistor turns on, and the drive reads a cell by testing that threshold voltage. Programming and erasing use Fowler–Nordheim tunnelling: a strong electric field, on the order of ten megavolts per centimetre, drives electrons through the thin tunnel oxide. That process generates interface traps and leaves electrons trapped inside the oxide itself. The accumulated trapped charge shifts and broadens the threshold voltage distributions, so the windows separating one stored value from the next narrow until they overlap and the read becomes ambiguous. Endurance depends heavily on how many levels the cell must distinguish: single-level cells storing one bit tolerate on the order of 100,000 program/erase cycles, while quad-level cells storing four bits — sixteen distinguishable charge levels in the same window — may manage only around a thousand. Controllers fight back with wear levelling, which spreads writes evenly across all blocks rather than letting hot data destroy the same physical cells, and with strong error-correcting codes such as LDPC that recover data from cells whose margins have already degraded."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The dominant practical problem is often not raw endurance but write amplification. NAND can be programmed at page granularity but only erased at block granularity, and blocks are far larger than pages, so modifying a small amount of data means reading a whole block, merging the change, and rewriting it elsewhere. The ratio of physical writes to logical writes — the write amplification factor — can exceed ten under random small writes on a full drive, meaning the endurance budget drains ten times faster than the host's write volume suggests. This is what TRIM addresses: telling the drive which blocks the filesystem no longer needs lets garbage collection avoid relocating dead data. Over-provisioning, keeping hidden spare capacity, has the same effect, which is why enterprise drives reserve a much larger fraction. Two further effects complicate the model. Retention and endurance trade against each other: a heavily cycled cell leaks charge faster, so a worn drive left unpowered loses data in months rather than years, and the JEDEC specifications for consumer and enterprise drives assume quite different unpowered retention periods. And read disturb means that reading a page slightly perturbs neighbouring pages in the same block, so even a read-only workload eventually forces rewrites. 3D NAND partly reversed the trend by returning to larger process geometries and stacking vertically instead of shrinking laterally, which improved endurance per cell even as bits-per-cell rose."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "NAND flash",
+        "plain_definition": "The type of memory chip inside an SSD, which holds data as trapped electric charge."
+      },
+      {
+        "term": "Floating gate",
+        "plain_definition": "An electrically isolated pocket inside a memory cell where charge is stored to represent a bit."
+      },
+      {
+        "term": "Tunnel oxide",
+        "plain_definition": "The thin insulating layer that charge must be forced through on every write, and which the writing damages."
+      },
+      {
+        "term": "Program/erase cycle",
+        "plain_definition": "One complete round of writing and clearing a block of flash memory."
+      },
+      {
+        "term": "Wear levelling",
+        "plain_definition": "The drive's practice of spreading writes across all cells so no single region is worn out early."
+      },
+      {
+        "term": "Write amplification",
+        "plain_definition": "The gap between how much data you asked to write and how much the drive physically had to write."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "SSDs wear out from being read.",
+        "reality": "Reading is essentially non-destructive. Only programming and erasing push charge through the insulator. Read disturb exists but is a second-order effect handled by the controller."
+      },
+      {
+        "myth": "Defragmenting an SSD helps performance.",
+        "reality": "There is no seek time to optimise, and defragmentation is a large volume of pointless writes that consumes real endurance. Modern operating systems disable it on SSDs deliberately."
+      },
+      {
+        "myth": "When an SSD wears out it fails suddenly and without warning.",
+        "reality": "Cells degrade gradually and the controller reports remaining life through SMART attributes long before failure. Most worn drives switch to read-only rather than losing data outright."
+      },
+      {
+        "myth": "A drive left in a drawer keeps data indefinitely because there are no moving parts.",
+        "reality": "Stored charge leaks over time, and it leaks faster in a heavily used drive and at higher temperatures. Flash is not an archival medium."
+      }
+    ],
+    "why_it_matters": "It changes how you use storage. It explains why filling an SSD to the brim slows it down and shortens its life, why swap-heavy configurations and constant logging are worth thinking about, why databases are tuned to write sequentially, and why the honest answer to 'is an SSD more reliable than a hard drive' is 'it fails differently'.",
+    "historical_background": {
+      "origin": "Fujio Masuoka invented flash memory at Toshiba around 1980, and the NAND variant followed in 1987 — designed for density rather than durability, on the assumption it would replace film and tape rather than disks.",
+      "motivation": "The problem it solved was non-volatile storage with no moving parts, initially for cameras and portable devices where write volumes were tiny and endurance simply did not matter.",
+      "evolution": "As flash moved into general-purpose computing, endurance became the binding constraint, and the response has been almost entirely at the controller level: wear levelling, TRIM, over-provisioning, and progressively more powerful error correction. Meanwhile the cells themselves got worse per-cell as the industry traded endurance for density, and 3D stacking in the mid-2010s was the first change to push back the other way."
+    },
+    "diagrams": [
+      {
+        "title": "The lifecycle of one flash cell",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Fresh cell:<br/>clean tunnel oxide\"] --> B[\"Write: electrons forced<br/>through the oxide\"]\n  B --> C[\"Some electrons<br/>stay trapped in it\"]\n  C --> D[\"Threshold voltage<br/>windows narrow\"]\n  D --> E{\"Can levels still<br/>be told apart?\"}\n  E -->|\"Yes\"| B\n  E -->|\"Marginally\"| F[\"Error correction<br/>recovers the data\"]\n  F --> B\n  E -->|\"No\"| G[\"Block retired,<br/>spare block used\"]\n  G --> H[\"Spares exhausted:<br/>drive goes read-only\"]",
+        "caption": "The loop at the top is normal operation; the drive only leaves it when a block's margins are gone."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why batteries degrade",
+        "reason": "A different technology with the same shape of problem — normal use is physically destructive."
+      },
+      {
+        "label": "Why CPUs have cache",
+        "reason": "The layer above storage in the same memory hierarchy, with the opposite constraint."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "NAND flash memory",
+        "plain_definition": "Solid-state storage holding data as trapped electric charge.",
+        "role": "covers"
+      },
+      {
+        "name": "Quantum tunnelling",
+        "plain_definition": "Particles crossing a barrier they classically could not, which is how flash is written.",
+        "role": "requires"
+      },
+      {
+        "name": "Write amplification",
+        "plain_definition": "Physical writes exceeding the writes the host actually requested.",
+        "role": "covers"
+      },
+      {
+        "name": "Error correcting codes",
+        "plain_definition": "Extra redundant data that lets a system recover the original from a corrupted read.",
+        "role": "mentions"
+      },
+      {
+        "name": "Memory hierarchy",
+        "plain_definition": "The tiered arrangement of storage from tiny and instant to huge and slow.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Flash memory",
+        "url": "https://en.wikipedia.org/wiki/Flash_memory",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Write amplification",
+        "url": "https://en.wikipedia.org/wiki/Write_amplification",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Fowler–Nordheim tunnelling",
+        "url": "https://en.wikipedia.org/wiki/Field_electron_emission",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why do batteries degrade?",
+      "Why do CPUs have cache?",
+      "Why are airplane windows round?"
+    ]
+  },
+  {
+    "title": "Why do batteries degrade?",
+    "category_slug": "chemistry",
+    "one_sentence_answer": "Every charge cycle drives slow side reactions that permanently consume lithium and thicken an insulating film on the electrodes, so a little capacity is lost each time and never comes back.",
+    "summary": "A lithium-ion battery does not simply run out of charge — it runs out of usable lithium. The chemistry that makes it work also, unavoidably, makes it worse.",
+    "difficulty": "intermediate",
+    "reading_minutes": 6,
+    "curiosity_score": 0.77,
+    "confidence": 0.88,
+    "confidence_reason": "Degradation mechanisms are well characterised in electrochemistry literature, though the relative contribution of each mechanism varies by cell chemistry and usage pattern and remains an active research area.",
+    "tags": [
+      "batteries",
+      "electrochemistry",
+      "lithium",
+      "degradation"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "A rechargeable battery works by shuttling lithium back and forth between two electrodes. Charging pushes lithium one way, using it pulls lithium back. In an ideal world the same lithium would travel forever. In reality, on every trip, a small amount gets stuck. It reacts with the liquid the battery is filled with and forms a solid crust on the electrode surface, and once it is locked into that crust it can never carry charge again. So each cycle leaves a fraction less lithium available than the cycle before. The battery is not getting tired or losing its memory — it has literally lost some of the material it needed. That is why the loss is permanent, and why a battery at eighty per cent capacity will never return to a hundred no matter how you charge it."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Imagine a bucket brigade passing water between two tanks. Each pass, a little water splashes onto the ground and dries into salt that crusts on the rims. Nothing you do recovers that water, and the crust slowly narrows the buckets so each pass carries less. The battery's capacity fade is the lost water; the increasing internal resistance, which is why an old phone dies suddenly under load, is the narrowed bucket. Where the analogy stops working: the crust is not purely harmful. A thin layer of it is essential — without it, the liquid would keep reacting with the electrode continuously and the battery would destroy itself in days. The problem is not that the layer exists, but that it never stops growing."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "This is why phone and car manufacturers quietly stop you charging to a true hundred per cent. What a phone calls full is typically well below the voltage the cell could physically reach, because degradation accelerates sharply at high state of charge — a cell held at 4.2 volts ages considerably faster than one held at 3.9. Several electric cars let you set a daily charge limit at eighty per cent for exactly this reason, and reserve full charges for long trips. Temperature compounds it: the side reactions roughly follow Arrhenius behaviour, so their rate rises steeply with temperature, and a battery that spends summers in a hot car ages far faster than the same battery in a garage. The two worst things you can do to a lithium-ion cell are keep it hot and keep it full, and doing both at once — a laptop left permanently plugged in on a desk, running warm — is the classic case."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Degradation is usually decomposed into loss of lithium inventory and loss of active material. The dominant mechanism for the first is growth of the solid electrolyte interphase, a passivating film that forms on the graphite anode because the electrolyte is thermodynamically unstable at the anode's operating potential. The film's formation consumes lithium ions irreversibly, and although it slows as it thickens — growth is roughly proportional to the square root of time, since lithium must diffuse through the existing layer to react — it never stops, and mechanical stress from the electrode expanding and contracting on each cycle cracks it and exposes fresh surface. Loss of active material has several causes: particle cracking from the volume change of intercalation, transition metal dissolution from the cathode, and binder decomposition. A third mechanism, lithium plating, matters disproportionately because it is fast and dangerous — when charging is too rapid or too cold, lithium ions arrive at the anode faster than they can intercalate into the graphite and instead deposit as metallic lithium on the surface, which both consumes inventory and can grow dendrites that eventually pierce the separator and short the cell. Calendar ageing and cycle ageing are distinct: a cell degrades measurably just sitting at a given state of charge and temperature, independent of use."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Separating these mechanisms in a real cell is genuinely hard, and it is the main obstacle to accurate state-of-health estimation. Differential voltage analysis and incremental capacity analysis can partially deconvolve lithium inventory loss from active material loss by tracking how the positions and heights of features in the dQ/dV curve shift, but the interpretation is chemistry-specific. Degradation is also strongly path-dependent rather than a simple function of cycle count: depth of discharge matters more than cycle count, so ten shallow cycles are gentler than one deep one, and the same total throughput distributed differently produces different end states. There is a well-documented knee in many ageing curves — a transition from gradual to rapid fade — and the mechanism behind it is contested, with lithium plating onset, electrolyte dry-out, and pore clogging all proposed and probably all contributing in different cells. Two things frequently get overstated in popular accounts. First, memory effect is a nickel-cadmium phenomenon and does not meaningfully apply to lithium-ion, though a small reversible effect has been reported in LFP cells. Second, capacity fade is often the less important failure mode in practice: impedance rise limits deliverable power, and a phone that shuts down at thirty per cent under camera load is showing resistance growth, not capacity loss."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Electrode",
+        "plain_definition": "One of the two ends of a battery where the chemical reactions that store and release energy happen."
+      },
+      {
+        "term": "Electrolyte",
+        "plain_definition": "The liquid or gel filling the battery that lets charged particles travel between the electrodes."
+      },
+      {
+        "term": "Intercalation",
+        "plain_definition": "Lithium ions slotting into the layered structure of an electrode without changing its basic shape."
+      },
+      {
+        "term": "Solid electrolyte interphase (SEI)",
+        "plain_definition": "A thin crust that forms on the anode; necessary in small amounts, but it permanently consumes lithium as it grows."
+      },
+      {
+        "term": "State of charge",
+        "plain_definition": "How full the battery currently is, as a percentage."
+      },
+      {
+        "term": "Lithium plating",
+        "plain_definition": "Lithium depositing as metal on the electrode surface instead of slotting inside, which happens when charging too fast or too cold."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "You should fully discharge a lithium battery occasionally to recalibrate it.",
+        "reality": "Deep discharge accelerates ageing. What a full cycle occasionally recalibrates is the fuel gauge's estimate, not the battery itself, and modern gauges rarely need it."
+      },
+      {
+        "myth": "Leaving a device plugged in overcharges the battery.",
+        "reality": "Charging circuits stop at the target voltage. The real harm is different: the cell then sits at high state of charge, often warm, which is precisely the condition that accelerates calendar ageing."
+      },
+      {
+        "myth": "Batteries have a memory effect that you must avoid by cycling fully.",
+        "reality": "Memory effect is a nickel-cadmium phenomenon. Lithium-ion cells prefer shallow partial cycles, which is the opposite advice."
+      },
+      {
+        "myth": "Fast charging always destroys batteries.",
+        "reality": "The risk is lithium plating, which depends on rate, temperature, and state of charge together. Well-designed fast charging tapers hard above about sixty per cent and refuses to run fast when cold, which is why the first half of a charge is so much quicker than the second."
+      }
+    ],
+    "why_it_matters": "Batteries are now the limiting component in phones, cars, tools, and grid storage, and the difference between careless and careful use is easily a factor of two in service life. It also explains a policy question that keeps coming up: why electric car batteries are warrantied on capacity retention rather than on failure, and why second-life stationary storage is a real industry rather than an environmental gesture.",
+    "historical_background": {
+      "origin": "The intercalation concept came from M. Stanley Whittingham in the 1970s, John Goodenough's group identified the layered oxide cathode in 1980, and Akira Yoshino built the first practically safe cell in 1985. The three shared the 2019 Nobel Prize in Chemistry.",
+      "motivation": "The 1970s oil crises drove the search for rechargeable energy storage, and the immediate commercial pull in the late 1980s was portable electronics — camcorders and early mobile phones needed far more energy per kilogram than nickel chemistry could give.",
+      "evolution": "Sony commercialised lithium-ion in 1991. Since then energy density has roughly quintupled and cost has fallen by well over ninety per cent, but the degradation mechanisms have proven stubborn — most progress has come from managing them, through charge algorithms, thermal management, and electrolyte additives that build a better SEI, rather than eliminating them."
+    },
+    "diagrams": [
+      {
+        "title": "Where the lithium goes",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Charge cycle begins\"] --> B[\"Lithium ions move<br/>anode to cathode and back\"]\n  B --> C{\"Side reactions\"}\n  C -->|\"Normal\"| D[\"SEI layer grows<br/>a little thicker\"]\n  C -->|\"Fast or cold charging\"| E[\"Lithium plates as metal<br/>on the surface\"]\n  D --> F[\"Lithium locked in the film\"]\n  E --> F\n  F --> G[\"Less lithium available<br/>to carry charge\"]\n  G --> H[\"Capacity fade\"]\n  D --> I[\"Thicker film resists<br/>ion movement\"]\n  I --> J[\"Impedance rise:<br/>sudden shutdowns under load\"]",
+        "caption": "Two distinct symptoms — losing capacity and losing power — trace back to the same growing film."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why SSDs wear out",
+        "reason": "Another everyday technology where ordinary use is physically destructive at the microscopic scale."
+      },
+      {
+        "label": "How electric car battery management systems work",
+        "reason": "The engineering built specifically to slow the mechanisms described here."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Electrochemistry",
+        "plain_definition": "The study of chemical reactions that move electric charge.",
+        "role": "requires"
+      },
+      {
+        "name": "Solid electrolyte interphase",
+        "plain_definition": "The film on a battery anode that protects it but permanently consumes lithium.",
+        "role": "covers"
+      },
+      {
+        "name": "Capacity fade",
+        "plain_definition": "The permanent loss of how much energy a battery can store.",
+        "role": "covers"
+      },
+      {
+        "name": "Arrhenius relationship",
+        "plain_definition": "The rule that chemical reaction rates rise steeply with temperature.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Lithium-ion battery",
+        "url": "https://en.wikipedia.org/wiki/Lithium-ion_battery",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Solid electrolyte interphase",
+        "url": "https://en.wikipedia.org/wiki/Solid_electrolyte_interphase",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "The Nobel Prize in Chemistry 2019 — scientific background",
+        "url": "https://www.nobelprize.org/prizes/chemistry/2019/advanced-information/",
+        "publisher": "Nobel Foundation",
+        "kind": "paper",
+        "reliability": 0.9
+      }
+    ],
+    "related_questions": [
+      "Why do SSDs wear out?",
+      "Why are airplane windows round?",
+      "Why don't birds get electrocuted on power lines?"
+    ]
+  },
+  {
+    "title": "Why can't websites read files on your computer?",
+    "category_slug": "cybersecurity",
+    "one_sentence_answer": "Browsers run every page inside a deliberately powerless sandbox, because the alternative — letting arbitrary code from strangers touch your filesystem — would make visiting a link as dangerous as running a downloaded program.",
+    "summary": "The web is the only platform where you routinely execute code from people you have never heard of, hundreds of times a day, without thinking about it. That is only survivable because of what the browser refuses to allow.",
+    "difficulty": "beginner",
+    "reading_minutes": 6,
+    "curiosity_score": 0.61,
+    "confidence": 0.92,
+    "confidence_reason": "Browser security architecture, the same-origin policy, and File System Access API permission models are specified in public web standards and vendor security documentation.",
+    "tags": [
+      "security",
+      "browsers",
+      "sandbox",
+      "web"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Every time you open a webpage, your computer downloads a program written by a stranger and runs it immediately, no questions asked. If that program could read your files, then a single bad link — in an email, in a search result, in an advert on a page you trust — would be enough to steal your documents, your photos, and your saved passwords. So the browser puts every page inside a sealed box. Code in the box can draw on the screen, respond to your clicks, and talk to its own server over the network. It cannot open your folders, look at what other pages are doing, or touch anything on your machine. The box is the entire reason clicking an unknown link is a mildly risky thing rather than a catastrophic one."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a bank teller's window. You can pass documents through the slot, talk through the glass, and ask for things to be done. What you cannot do is walk into the back office and open the filing cabinets yourself. Everything you want has to go through a narrow, deliberately limited opening that the bank controls, and each thing the teller will do for you is a decision the bank made in advance. The browser's interface to your computer is that slot. Where the analogy is misleading: the teller trusts you a little, whereas the browser trusts the page not at all. A better version would be a teller who assumes every single customer is attempting a robbery and designs the window so that even a determined one cannot succeed."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "You can watch the boundary being negotiated. When you attach a photo to a webmail message, the site does not read your disk — you pick the file yourself in a dialogue drawn by the browser, not by the page, and the page receives only that one file. It never learns the filename of anything else in the folder, or that the folder exists. Modern browsers do have a File System Access API that lets a web app like an online code editor open a real directory and save back to it, and it is instructive how carefully it is fenced: it requires a user gesture, it shows a browser-drawn picker the page cannot influence, it prompts again for write permission, it is blocked for sensitive locations like system directories, and the grant expires. Every one of those restrictions exists because someone worked out how the feature could otherwise be abused."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Several distinct mechanisms combine. The oldest is the same-origin policy, which isolates content by origin — the combination of scheme, host, and port — so a script loaded from one site cannot read the data or inspect the pages of another. Without it, a malicious page could silently open your bank in a hidden frame and read the contents. On top of that sits process isolation: modern browsers run pages in separate operating-system processes with heavily restricted privileges, so even code that fully compromises the rendering engine is confined. Chromium's renderer processes, for instance, run under an OS sandbox that denies filesystem and most syscall access outright, and Site Isolation puts different sites in different processes specifically so that a speculative-execution side channel cannot leak one site's data into another's address space. Then there is the capability model of the web platform APIs themselves. JavaScript has no filesystem API in the language; access exists only through explicitly designed interfaces, each gated on a user gesture, a permission prompt, and usually a secure context requiring HTTPS. The result is a default-deny architecture: a page starts with nothing and receives each capability only by asking, in a way the user can see."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The interesting failures are the ones where an isolation boundary turned out to be leakier than its designers assumed. Spectre broke a core assumption in 2018 — that memory within a process could be logically partitioned — because speculative execution left microarchitectural traces that let attacker script infer memory it could not directly read. The web platform's response was structural rather than a patch: high-resolution timers were degraded, SharedArrayBuffer was disabled and then re-enabled only behind cross-origin isolation headers, and Site Isolation was accelerated so that the security boundary matched the process boundary. There are also whole categories of leak that survive the sandbox because they do not involve reading files at all: browser fingerprinting derives an identifier from the combination of fonts, canvas rendering quirks, and hardware characteristics, none of which is individually sensitive. And the sandbox is a moving compromise rather than a fixed line — every capability added since, from clipboard read to WebUSB to WebGPU, has reopened the same argument about whether a permission prompt is a meaningful consent mechanism when users click through them reflexively. The honest summary is that the browser sandbox is the most successful piece of applied security engineering in wide deployment, and it still has a steady stream of escapes worth six-figure bounties."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Sandbox",
+        "plain_definition": "A restricted environment where code can run without being able to affect anything outside it."
+      },
+      {
+        "term": "Origin",
+        "plain_definition": "The combination of protocol, domain, and port that identifies where a page came from."
+      },
+      {
+        "term": "Same-origin policy",
+        "plain_definition": "The rule that a script from one site cannot read data belonging to another site."
+      },
+      {
+        "term": "Process isolation",
+        "plain_definition": "Running different pages in separate operating-system processes so a compromise of one cannot reach another."
+      },
+      {
+        "term": "User gesture",
+        "plain_definition": "A real click or keypress, required before a page can request sensitive capabilities, so it cannot happen silently."
+      },
+      {
+        "term": "Default deny",
+        "plain_definition": "Starting with no permissions and granting each one explicitly, rather than starting open and blocking abuses."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "JavaScript is a limited language that simply cannot do file access.",
+        "reality": "The language is fully general — Node.js runs the same language with complete filesystem access. The restriction is in what the browser environment chooses to expose, not in JavaScript itself."
+      },
+      {
+        "myth": "Websites can secretly access your webcam and microphone.",
+        "reality": "Both require an explicit permission grant and show a hardware or OS indicator while active. The genuine risk is a site you already granted access to, or a fake prompt tricking you into granting it — not silent capture."
+      },
+      {
+        "myth": "Incognito mode makes you anonymous to websites.",
+        "reality": "It isolates local state such as cookies and history on your machine. It does nothing about your IP address, your login, or fingerprinting, all of which sit outside the boundary it enforces."
+      },
+      {
+        "myth": "The sandbox means a webpage can never harm you.",
+        "reality": "It prevents a page from reaching your filesystem. It does not prevent phishing, malicious downloads you run yourself, extension abuse, or exploitation of a sandbox escape — and it never claimed to."
+      }
+    ],
+    "why_it_matters": "It is the reason the web works the way it does. The trade — pages get almost no power, and in exchange you can visit any of them without deciding whether to trust it — is what made a global network of untrusted, instantly-loaded applications possible at all. Understanding it also explains a lot of otherwise-annoying behaviour: why file uploads work the way they do, why a site cannot remember your preferences across browsers, and why permission prompts appear when they do.",
+    "historical_background": {
+      "origin": "Netscape introduced the same-origin policy in 1995, almost immediately after JavaScript itself, because it was obvious that scriptable pages needed a boundary.",
+      "motivation": "The early web assumed documents. Once pages could run code, the question became how to run untrusted code safely — a problem operating systems had been failing at for decades.",
+      "evolution": "The approach shifted decisively in 2008 when Chrome shipped a multi-process architecture with OS-level sandboxing, making it the industry norm. Plugin runtimes with weaker boundaries — Flash, Java applets, ActiveX — were progressively removed. Site Isolation arrived in response to Spectre in 2018, and the current direction is granting narrow, revocable, explicitly-consented capabilities rather than either blanket denial or blanket trust."
+    },
+    "diagrams": [
+      {
+        "title": "What a page can and cannot reach",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  P[\"Page from example.com\"] --> S{\"Browser sandbox\"}\n  S -->|\"allowed\"| A[\"Draw to its own tab\"]\n  S -->|\"allowed\"| B[\"Network requests<br/>to its own origin\"]\n  S -->|\"allowed\"| C[\"Its own cookies<br/>and local storage\"]\n  S -->|\"blocked\"| D[\"Read your filesystem\"]\n  S -->|\"blocked\"| E[\"Read another site's<br/>pages or cookies\"]\n  S -->|\"blocked\"| F[\"Run native code\"]\n  S -->|\"prompt + gesture\"| G[\"Camera, location,<br/>a file you picked\"]",
+        "caption": "The bottom branch is the only route between the two halves, and the user controls it."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How HTTPS actually protects a connection",
+        "reason": "The other half of web security: this card covers what a page can do, that covers who can watch it."
+      },
+      {
+        "label": "What browser fingerprinting can determine about you",
+        "reason": "A privacy leak that operates entirely within the rules the sandbox enforces."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Sandboxing",
+        "plain_definition": "Confining code so it cannot affect anything outside a restricted environment.",
+        "role": "covers"
+      },
+      {
+        "name": "Same-origin policy",
+        "plain_definition": "The rule isolating one website's data from another's scripts.",
+        "role": "covers"
+      },
+      {
+        "name": "Principle of least privilege",
+        "plain_definition": "Giving any component only the permissions it strictly needs.",
+        "role": "requires"
+      },
+      {
+        "name": "Side-channel attack",
+        "plain_definition": "Inferring secret data from timing or other indirect measurements rather than reading it.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Same-origin policy",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy",
+        "publisher": "MDN Web Docs",
+        "kind": "docs",
+        "reliability": 0.88
+      },
+      {
+        "title": "Chromium sandbox design",
+        "url": "https://chromium.googlesource.com/chromium/src/+/main/docs/design/sandbox.md",
+        "publisher": "The Chromium Project",
+        "kind": "docs",
+        "reliability": 0.9
+      },
+      {
+        "title": "File System Access API",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/File_System_API",
+        "publisher": "MDN Web Docs",
+        "kind": "docs",
+        "reliability": 0.88
+      }
+    ],
+    "related_questions": [
+      "Why do bank transfers take days to settle?"
+    ]
+  },
+  {
+    "title": "Why do bank transfers take days to settle?",
+    "category_slug": "finance",
+    "one_sentence_answer": "The message that money is coming arrives in seconds, but the banks only actually exchange the money in scheduled batches, and the gap between the promise and the exchange is the delay you experience.",
+    "summary": "Nothing technical prevents instant transfers — several countries have them. The delay is a deliberate design that batches obligations to reduce risk and cost, and it survives mostly because replacing it means rebuilding national infrastructure.",
+    "difficulty": "beginner",
+    "reading_minutes": 6,
+    "curiosity_score": 0.74,
+    "confidence": 0.85,
+    "confidence_reason": "Settlement mechanics are documented by central banks and the BIS; specific timings vary by country and payment scheme, so figures are given as typical ranges rather than universals.",
+    "tags": [
+      "payments",
+      "settlement",
+      "banking",
+      "clearing"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "When you send money to someone at a different bank, two separate things have to happen. First, your bank tells their bank that money is on the way. That message takes almost no time. Second, the actual money has to move from your bank to theirs — and that is the slow part. Rather than shifting money for every single payment as it happens, banks keep a running tally of what they owe each other all day and then settle up in scheduled rounds. Imagine two friends who buy each other coffees all week and square up on Friday instead of handing over coins every time. It is far less work. The catch is that if you happen to send money just after a round closes, your payment waits for the next one — and if that falls over a weekend, you are waiting until Monday."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Picture a large office where dozens of departments constantly owe each other small amounts. They could send a courier for every transaction, which would mean thousands of couriers and enormous cost. Instead each department writes its debts on a board, and three times a day a clerk works out the net position — department A owes B forty, B owes A thirty-five, so only five actually moves — and a single payment settles it. Far fewer couriers, far less cash in transit. Where the analogy stops: the clerk is not merely saving effort, they are also absorbing risk, because between writing on the board and settling up, someone has to be confident the debts will be honoured. That confidence, and who provides it, is most of what modern payment infrastructure is actually for."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The clearest proof that the delay is a design choice, not a technical necessity, is that several countries removed it. The UK launched Faster Payments in 2008, and transfers between most British banks now complete in seconds, around the clock. India's UPI, Brazil's Pix, and the US FedNow service do the same thing. Meanwhile the older systems still run alongside them: the US ACH network processes in batches and takes one to three business days, and it still handles the overwhelming majority of payroll and bill payments by volume, because it is cheaper per transaction and because moving fifty years of accumulated integrations is a decade-long project. International transfers are slower again, often three to five days, because they typically pass through a chain of correspondent banks in different jurisdictions, each with its own cut-off times, compliance checks, and business hours — and the money genuinely has to be settled at each link in the chain."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "The vocabulary distinguishes clearing from settlement. Clearing is the exchange of payment instructions and the calculation of what each institution owes; settlement is the irrevocable transfer of funds that discharges the obligation. Most legacy retail systems use deferred net settlement: instructions accumulate, positions are netted multilaterally, and the net amounts settle at fixed windows across accounts the banks hold at the central bank. Netting is enormously efficient — it can reduce the value that actually needs to move by well over ninety per cent — but it creates settlement risk, because between clearing and settlement each bank is exposed to the others failing. The alternative is real-time gross settlement, where every payment settles individually and immediately in central bank money, which eliminates that risk but requires each bank to hold far more liquidity, since payments cannot be offset against incoming ones. RTGS systems such as Fedwire, CHAPS, and TARGET2 handle high-value transfers for this reason, while retail payments historically used netting. Instant payment schemes are a hybrid: the payee is credited immediately and the paying bank guarantees the funds, while the interbank settlement still happens on a deferred cycle backed by prefunded collateral. Layered on top of all of this are anti-money-laundering and sanctions screening obligations, which can hold individual payments for manual review regardless of how fast the rails are."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The trade-off between netting efficiency and settlement risk has a real history behind it. Herstatt risk is named after the 1974 failure of Bankhaus Herstatt, which had received Deutsche Marks but was closed by regulators before paying out the corresponding dollars, exposing counterparties across time zones — the reason foreign exchange settlement now largely runs through CLS on a payment-versus-payment basis. Modern RTGS systems do not simply gross-settle blindly either; they use liquidity-saving mechanisms, offsetting algorithms that periodically scan queued payments for cycles that can be settled together, recovering much of netting's efficiency without the intraday credit exposure. The correspondent banking chain that makes cross-border payments slow has also been shrinking for a less pleasant reason: de-risking, where banks exit relationships in higher-risk jurisdictions because the compliance cost exceeds the revenue, which has left some corridors with very few remaining routes. On the reform side, the direction of travel is set by the G20 roadmap for cross-border payments and by ISO 20022 migration, which replaces terse legacy message formats with structured data rich enough to carry the compliance information that currently triggers manual review. Whether wholesale central bank digital currencies or tokenised deposits change the underlying structure is genuinely open — most current pilots reproduce the existing two-tier model rather than replacing it."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Clearing",
+        "plain_definition": "Exchanging the instructions and working out who owes whom how much."
+      },
+      {
+        "term": "Settlement",
+        "plain_definition": "The actual, final transfer of money that discharges the debt."
+      },
+      {
+        "term": "Netting",
+        "plain_definition": "Cancelling mutual obligations against each other so only the difference has to move."
+      },
+      {
+        "term": "Central bank money",
+        "plain_definition": "Balances banks hold at the central bank; the only form of money whose transfer between banks is final and risk-free."
+      },
+      {
+        "term": "Settlement risk",
+        "plain_definition": "The danger that one party fails between agreeing a payment and completing it."
+      },
+      {
+        "term": "Correspondent bank",
+        "plain_definition": "A bank that holds an account for another bank, used as a stepping stone for international payments."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "The money sits somewhere earning interest for the bank during the delay.",
+        "reality": "This float existed and mattered historically, but netting means most of the value never moves at all, and in low-rate environments the amounts are small relative to the operational cost. The persistence of batch settlement is about risk and legacy infrastructure, not interest capture."
+      },
+      {
+        "myth": "The delay is because computers are slow or the systems are old.",
+        "reality": "The messaging has been effectively instant for decades. What takes time is the settlement cycle, which is a policy and risk-management choice, as proven by the countries that simply changed it."
+      },
+      {
+        "myth": "Cryptocurrencies solved this problem.",
+        "reality": "Blockchains do achieve gross settlement without a central counterparty, which is a genuine architectural difference. But they do so by requiring full prefunding of every payment, and settlement finality is probabilistic rather than legal — the on and off ramps back into bank money reintroduce exactly the delays in question."
+      },
+      {
+        "myth": "A pending transfer can always be recalled.",
+        "reality": "It depends entirely on the scheme. Instant payment schemes are typically irrevocable the moment the payee is credited, which is precisely why authorised push payment fraud became a serious problem once they launched."
+      }
+    ],
+    "why_it_matters": "The gap between when a payment feels done and when it is actually final is where a surprising amount of real-world trouble lives — from bounced rent to fraud that exploits the window, to the reason a business's cash flow and its bank balance disagree. It also explains why payment reform is so slow: the delay is not a bug anyone forgot to fix, it is load-bearing risk management that has to be replaced with something else before it can be removed.",
+    "historical_background": {
+      "origin": "Multilateral netting long predates computers. The London Clearing House began operating in the eighteenth century, when clerks from different banks met daily to exchange cheques and settle only the differences — precisely to avoid carrying gold across the city.",
+      "motivation": "The original driver was physical: moving actual specie was slow, expensive, and dangerous, so netting obligations and moving only the balance was a dramatic improvement.",
+      "evolution": "Electronic systems inherited the structure rather than rethinking it. ACH launched in the US in the 1970s, computerising the batch model without changing its timing. RTGS spread in the 1980s and 1990s for high-value payments after Herstatt made settlement risk vivid. Retail instant payments only became widespread from the late 2000s, starting with the UK in 2008, and are still being rolled out — FedNow only launched in 2023."
+    },
+    "diagrams": [
+      {
+        "title": "Two paths the same payment can take",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"You send £100\"] --> B[\"Instruction reaches<br/>the other bank in seconds\"]\n  B --> C{\"Which scheme?\"}\n  C -->|\"Deferred net settlement\"| D[\"Obligation added<br/>to the day's tally\"]\n  D --> E[\"Netted against<br/>opposite flows\"]\n  E --> F[\"Net amount settles<br/>at the next window\"]\n  F --> G[\"Funds final:<br/>1-3 business days\"]\n  C -->|\"Instant payment\"| H[\"Payee credited now,<br/>paying bank guarantees it\"]\n  H --> I[\"Funds usable in seconds\"]\n  I --> J[\"Interbank settlement<br/>still happens later\"]",
+        "caption": "Both branches settle between banks on a delay; only one makes you wait for it."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How card payments actually work",
+        "reason": "A different arrangement of the same clearing-and-settlement split, with an extra party taking the risk."
+      },
+      {
+        "label": "What a central bank actually does",
+        "reason": "Settlement finality only means something because of the institution sitting underneath it."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Clearing and settlement",
+        "plain_definition": "The two-step process of agreeing what is owed and then actually moving the money.",
+        "role": "covers"
+      },
+      {
+        "name": "Multilateral netting",
+        "plain_definition": "Cancelling many mutual debts so only net balances move.",
+        "role": "covers"
+      },
+      {
+        "name": "Settlement risk",
+        "plain_definition": "The exposure created by a gap between agreeing and completing a payment.",
+        "role": "covers"
+      },
+      {
+        "name": "Central bank",
+        "plain_definition": "The institution whose money is the final, risk-free means of settlement between banks.",
+        "role": "requires"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Settlement (finance)",
+        "url": "https://en.wikipedia.org/wiki/Settlement_(finance)",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Principles for Financial Market Infrastructures",
+        "url": "https://www.bis.org/cpmi/publ/d101.htm",
+        "publisher": "Bank for International Settlements",
+        "kind": "gov",
+        "reliability": 0.92
+      },
+      {
+        "title": "Real-time gross settlement",
+        "url": "https://en.wikipedia.org/wiki/Real-time_gross_settlement",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      }
+    ],
+    "related_questions": [
+      "Why can't websites read files on your computer?",
+      "Why do CPUs have cache?",
+      "Why do elevators have mirrors?"
+    ]
+  },
+  {
+    "title": "Why don't birds get electrocuted on power lines?",
+    "category_slug": "physics",
+    "one_sentence_answer": "Electricity only flows when there is a voltage difference across something, and a bird touching one wire has both feet at the same voltage, so there is nothing to push current through it.",
+    "summary": "The usual answer — that birds are insulated, or that rubber-soled shoes save you — is wrong. What protects the bird is that it never completes a path to anywhere at a different voltage.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.88,
+    "confidence": 0.93,
+    "confidence_reason": "The physics is elementary circuit theory, and the failure modes are documented in avian protection guidelines published by utility regulators and wildlife agencies.",
+    "tags": [
+      "electricity",
+      "voltage",
+      "birds",
+      "safety"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Electricity does not want to be somewhere in particular. It flows when there is a difference in electrical pressure between two points, and it flows from the higher to the lower. That pressure difference is what we call voltage. When a bird lands on a single wire, both of its feet are on the same wire, a few centimetres apart. There is essentially no pressure difference between one foot and the other, so there is nothing to push electricity through the bird. It is not that the bird is protected, insulated, or lucky — it is that no push exists. If that same bird stretched out and touched a second wire at a different voltage, or touched a wire and a metal pylon at the same time, current would flow instantly, and it would not survive."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Imagine a fast-moving river with a boat drifting in it. If the boat is simply floating along with the current, nothing pulls it apart, because every part of the boat is moving at the same speed as the water around it. Now imagine one end of the boat is roped to the bank while the rest sits in the current. Suddenly there is an enormous force, because one part is being held at a different speed from another. The bird floating on the wire is the drifting boat; the bird touching both a wire and the pylon is the boat roped to the bank. Where the analogy fails: the bird on the wire really is sitting at a very high voltage relative to the ground, thousands of volts. It just does not matter, because nothing near it is at a different one."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Birds do get electrocuted, regularly, and how it happens confirms the explanation exactly. Large raptors — eagles, hawks, owls — are killed on distribution lines far more often than small birds, because their wingspan is wide enough to bridge two conductors, or a conductor and a grounded crossarm, while landing or taking off. Utilities respond by increasing the spacing between energised parts, covering conductors near perches, and fitting perch deterrents. Line workers use the same principle deliberately: in bare-hand live-line maintenance, a worker in a conductive suit is brought to the same potential as the line before touching it, then works on an energised conductor safely, exactly as the bird does. The rule is identical in both cases — being at a high voltage is harmless, being at two different voltages at once is not."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Current through any path follows from Ohm's law: it equals the voltage difference across that path divided by its resistance. For a bird on a single conductor, the two feet are separated by a few centimetres of copper or aluminium with extremely low resistance, so the voltage drop between them is a tiny fraction of a volt even with hundreds of amps flowing along the line. Divide that negligible voltage by the bird's body resistance, which is thousands of ohms, and the current through the bird is microscopic. The bird's body does form a parallel resistive path, but it is millions of times more resistive than the wire, so essentially all the current takes the wire. There is a second, smaller effect worth naming: on alternating current lines the bird's body has capacitance to its surroundings, so a small displacement current does flow as its potential swings up and down at line frequency. On distribution voltages this is imperceptible; on extra-high-voltage transmission lines it is large enough that birds are sometimes observed to avoid perching, and it is why bare-hand workers hear and feel the transition as they are bonded to the line."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Two mechanisms in this area are widely misunderstood. The first is step potential. When a line falls and current enters the earth at a point, the ground itself is not equipotential — voltage falls off with distance from the contact point, so a person or animal standing with feet apart has a genuine voltage difference between them. This is why large four-legged animals are killed by nearby lightning strikes and downed lines more readily than humans, and why the safety instruction for leaving the vicinity of a downed conductor is to shuffle with feet together rather than walk. The bird on the wire is safe for exactly the reason the cow in the field is not. The second is that lethality is about current path and duration through the body, not voltage alone: currents of around 100 milliamps through the chest can induce ventricular fibrillation, while much larger currents through a limb may cause burns without stopping the heart. This is why the hand-to-hand path is the dangerous one and why electricians are trained to work one-handed. Finally, the popular belief that rubber shoes make you safe is a dangerous overreading of the bird case — ordinary footwear is not rated as electrical insulation, and it does nothing about a hand-to-hand path or about step potential."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Voltage",
+        "plain_definition": "The difference in electrical pressure between two points; without a difference, nothing flows."
+      },
+      {
+        "term": "Current",
+        "plain_definition": "The actual flow of electric charge, which is what causes harm."
+      },
+      {
+        "term": "Resistance",
+        "plain_definition": "How strongly something opposes the flow of current."
+      },
+      {
+        "term": "Potential",
+        "plain_definition": "The electrical level at a single point, measured against some reference such as the ground."
+      },
+      {
+        "term": "Step potential",
+        "plain_definition": "The voltage difference between two points on the ground near where current is entering the earth."
+      },
+      {
+        "term": "Grounded",
+        "plain_definition": "Connected to the earth, which acts as the reference level most electrical systems are measured against."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Birds' feet are insulated, or their scales protect them.",
+        "reality": "Bird feet are ordinary flesh and conduct perfectly well. Insulation is irrelevant to why they survive; the absence of a voltage difference is the whole explanation."
+      },
+      {
+        "myth": "Power lines are insulated, so touching one is safe.",
+        "reality": "Overhead transmission and most distribution conductors are bare metal. What insulates them is the air gap and the glass or ceramic insulators at the pylon, not any coating on the wire."
+      },
+      {
+        "myth": "Rubber-soled shoes will protect you like the bird is protected.",
+        "reality": "Two different situations. Ordinary shoes are not tested insulation and fail readily at line voltages, and they provide no protection at all against a current path that goes hand to hand rather than through the ground."
+      },
+      {
+        "myth": "It is the voltage that kills you.",
+        "reality": "Current through the body over time is what causes harm. Voltage matters because it drives the current, but the same voltage across a dry palm and across wet skin produces very different outcomes."
+      }
+    ],
+    "why_it_matters": "It replaces a vague fear of electricity with a usable rule: harm requires a completed path between two different potentials through you. That single idea explains why birds are fine, why line workers can touch live conductors, why you shuffle away from a downed cable, why three-pin plugs have an earth pin, and why an electrician keeps one hand in a pocket.",
+    "historical_background": {
+      "origin": "Georg Ohm published the relationship between voltage, current, and resistance in 1827, to a notably cool reception; it took over a decade to be widely accepted.",
+      "motivation": "The practical stakes arrived with electrification in the 1880s, and the safety implications were argued out publicly during the war of the currents between Edison's direct current and Westinghouse's alternating current, in which electrocution risk was used as a marketing weapon by both sides.",
+      "evolution": "Systematic understanding of electrical injury came much later, largely from twentieth-century work relating current magnitude and duration to physiological effect, which underpins modern standards. Bird protection specifically became a regulated design concern from the 1970s onwards, as raptor deaths on distribution lines were recognised as a significant conservation problem."
+    },
+    "diagrams": [
+      {
+        "title": "Safe and unsafe contact",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Bird lands\"] --> B{\"What is it<br/>touching?\"}\n  B -->|\"One wire only\"| C[\"Both feet at the<br/>same potential\"]\n  C --> D[\"No voltage difference\"]\n  D --> E[\"No current flows:<br/>safe\"]\n  B -->|\"Two wires\"| F[\"Feet at different<br/>potentials\"]\n  B -->|\"Wire and pylon\"| G[\"Wire at high potential,<br/>pylon at ground\"]\n  F --> H[\"Large voltage<br/>across the body\"]\n  G --> H\n  H --> I[\"Current flows:<br/>fatal\"]",
+        "caption": "The bird's safety depends entirely on the branch it takes, not on anything about the bird."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why three-pin plugs have an earth pin",
+        "reason": "The same principle applied deliberately, to guarantee that a fault has a safer path than you."
+      },
+      {
+        "label": "Why birds sit on wires at all",
+        "reason": "The behavioural question the physics answer leaves open."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Electric potential",
+        "plain_definition": "The electrical level at a point, meaningful only relative to somewhere else.",
+        "role": "covers"
+      },
+      {
+        "name": "Ohm's law",
+        "plain_definition": "The relationship stating that current equals voltage divided by resistance.",
+        "role": "covers"
+      },
+      {
+        "name": "Electrical safety",
+        "plain_definition": "The practice of preventing current from finding a path through a person.",
+        "role": "covers"
+      },
+      {
+        "name": "Step potential",
+        "plain_definition": "The voltage difference across the ground near a point where current enters the earth.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Electrical injury",
+        "url": "https://en.wikipedia.org/wiki/Electrical_injury",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Ohm's law",
+        "url": "https://en.wikipedia.org/wiki/Ohm%27s_law",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Live-line working",
+        "url": "https://en.wikipedia.org/wiki/Live-line_working",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why do batteries degrade?",
+      "Why is the sky blue?"
+    ]
+  },
+  {
+    "title": "Why do photos of propellers look bent?",
+    "category_slug": "design",
+    "one_sentence_answer": "Most digital cameras do not capture the whole image at one instant — they scan it line by line from top to bottom, so anything moving fast is recorded at a slightly different position in every row.",
+    "summary": "Rolling shutter is an artefact of how the sensor is read out rather than of the lens or the exposure. Once you know it exists, you can spot it in propellers, guitar strings, and every video shot from a moving car.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.7,
+    "confidence": 0.91,
+    "confidence_reason": "Sensor readout architectures and their artefacts are documented in imaging engineering literature and sensor manufacturer datasheets; the effect is trivially reproducible.",
+    "tags": [
+      "cameras",
+      "sensors",
+      "imaging",
+      "artefacts"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "It is natural to assume a photograph captures a single frozen instant, like a snapshot of time. Most digital cameras do not work that way. The sensor is read out one horizontal row of pixels at a time, starting at the top and sweeping down, and the whole sweep takes a few thousandths to a few hundredths of a second. For anything slow, that is invisible. But a propeller blade might travel a long way across the frame in that time, so by the time the sensor reaches the bottom rows, the blade has moved. Each row records the blade in a slightly different place, and stacking those rows together produces a shape that never existed — a bent, sheared, or detached blade. The camera did not distort anything. It faithfully recorded a hundred different moments and stacked them."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Imagine drawing a picture of a passing train by looking through a narrow horizontal slit that you slide slowly down a wall, sketching what you see through the slit as you go. If the train is stationary, your drawing is accurate. If it is moving, by the time your slit reaches the bottom of the wall the train has advanced, so the bottom of your drawing shows a part of the train that was never below the part you drew at the top. Your train comes out leaning. That is a rolling shutter exactly. Where the analogy is imperfect: a real sensor's rows overlap in time — each row is exposed for the full shutter duration, and it is the *start* of each row's exposure that is staggered — so a fast-moving object is both displaced and slightly smeared, not purely sheared."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The most reproducible demonstration is filming a spinning fan or a helicopter rotor on a phone. You will see blades that curve like scimitars, blades that appear detached from the hub, and sometimes a rotor that seems to have the wrong number of blades entirely. The same mechanism produces the wobble in handheld video known as jello, where vertical lines sway as the camera pans, and the characteristic leaning buildings in footage shot from a moving car. It also shows up in an unexpected place: photographs taken with a flash under a rolling shutter can come out with a hard bright band across part of the frame, because the flash fired while only some rows were exposed. This is why cameras have a maximum flash sync speed, and why it is a real constraint in studio work rather than a curiosity."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "The distinction is between rolling and global shutter, and it comes from sensor architecture. Most CMOS image sensors read out row by row: a row's exposure is terminated and its charge transferred to readout circuitry, then the next row's, sequentially down the array. The delay between the first and last row is the readout time, often quoted as sensor scan rate, and on consumer sensors it can be anywhere from about five to thirty milliseconds. A global shutter sensor instead transfers every pixel's charge to a shielded storage node simultaneously, then reads the stored values out at leisure, so all pixels represent the same interval. Global shutter costs real estate on the pixel — each one needs extra transistors and a light-shielded storage site — which historically reduced fill factor, dynamic range, and low-light sensitivity, and increased cost. CCD sensors could do global shutter more naturally, which is one reason the artefact was less prominent before the industry moved to CMOS. The magnitude of the distortion depends on the ratio of the subject's angular speed to the readout speed, which is why the effect is dramatic on phones with slow readout and much reduced on high-end stacked sensors that read out in a couple of milliseconds."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Rolling shutter is not purely a defect to be engineered away; it carries exploitable information. Because each row has a known timestamp offset, the distortion in a single frame encodes sub-frame motion, and this has been used for rolling-shutter-based structure from motion, for measuring vibration frequencies from a single image, and — less comfortably — as a side channel, since a rolling shutter camera can recover a screen's refresh pattern or a light source's flicker frequency at rates far above the frame rate. Correction is genuinely hard in the general case: software stabilisation models the distortion as a time-varying homography and can undo camera motion well, but object motion within the scene is not recoverable from one frame, because the information about where the propeller was at the top row's timestamp simply was not captured for the bottom rows. There is also an aliasing interaction people often conflate with rolling shutter. A propeller filmed at a frame rate close to a multiple of its rotation rate appears to stand still or rotate slowly backwards, and that is temporal aliasing between frames — it happens on a global shutter camera too, and it is a distinct phenomenon from the within-frame shearing. Both can appear in the same clip, which is why propeller footage is such a reliably confusing thing to look at."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Sensor",
+        "plain_definition": "The chip inside a camera that converts light into an electrical signal, made of a grid of pixels."
+      },
+      {
+        "term": "Readout",
+        "plain_definition": "The process of retrieving the accumulated signal from the sensor's pixels, which takes measurable time."
+      },
+      {
+        "term": "Rolling shutter",
+        "plain_definition": "Reading the sensor row by row, so different parts of the image correspond to different moments."
+      },
+      {
+        "term": "Global shutter",
+        "plain_definition": "Capturing every pixel at the same instant, avoiding the distortion but costing sensitivity and money."
+      },
+      {
+        "term": "Temporal aliasing",
+        "plain_definition": "The illusion, such as wheels appearing to spin backwards, that comes from sampling motion too infrequently between frames."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "The propeller really is bending under load.",
+        "reality": "Blades do flex, but by a tiny amount compared to what these photographs show. The dramatic curves and detached blades are entirely artefacts of readout timing."
+      },
+      {
+        "myth": "A faster shutter speed fixes it.",
+        "reality": "Shutter speed sets how long each row is exposed; rolling shutter is caused by the offset between when rows *start*. A faster shutter reduces motion blur within each row and can actually make the shearing look sharper and more obvious."
+      },
+      {
+        "myth": "It is a compression or software artefact.",
+        "reality": "It happens in raw sensor data before any encoding. You can reproduce it with compression disabled entirely."
+      },
+      {
+        "myth": "Rolling shutter and the backwards-spinning-wheel effect are the same thing.",
+        "reality": "They are different. The wheel illusion is aliasing between frames and occurs on any camera; rolling shutter distortion happens within a single frame and requires sequential readout."
+      }
+    ],
+    "why_it_matters": "It is a clean lesson in the difference between what an instrument records and what was there, which matters well beyond photography. It also has practical consequences: it constrains flash photography, it is why drone and action footage needs specific stabilisation, and it is a known problem in machine vision and photogrammetry, where an uncorrected rolling shutter quietly corrupts measurements taken from moving platforms.",
+    "historical_background": {
+      "origin": "The artefact long predates digital sensors. Focal-plane shutters in film cameras, which sweep a slit across the film, produce exactly the same distortion — the famous 1913 Lartigue photograph of a racing car with elliptical wheels and a backwards-leaning body is a mechanical rolling shutter at work.",
+      "motivation": "In film cameras the moving slit existed because it allowed much shorter effective exposures than a leaf shutter could achieve. In digital sensors, sequential readout exists because it lets many pixels share readout circuitry, making the sensor cheaper, smaller, and more sensitive.",
+      "evolution": "CCD sensors dominated early digital imaging and were less prone to the effect; the industry's shift to CMOS in the 2000s made rolling shutter ubiquitous just as video on consumer devices exploded. The current direction is stacked sensors with fast parallel readout that shrink the offset towards insignificance, and global shutter CMOS designs that have finally become viable without an unacceptable sensitivity penalty."
+    },
+    "diagrams": [
+      {
+        "title": "Two ways to read a sensor",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Fast-moving subject\"] --> B{\"Shutter type\"}\n  B -->|\"Global\"| C[\"All pixels captured<br/>at one instant\"]\n  C --> D[\"Shape recorded<br/>correctly\"]\n  B -->|\"Rolling\"| E[\"Row 1 captured at t=0\"]\n  E --> F[\"Row 500 captured<br/>at t=8 ms\"]\n  F --> G[\"Row 1000 captured<br/>at t=16 ms\"]\n  G --> H[\"Subject has moved<br/>between rows\"]\n  H --> I[\"Bent, sheared,<br/>or detached shape\"]",
+        "caption": "Every row is an accurate record of a different moment; the distortion is in stacking them."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why wheels sometimes spin backwards on film",
+        "reason": "The other timing illusion in the same footage, and a genuinely different mechanism."
+      },
+      {
+        "label": "How image stabilisation works",
+        "reason": "The engineering that partly corrects this, and why it can only partly do so."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Rolling shutter",
+        "plain_definition": "Sequential row-by-row sensor readout, so one frame spans many instants.",
+        "role": "covers"
+      },
+      {
+        "name": "Image sensor",
+        "plain_definition": "The grid of light-sensitive pixels that turns an optical image into data.",
+        "role": "requires"
+      },
+      {
+        "name": "Temporal sampling",
+        "plain_definition": "Capturing a continuously changing scene at discrete moments in time.",
+        "role": "covers"
+      },
+      {
+        "name": "Aliasing",
+        "plain_definition": "False patterns that appear when something is sampled too infrequently to represent it correctly.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Rolling shutter",
+        "url": "https://en.wikipedia.org/wiki/Rolling_shutter",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Global shutter vs rolling shutter",
+        "url": "https://en.wikipedia.org/wiki/Shutter_(photography)",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Active pixel sensor",
+        "url": "https://en.wikipedia.org/wiki/Active-pixel_sensor",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      }
+    ],
+    "related_questions": [
+      "Why do elevators have mirrors?",
+      "Why is the sky blue?"
+    ]
+  }
+]

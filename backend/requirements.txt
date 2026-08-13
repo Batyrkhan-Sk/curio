@@ -1,0 +1,17 @@
+fastapi==0.118.0
+uvicorn[standard]==0.37.0
+pydantic==2.11.9
+pydantic-settings==2.11.0
+sqlalchemy[asyncio]==2.0.43
+asyncpg==0.30.0
+pgvector==0.4.1
+alembic==1.16.5
+httpx==0.28.1
+meilisearch-python-sdk==4.9.0
+apscheduler==3.11.0
+pywebpush==2.0.3
+py-vapid==1.9.2
+python-slugify==8.0.4
+beautifulsoup4==4.13.5
+tenacity==9.1.2
+orjson==3.11.3

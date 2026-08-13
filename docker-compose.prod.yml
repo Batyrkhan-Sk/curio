@@ -1,0 +1,178 @@
+# Production stack for a single VM (Oracle Cloud Always Free, or any box with
+# Docker). Run it with an explicit -f, since the default file is the dev one:
+#
+#   docker compose -f docker-compose.prod.yml up -d --build
+#
+# Two deliberate differences from docker-compose.yml, both security rather than
+# taste:
+#
+#   1. No source bind mounts and no --reload. The images are self-contained, so
+#      a rebuild is what ships a change — `git pull` alone does nothing.
+#   2. Nothing is published to the VM's public interface. cloudflared reaches
+#      the web container over the compose network, so the machine needs no open
+#      inbound port at all — not even 80 or 443. Postgres and Meilisearch bind
+#      to 127.0.0.1 only, reachable over an SSH tunnel for debugging and from
+#      nowhere else.
+
+name: curio
+
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-curio}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set a real password in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-curio}
+    # Loopback only. Public would mean a database open to the internet behind
+    # whatever POSTGRES_PASSWORD happens to be.
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-curio} -d ${POSTGRES_DB:-curio}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.12
+    restart: unless-stopped
+    environment:
+      # Unlike development, this mode refuses to start on a weak key: it must
+      # be at least 16 bytes. Generate one with `openssl rand -base64 32`.
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:?set a 16+ byte key in .env}
+      MEILI_ENV: production
+      MEILI_NO_ANALYTICS: "true"
+    ports:
+      - "127.0.0.1:${MEILI_PORT:-7700}:7700"
+    volumes:
+      - meili-data:/meili_data
+    healthcheck:
+      test: ["CMD", "meilisearch", "--help"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-curio}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-curio}
+      MEILI_URL: http://meilisearch:7700
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.5-flash}
+      GEMINI_MODEL_POOL: ${GEMINI_MODEL_POOL:-}
+      GEMINI_EMBEDDING_MODEL: ${GEMINI_EMBEDDING_MODEL:-gemini-embedding-001}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-120b}
+      XAI_API_KEY: ${XAI_API_KEY:-}
+      XAI_MODEL: ${XAI_MODEL:-grok-4-fast}
+      LLM_PROVIDER_ORDER: ${LLM_PROVIDER_ORDER:-gemini,groq,xai}
+      LLM_MAX_OUTPUT_TOKENS: ${LLM_MAX_OUTPUT_TOKENS:-32768}
+      GEMINI_THINKING_LEVEL: ${GEMINI_THINKING_LEVEL:-low}
+      # The public origin, not localhost. The browser reaches the API through
+      # the Next rewrite so this is mostly belt-and-braces, but the Mini App
+      # sign-in call is the one that notices when it is wrong.
+      CORS_ORIGINS: ${CORS_ORIGINS:-}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_WEBHOOK_SECRET: ${TELEGRAM_WEBHOOK_SECRET:-}
+      TELEGRAM_WEBAPP_URL: ${TELEGRAM_WEBAPP_URL:-}
+      TELEGRAM_PUBLIC_URL: ${TELEGRAM_PUBLIC_URL:-}
+      TELEGRAM_BOT_USERNAME: ${TELEGRAM_BOT_USERNAME:-}
+      VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY:-}
+      VAPID_PRIVATE_KEY: ${VAPID_PRIVATE_KEY:-}
+      VAPID_SUBJECT: ${VAPID_SUBJECT:-mailto:curiosity@example.com}
+      # Idempotent: seeding is skipped when the corpus is already there, and
+      # the boot path reindexes Meilisearch instead.
+      AUTO_SEED: ${AUTO_SEED:-true}
+      # Off in production, always — these endpoints reseed, ingest and reindex
+      # with no authentication. Use `docker compose ... exec api python -m
+      # app.cli <command>` instead.
+      ADMIN_API_ENABLED: "false"
+      INGESTION_ENABLED: ${INGESTION_ENABLED:-false}
+      INGESTION_INTERVAL_MINUTES: ${INGESTION_INTERVAL_MINUTES:-180}
+      INGESTION_MAX_NEW_CARDS: ${INGESTION_MAX_NEW_CARDS:-5}
+      REDDIT_USER_AGENT: ${REDDIT_USER_AGENT:-curio/1.0 (collective-curiosity)}
+      REDDIT_CLIENT_ID: ${REDDIT_CLIENT_ID:-}
+      REDDIT_CLIENT_SECRET: ${REDDIT_CLIENT_SECRET:-}
+    depends_on:
+      db:
+        condition: service_healthy
+      meilisearch:
+        condition: service_started
+
+  web:
+    build:
+      context: ./frontend
+      target: prod
+      args:
+        # Baked into the build — see the comment in frontend/Dockerfile.
+        API_URL: http://api:8000
+        NEXT_PUBLIC_VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY:-}
+    restart: unless-stopped
+    environment:
+      API_URL: http://api:8000
+    depends_on:
+      - api
+
+  # ── Public entrypoint ─────────────────────────────────────────────────────
+  # Pick exactly one of the two below with --profile. Both work the same way:
+  # they dial *out* to a provider, and inbound traffic rides back down that
+  # connection, so the VM needs no open inbound port. The difference is only
+  # where the hostname comes from.
+  #
+  #   docker compose -f docker-compose.prod.yml --profile tailscale  up -d
+  #   docker compose -f docker-compose.prod.yml --profile cloudflare up -d
+  #
+  # Neither token is declared required (`:?`) even though its own service
+  # cannot run without it: compose interpolates the whole file before it
+  # filters on profile, so a required variable here would break the *other*
+  # path. Both containers fail loudly on an empty value anyway.
+
+  # Free, and needs no domain — Tailscale owns ts.net and issues the
+  # certificate for <hostname>.<tailnet>.ts.net. Funnel is the opt-in public
+  # door in an otherwise private mesh; see docs/DEPLOY-ORACLE.md for the ACL
+  # attribute it requires.
+  tailscale:
+    image: tailscale/tailscale:latest
+    profiles: ["tailscale"]
+    restart: unless-stopped
+    # Becomes the machine name, and so the public hostname:
+    # https://${TAILSCALE_HOSTNAME}.<your-tailnet>.ts.net
+    hostname: ${TAILSCALE_HOSTNAME:-curio}
+    environment:
+      TS_AUTHKEY: ${TAILSCALE_AUTHKEY:-}
+      TS_SERVE_CONFIG: /config/funnel.json
+      TS_STATE_DIR: /var/lib/tailscale
+      # Userspace networking: no TUN device, so the container needs no
+      # NET_ADMIN and no /dev/net/tun. Enough for Serve and Funnel, which is
+      # all this does — it is not a subnet router or an exit node.
+      TS_USERSPACE: "true"
+    volumes:
+      - tailscale-state:/var/lib/tailscale
+      # Node identity lives in the volume above. Losing it is not fatal but
+      # the node re-registers, and an ephemeral auth key would hand back a
+      # different hostname — which is exactly what breaks the webhook.
+      - ./deploy/tailscale-funnel.json:/config/funnel.json:ro
+    depends_on:
+      - web
+
+  # Costs a domain, gives a hostname you choose. One pasted token, no ACL.
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    profiles: ["cloudflare"]
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:-}
+    depends_on:
+      - web
+
+volumes:
+  db-data:
+  meili-data:
+  tailscale-state:

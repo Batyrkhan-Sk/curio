@@ -1,0 +1,1073 @@
+[
+  {
+    "title": "Why do we get a fever when we are ill?",
+    "category_slug": "medicine",
+    "one_sentence_answer": "A fever is not the infection overheating you — it is your body deliberately raising its own thermostat, because most of your defences work better warm and most invaders work worse.",
+    "summary": "The body has a set temperature, and during infection the immune system moves it upward on purpose. The shivering and the feeling of cold are what happens while you climb to the new setting.",
+    "difficulty": "beginner",
+    "reading_minutes": 6,
+    "curiosity_score": 0.83,
+    "confidence": 0.88,
+    "confidence_reason": "The mechanism by which the set point is raised is well characterised, and the immune benefits are demonstrated across many species. Whether treating ordinary fevers changes outcomes in people is still being studied, and that uncertainty is stated rather than resolved.",
+    "tags": [
+      "immune-system",
+      "temperature",
+      "infection",
+      "regulation"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Your body runs a thermostat, and normally it is set around 37 degrees. Everything you do without noticing — sweating, shivering, moving blood toward or away from the skin — is that thermostat holding the setting. When your immune system detects an infection it sends a chemical signal to the part of the brain that holds the setting, and the setting moves up. Nothing is broken. The heating has simply been turned up on purpose. That is why the first stage of a fever feels cold: your body is now at 37 and wants 39, so it treats you as underheated and makes you shiver and huddle to close the gap. Once you arrive at the new setting, you stop shivering and feel hot instead. The purpose is straightforward. Warmth speeds up your defences and makes life harder for many of the things infecting you."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a house thermostat set to 20 degrees. If someone opens a window, the house gets cold and the boiler works to bring it back — the setting has not moved, only the room. Now imagine somebody turns the dial to 25 instead. The boiler runs hard, the house feels chilly the whole time it is climbing, and once it reaches 25 the boiler settles and the house feels warm. A fever is the dial being turned up, not a window being opened. That distinction is the entire point, and it explains the shivering. Where the analogy stops: heatstroke is the window case — the body's cooling is overwhelmed while the setting stays where it was — and it is dangerous in a way that fever is not, which is why the two must never be confused."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Cold-blooded animals show the mechanism unusually clearly. A lizard cannot raise its own temperature internally, but an infected lizard will move to a warmer rock and hold itself several degrees above its usual temperature — behavioural fever. Prevent it from doing so and it is far more likely to die of the infection. Fish and insects do the same thing. That result is hard to explain unless the raised temperature is doing something useful. In humans, the clearest everyday illustration is the sequence of a fever itself: the shaking chills at the start, the plateau where you feel hot and flushed, and the sweating at the end when the infection resolves, the set point drops back and your body has to shed the excess. Each phase is exactly what a thermostat being moved up and then down again would produce."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Immune cells encountering bacterial or viral components release signalling proteins — interleukin-1, interleukin-6 and tumour necrosis factor among them — collectively acting as endogenous pyrogens. These act on the hypothalamus, the brain region holding the temperature set point, where they drive production of prostaglandin E2, which is the molecule that actually shifts the setting. The body then uses its normal tools to reach it: vasoconstriction in the skin to reduce heat loss, shivering to generate heat, and behavioural changes such as seeking warmth. The benefits are several. Many bacterial and viral species replicate more slowly above normal body temperature; neutrophil and lymphocyte activity increases; and raised temperature promotes the expression of heat shock proteins that help immune cells function under stress. Aspirin, ibuprofen and paracetamol reduce fever precisely by interfering with prostaglandin production, which lowers the set point rather than cooling the body directly."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The regulated nature of fever is what separates it from hyperthermia, and the distinction is clinically load-bearing: in heatstroke or malignant hyperthermia the set point is unchanged and the body is losing control, antipyretics are useless, and active cooling is required. In fever, active cooling fights the thermostat and produces shivering, which generates more heat. Fever's evolutionary conservation across mammals, reptiles, fish and insects is strong evidence of benefit, and the classic experiments on behavioural fever in lizards showed a mortality difference. Whether that translates into a reason to leave fevers untreated in people is less settled. Trials in critically ill patients have produced mixed results, and one study of fever control in patients with sepsis was stopped early for a mortality signal favouring permissive fever, while others have found no difference. The mainstream position is that treating fever for comfort is reasonable and that there is no strong evidence that suppressing moderate fever worsens ordinary infections — but also no good evidence that it helps beyond symptom relief. The old worry that fever causes brain damage does not apply to infection-driven fevers, which are capped by the same regulation that raises them; febrile seizures in young children are frightening but generally benign and are not prevented by antipyretics."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Set point",
+        "plain_definition": "The temperature your body is currently trying to maintain. A fever is this being moved, not overwhelmed."
+      },
+      {
+        "term": "Hypothalamus",
+        "plain_definition": "The region of the brain that holds the body's temperature setting and controls the responses that maintain it."
+      },
+      {
+        "term": "Pyrogen",
+        "plain_definition": "A substance that raises the set point — either released by your own immune cells or coming from the microbe itself."
+      },
+      {
+        "term": "Hyperthermia",
+        "plain_definition": "Overheating with the set point unchanged, as in heatstroke. A different and more dangerous situation than fever."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "A fever is the infection heating you up.",
+        "reality": "Your own immune signalling raises the brain's temperature setting, and your body then does the heating deliberately. That is why you shiver — a response that only makes sense if the body believes it is too cold."
+      },
+      {
+        "myth": "Fever is the illness and needs to be eliminated.",
+        "reality": "It is a defence with measurable benefits in many species. Treating it for comfort is reasonable, but the fever is a symptom of the response rather than the problem itself."
+      },
+      {
+        "myth": "You should cool a feverish person with cold baths or ice.",
+        "reality": "That fights the set point, provoking shivering that generates more heat and considerable distress. Medicines that lower the set point work with the mechanism instead. Active cooling is for heatstroke, where the set point has not moved."
+      },
+      {
+        "myth": "A high fever will cook your brain.",
+        "reality": "Fevers driven by infection are regulated and rarely exceed about 41 degrees. Temperatures that damage tissue come from hyperthermia, where regulation has failed, not from the fever response."
+      }
+    ],
+    "why_it_matters": "It changes what a fever means: not damage being done to you, but a system doing something deliberate, which is why the treatment decision is about comfort rather than danger. The set point idea also generalises. Blood pressure, blood sugar and body weight are all regulated around targets, and in each case there is a difference between a system failing and a system being told to aim somewhere new — a distinction that decides whether you should fight the symptom or the cause.",
+    "historical_background": {
+      "origin": "Fever was regarded for centuries as the disease rather than a response, and treatments aimed at suppressing it as directly as possible.",
+      "motivation": "The shift began when nineteenth-century physicians started measuring temperature systematically. Carl Wunderlich's work in the 1860s, based on many thousands of readings, established a normal range and made fever a measurable sign rather than an impression.",
+      "evolution": "In the twentieth century the pyrogen signalling pathway was identified and the hypothalamic set point model established. Matthew Kluger's experiments on behavioural fever in lizards in the 1970s provided the clearest evidence that raised temperature confers a survival benefit."
+    },
+    "diagrams": [
+      {
+        "title": "The thermostat being moved",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Immune cells detect<br/>infection\"] --> B[\"Release pyrogens:<br/>IL-1, IL-6, TNF\"]\n  B --> C[\"Hypothalamus makes<br/>prostaglandin E2\"]\n  C --> D[\"Set point raised<br/>37 °C → 39 °C\"]\n  D --> E[\"Body now reads as too cold:<br/>shivering, vasoconstriction\"]\n  E --> F[\"Temperature climbs;<br/>chills stop at the new setting\"]\n  F --> G[\"Infection clears,<br/>set point drops, sweating\"]",
+        "caption": "Every symptom in the sequence follows from the setting having moved rather than the body having lost control."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How heatstroke differs from fever",
+        "reason": "Same temperature, opposite mechanism, and completely opposite correct treatment."
+      },
+      {
+        "label": "How the body regulates anything around a set point",
+        "reason": "Blood sugar, blood pressure and weight all use the same control logic, and the same distinction between failure and reset applies."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Thermoregulatory set point",
+        "plain_definition": "The temperature the body actively works to maintain.",
+        "role": "covers"
+      },
+      {
+        "name": "Pyrogens",
+        "plain_definition": "Immune signalling molecules that raise the temperature set point.",
+        "role": "requires"
+      },
+      {
+        "name": "Homeostasis",
+        "plain_definition": "Keeping an internal variable near a target by opposing deviations from it.",
+        "role": "requires"
+      },
+      {
+        "name": "Hyperthermia",
+        "plain_definition": "Body temperature rising because regulation has been overwhelmed rather than reset.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Fever",
+        "url": "https://en.wikipedia.org/wiki/Fever",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Thermoregulation",
+        "url": "https://en.wikipedia.org/wiki/Thermoregulation",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Hyperthermia",
+        "url": "https://en.wikipedia.org/wiki/Hyperthermia",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why don't antibiotics work on colds?",
+      "Why do bruises change colour?"
+    ]
+  },
+  {
+    "title": "Why don't antibiotics work on colds?",
+    "category_slug": "medicine",
+    "one_sentence_answer": "Antibiotics attack machinery that bacteria have and viruses do not — and a cold is a virus, which has almost no machinery of its own to attack.",
+    "summary": "Bacteria are cells, with walls, ribosomes and their own chemistry to interfere with. A virus is a set of instructions that hijacks your cells, so there is nothing in it for an antibiotic to target.",
+    "difficulty": "beginner",
+    "reading_minutes": 6,
+    "curiosity_score": 0.82,
+    "confidence": 0.94,
+    "confidence_reason": "The distinction between bacterial and viral targets is fundamental microbiology and not in dispute. The resistance dynamics are extensively documented in surveillance data, and the areas of genuine debate concern policy rather than mechanism.",
+    "tags": [
+      "infection",
+      "viruses",
+      "bacteria",
+      "resistance"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Bacteria are living cells. They have an outer wall to build, machinery for making proteins, and their own way of copying their DNA — and every antibiotic works by jamming one of those. Penicillin, for instance, stops a bacterium building its wall, so it bursts as it tries to grow. Now look at a virus. A virus is essentially a set of instructions in a protein shell. It has no wall to build, no protein factory of its own, no metabolism to poison. It gets inside one of your cells and makes your cell do the work. So an antibiotic arrives looking for the machinery it was designed to sabotage and finds none of it — and worse, the machinery that is running the infection is your own, which the drug must leave alone. This is a mismatch of target, not a matter of dose or strength."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Imagine a tool designed to disable cars: it drains the fuel tank. Against cars it is devastating. Now send it after a thief who has stolen your car and is driving it — the tool cannot help, because the thief has no fuel tank of their own, and draining the car's tank means wrecking your own vehicle. Bacteria are the cars; viruses are the thief driving yours. Where the analogy stops: antiviral drugs do exist and do work, because a virus does bring a few specialised parts of its own — the equivalent of the thief's own lock-picking kit. Those tools are what antivirals target, which is why they must be developed virus by virus rather than as a single broad category the way many antibiotics are."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "This has a real cost, not just a theoretical one. Surveys of antibiotic prescribing in primary care have repeatedly found that a large share of prescriptions for respiratory complaints are for conditions where they cannot help — colds, most sore throats, most acute bronchitis. Each of those prescriptions still does something: it kills susceptible bacteria in the gut and on the skin, leaving the resistant ones to multiply without competition, and carries a real risk of side effects, including Clostridioides difficile infection after the normal gut flora is disturbed. On the other side, the same illness can turn bacterial — a cold can be followed by a bacterial sinus infection or pneumonia — and then antibiotics are exactly right. That is why the clinical question is never 'is this person unwell enough' but 'what kind of organism is this'."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Antibiotics exploit selective toxicity: they attack structures present in bacteria and absent in human cells. Beta-lactams such as penicillin block the enzymes that cross-link peptidoglycan, the mesh that forms a bacterial cell wall — human cells have no wall at all. Macrolides, tetracyclines and aminoglycosides bind the bacterial ribosome, which differs enough in structure from the human ribosome to be targeted specifically. Quinolones inhibit bacterial DNA gyrase, an enzyme with no close human counterpart. A virus offers none of these. The common cold is caused mostly by rhinoviruses, which consist of RNA in a protein capsid; replication is carried out by the host cell's own machinery, directed by a handful of viral proteins. Antiviral drugs must therefore target those few viral-specific proteins — a viral polymerase or protease, or entry into the cell — which is why they tend to work against one virus family rather than broadly."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The resistance consequence is the reason this matters beyond the individual prescription. Antibiotic use applies selection pressure to every bacterium exposed, not merely the intended target, and resistance genes move horizontally between species on plasmids and transposons, so pressure applied in one context can produce resistance that surfaces elsewhere. The reservoir includes the commensal flora of anyone treated and the environmental bacteria exposed through agriculture, which accounts for a large share of global antibiotic consumption. The clinical difficulty is that distinguishing viral from bacterial illness at the point of care is genuinely hard, which is why biomarkers such as procalcitonin and C-reactive protein have been trialled as prescribing aids, with modest benefit. Delayed prescribing — giving a prescription to be filled only if symptoms fail to improve — reduces consumption substantially without worsening outcomes in trials. There is also a real category of exception worth knowing: a small number of respiratory infections that present like viral illness are bacterial, notably Mycoplasma pneumoniae and pertussis, and antibiotic treatment there is appropriate. The general rule remains that a common cold has no bacterial target, and that the pressure not to prescribe often comes from expectation rather than from clinical ambiguity."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Bacterium",
+        "plain_definition": "A single-celled living organism with its own wall, ribosomes and metabolism — all of which can be targeted."
+      },
+      {
+        "term": "Virus",
+        "plain_definition": "Genetic instructions in a protein shell. It cannot reproduce alone and uses your cells' machinery instead."
+      },
+      {
+        "term": "Selective toxicity",
+        "plain_definition": "Attacking something the pathogen has and you do not. It is the whole basis on which antibiotics are safe to take."
+      },
+      {
+        "term": "Antimicrobial resistance",
+        "plain_definition": "Bacteria surviving drugs that used to kill them, spread by selection and by genes moving between species."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Antibiotics will help a bit, or speed things up slightly.",
+        "reality": "Against a virus they do nothing at all to the infection. There is no partial effect, because the structures they act on are not present."
+      },
+      {
+        "myth": "Green mucus means a bacterial infection and therefore antibiotics.",
+        "reality": "The colour comes from an enzyme released by your own immune cells and appears in ordinary viral colds. It does not distinguish between causes."
+      },
+      {
+        "myth": "Resistance is something your body develops.",
+        "reality": "The bacteria become resistant, not you. That is why resistance is a shared problem — the resistant organisms circulate, and someone who has never taken an antibiotic can acquire a resistant infection."
+      },
+      {
+        "myth": "Taking antibiotics 'just in case' is harmless if they turn out not to be needed.",
+        "reality": "Each course disturbs the normal bacterial populations of the gut and skin, carries side effect risk including C. difficile infection, and adds selection pressure. The cost is real even when the benefit is zero."
+      }
+    ],
+    "why_it_matters": "It replaces a vague sense that antibiotics are general-purpose medicine with the specific reason they are not, which is the difference between accepting 'no antibiotics today' as a refusal and understanding it as a statement about what is wrong with you. It also introduces selective toxicity, the principle behind nearly every safe drug: find something the invader has that you do not. That is why antibiotics were comparatively easy to discover, antivirals are hard, and cancer drugs are hardest of all.",
+    "historical_background": {
+      "origin": "Paul Ehrlich set out the goal of a 'magic bullet' — a compound toxic to a pathogen and harmless to the patient — and produced Salvarsan for syphilis in 1909, establishing selective toxicity as the organising idea.",
+      "motivation": "Alexander Fleming observed penicillin's effect in 1928, and Florey and Chain developed it into a usable drug in the early 1940s, transforming bacterial infection from a common cause of death into a treatable condition.",
+      "evolution": "Resistance appeared almost immediately — Fleming warned of it in his 1945 Nobel lecture — and the discovery of new antibiotic classes slowed sharply after the 1980s, turning stewardship of the existing ones into the central concern."
+    },
+    "diagrams": [
+      {
+        "title": "What each drug has to aim at",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Infection\"] --> B{\"Bacterium<br/>or virus?\"}\n  B -->|\"Bacterium\"| C[\"Has its own wall,<br/>ribosomes, DNA enzymes\"]\n  C --> D[\"Antibiotic jams one of them;<br/>human cells unaffected\"]\n  B -->|\"Virus\"| E[\"No wall, no ribosomes,<br/>no metabolism\"]\n  E --> F[\"Uses YOUR cell machinery\"]\n  F --> G[\"Antibiotic has no target\"]\n  E --> H[\"A few viral-specific proteins\"]\n  H --> I[\"Antivirals target these —<br/>one virus family at a time\"]",
+        "caption": "The branch point is not severity of illness. It is whether the organism brings its own machinery."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How antibiotic resistance spreads between species",
+        "reason": "Resistance genes travel on mobile genetic elements, which is why pressure in agriculture shows up in hospitals."
+      },
+      {
+        "label": "Why antiviral drugs are so much harder to develop",
+        "reason": "The same reasoning in reverse: fewer targets that belong to the virus rather than to you."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Selective toxicity",
+        "plain_definition": "Attacking a structure the pathogen has and the host does not.",
+        "role": "covers"
+      },
+      {
+        "name": "Bacterial cell wall",
+        "plain_definition": "The peptidoglycan mesh that many antibiotics prevent bacteria from building.",
+        "role": "requires"
+      },
+      {
+        "name": "Viral replication",
+        "plain_definition": "A virus using host cell machinery to copy itself.",
+        "role": "requires"
+      },
+      {
+        "name": "Antimicrobial resistance",
+        "plain_definition": "Bacteria evolving to survive drugs that previously killed them.",
+        "role": "covers"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Antibiotic",
+        "url": "https://en.wikipedia.org/wiki/Antibiotic",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Antimicrobial resistance",
+        "url": "https://en.wikipedia.org/wiki/Antimicrobial_resistance",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.75
+      },
+      {
+        "title": "Common cold",
+        "url": "https://en.wikipedia.org/wiki/Common_cold",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why do we get a fever when we are ill?",
+      "Why can't websites read files on your computer?"
+    ]
+  },
+  {
+    "title": "Why do bridges have expansion joints?",
+    "category_slug": "engineering",
+    "one_sentence_answer": "Steel and concrete get longer when they warm up, and a bridge with nowhere to put that extra length will either buckle or tear itself apart.",
+    "summary": "A few hundred metres of steel can grow by more than a hand's width between a winter night and a summer afternoon. Expansion joints exist to let that happen somewhere harmless rather than somewhere structural.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.72,
+    "confidence": 0.93,
+    "confidence_reason": "Thermal expansion coefficients are precisely measured and the design consequences are standard civil engineering practice, documented in codes. The failure examples are drawn from published investigations.",
+    "tags": [
+      "materials",
+      "thermal-expansion",
+      "structures",
+      "maintenance"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Almost everything gets slightly bigger when it warms up, because heat makes the atoms inside jiggle harder and sit a fraction further apart. For a coin the change is invisible. For a bridge half a kilometre long, a swing between a freezing night and a hot afternoon can add several centimetres of length. That length has to go somewhere. If both ends of the deck are held rigidly, it cannot get longer, so instead it pushes — with enormous force, because the same stiffness that lets a bridge carry lorries also means it resists being compressed. Push hard enough and something buckles, cracks or shears its bolts. An expansion joint is a deliberate gap, covered by a sliding plate or a rubber seal, that lets the deck grow and shrink freely. It is a designed weak point in exactly the way a crumple zone is: a place where the movement is allowed to happen."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a concertina file or a folded paper fan. Its whole purpose is to change length without anything tearing, because the folds absorb the difference. An expansion joint does the same job with steel fingers that slide past one another or a rubber gland that stretches. The bridge deck changes length; the joint changes shape to match. Where the analogy stops: a fan is meant to be moved by hand and lasts as long as the paper. A bridge joint is worked thousands of times a year by temperature alone, hammered by every wheel that crosses it and filled with grit and salt spray — which is why joints are among the most maintenance-hungry parts of a bridge and why modern designs try to use as few of them as possible."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Railways make the effect unmistakable. Continuous welded rail removes the old clacking gaps, but the rail is then stressed to a chosen neutral temperature and clamped, and if a heatwave pushes it well beyond that, the track can buckle sideways — a sun kink — which is why rail operators impose speed restrictions in extreme heat. Bridges show the same physics with visible hardware: the finger joints you drive over at the end of a long viaduct, or the giant sliding bearings at the ends of a suspension bridge deck. The Millau Viaduct in France is designed to accommodate deck movement of tens of centimetres. Buildings do it too, which is why long structures have movement joints running through the facade, and why a concrete pavement is cast in slabs with gaps rather than as one continuous ribbon."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Materials have a coefficient of thermal expansion — the fractional change in length per degree. Structural steel is about 12 parts per million per degree Celsius, and concrete is close enough to it that reinforced concrete works at all, which is one of the quiet reasons that combination succeeded. For a 400-metre deck over a 60-degree annual range, the change is 400 × 12 × 10⁻⁶ × 60, or roughly 0.29 metres. If the deck is restrained, that strain becomes stress instead: multiply the strain by the elastic modulus of steel and you get stresses of well over 100 megapascals from temperature alone, comparable to a significant share of the yield strength before any traffic load is added. Structures are therefore designed with a defined movement scheme: usually one fixed bearing that anchors the deck against wind and braking forces, with the remaining supports free to slide, and joints sized for the calculated range plus allowances for creep, shrinkage and, in prestressed concrete, long-term shortening."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Expansion joints are a maintenance liability rather than a free solution, and the modern trend runs against them. Joints leak, and chloride-laden runoff reaching bearings and pier tops causes corrosion that is expensive to reach and repair. Integral abutment bridges dispense with joints and bearings up to considerable lengths by allowing the abutments to move with the deck, transferring the movement into flexible piles and the surrounding soil, which trades a mechanical problem for a soil-structure interaction problem. Where joints are unavoidable the design must handle rotation and skew as well as pure longitudinal movement, since a skewed deck also moves transversely. Restraint effects are not limited to uniform temperature either: a differential gradient through the deck depth, with a hot surface over a cool soffit, induces curvature that a restrained structure resists with substantial locked-in stress, and this case often governs. There is also the opposite failure to guard against — a joint that has seized with debris or corrosion behaves as a restraint, and several structures have cracked because a joint intended to move had stopped moving without anyone noticing."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Thermal expansion",
+        "plain_definition": "The tendency of a material to grow slightly in size as its temperature rises."
+      },
+      {
+        "term": "Strain",
+        "plain_definition": "How much something stretches or shortens relative to its original length."
+      },
+      {
+        "term": "Restraint",
+        "plain_definition": "Preventing a structure from moving. If it cannot change length, the movement becomes force instead."
+      },
+      {
+        "term": "Bearing",
+        "plain_definition": "The support a deck sits on, often designed to slide or rotate so the deck can move where intended."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "The joints are there to absorb vibration from traffic.",
+        "reality": "They exist for length change from temperature, and secondarily for creep, shrinkage and rotation. Vibration is handled by mass, damping and bearing design."
+      },
+      {
+        "myth": "A stronger bridge would not need them.",
+        "reality": "Strength makes it worse. The stiffer and stronger the structure, the larger the force generated when it is prevented from changing length. Strength does not reduce the strain, it converts it into higher stress."
+      },
+      {
+        "myth": "Expansion is only a hot-weather problem.",
+        "reality": "Contraction in cold weather pulls joints wide open and puts the deck into tension against its restraints. Both ends of the temperature range matter, and joints are sized for the full swing."
+      },
+      {
+        "myth": "Modern bridges have solved this and no longer move.",
+        "reality": "They move just as much. Modern practice tries to eliminate the joints, not the movement — integral bridges absorb the same length change into flexible abutments and the surrounding soil."
+      }
+    ],
+    "why_it_matters": "It is the clearest structural example of a general rule: if something is going to move, decide where. Refusing to provide a place for movement does not prevent it, it just relocates the consequence into something that was not designed for it. The same reasoning governs pipework, railway track, paving, roof cladding and even the design of circuit boards — anywhere a material's size depends on conditions and the structure has to keep working through the range.",
+    "historical_background": {
+      "origin": "Thermal expansion was quantified in the eighteenth and nineteenth centuries, and the effect was accounted for in early ironwork — Victorian rail and bridge builders left gaps as a matter of routine practice.",
+      "motivation": "Longer spans, welded construction and continuous concrete decks removed the incidental gaps that older riveted and jointed construction happened to provide, making explicit provision necessary.",
+      "evolution": "Practice has since moved toward eliminating joints rather than perfecting them, because leakage at joints proved to be a leading cause of deterioration in bearings and substructures. Integral abutment designs are now standard for a wide range of span lengths."
+    },
+    "diagrams": [
+      {
+        "title": "Where the length change goes",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Temperature rises\"] --> B[\"Deck wants to<br/>get longer\"]\n  B --> C{\"Is movement<br/>allowed?\"}\n  C -->|\"Yes — joint and<br/>sliding bearings\"| D[\"Deck grows into the gap;<br/>no stress added\"]\n  C -->|\"No — restrained\"| E[\"Strain becomes stress\"]\n  E --> F[\"Over 100 MPa from<br/>temperature alone\"]\n  F --> G[\"Buckling, cracking,<br/>bearing damage\"]",
+        "caption": "The same expansion on both branches. Only the provision for it differs, and that decides whether it is harmless."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why railway track buckles in heatwaves",
+        "reason": "Continuous welded rail is the case with no joints at all, and it shows exactly what restraint costs."
+      },
+      {
+        "label": "How integral bridges avoid joints entirely",
+        "reason": "The modern answer, which moves the problem from mechanical hardware into the soil around the abutments."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Thermal expansion",
+        "plain_definition": "Materials changing dimension with temperature.",
+        "role": "requires"
+      },
+      {
+        "name": "Structural restraint",
+        "plain_definition": "Preventing movement, which converts strain into internal force.",
+        "role": "covers"
+      },
+      {
+        "name": "Expansion joint",
+        "plain_definition": "A designed gap that lets a structure change length without generating stress.",
+        "role": "covers"
+      },
+      {
+        "name": "Designed failure point",
+        "plain_definition": "Deliberately choosing where movement or failure is allowed to occur.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Expansion joint",
+        "url": "https://en.wikipedia.org/wiki/Expansion_joint",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Thermal expansion",
+        "url": "https://en.wikipedia.org/wiki/Thermal_expansion",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Track buckling",
+        "url": "https://en.wikipedia.org/wiki/Track_(rail_transport)",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.65
+      }
+    ],
+    "related_questions": [
+      "Why are airplane windows round?",
+      "Why do skyscrapers sway in the wind?"
+    ]
+  },
+  {
+    "title": "Why do skyscrapers sway in the wind?",
+    "category_slug": "architecture",
+    "one_sentence_answer": "Because building one stiff enough not to sway would be absurdly expensive and no safer — swaying is how a tall building sheds wind energy instead of resisting all of it.",
+    "summary": "A tall building is a vertical cantilever, and wind pushes it sideways. Engineers do not design the movement out; they design it down to the level people can tolerate, which is a comfort problem rather than a strength problem.",
+    "difficulty": "intermediate",
+    "reading_minutes": 6,
+    "curiosity_score": 0.84,
+    "confidence": 0.91,
+    "confidence_reason": "The structural dynamics and the role of damping systems are standard practice with well-documented built examples. Human comfort thresholds are based on empirical criteria that vary between codes, which is noted.",
+    "tags": [
+      "structures",
+      "wind",
+      "vibration",
+      "damping"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "A skyscraper is a very long lever stuck into the ground. Wind pushes on its side, and the taller it is, the more leverage that push has at the base. Something has to give: either the building bends slightly, or the forces at the bottom become enormous. Bending is the cheaper answer, and a tall building is designed to do it — typically moving something like a few tens of centimetres at the top in a strong wind, on a structure hundreds of metres tall. That is a fraction of a degree of tilt, invisible from outside. Making it perfectly rigid instead would take vastly more steel and concrete for no gain in safety, because the building was never in danger of breaking. The real design problem is not strength at all. It is that people inside can feel motion long before anything is structurally troubled."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Hold a ruler upright on a desk with one end pinned under your thumb and flick the top. It sways back and forth at its own natural rhythm, and the flicking is much more effective if you time your pushes to match that rhythm. A tall building behaves the same way, with a natural period of several seconds rather than a fraction of one, and wind gusts are the flicking. Where the analogy stops: the ruler keeps swinging for a long time because almost nothing absorbs its energy. A building has damping — friction in joints, flexing of cladding, and often a deliberately installed device — that turns the motion into heat and settles it down. Increasing that damping, rather than increasing stiffness, is usually the cheapest way to make a tall building comfortable."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Taipei 101 carries a steel sphere weighing around 660 tonnes suspended near the top, visible to visitors, hanging on cables and connected to hydraulic dampers. When the building leans one way the sphere lags behind, pulling against the motion. In typhoons it has been filmed swinging visibly. The same idea appears in different forms elsewhere: the Citigroup Center in New York uses a large sliding concrete block, and many towers use tanks of water sloshing at a tuned frequency. The most instructive case is the Citigroup Center itself, where a student's query in 1978 prompted the engineer William LeMessurier to recheck the structure and find that a change from welded to bolted joints had left it vulnerable to quartering winds. The building was quietly reinforced over several months while occupied — a case usually told as an ethics story but equally a lesson in how wind loading dominates tall design."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "A tall building responds to wind in two ways. Along-wind response comes from direct pressure and the buffeting of gusts. Across-wind response is often larger and comes from vortex shedding: air separates alternately from each side of the building, and each departing vortex gives a sideways kick at a frequency set by wind speed and building width. When that shedding frequency approaches the building's natural frequency, the response grows sharply — the resonance case that governs many designs. The controlling parameters are stiffness, which sets the natural period, mass, and damping ratio, which is typically only 1 to 2 per cent of critical in a tall building. Since acceleration rather than displacement is what occupants feel, the design criterion is a peak acceleration limit, often expressed for a one-year or ten-year return period wind, and typically in the range of a few milli-g. Wind tunnel testing on a scale model is standard practice for any significant tower, because the response depends heavily on the shape and on neighbouring buildings."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Because vortex shedding is a coherent process, the most effective countermeasure is often to disrupt it geometrically rather than to add mass. Tapering the tower, varying the cross-section with height, adding openings, or twisting the plan — as at the Shanghai Tower — means the shedding frequency differs at different heights and never organises into a single coherent excitation, which can cut across-wind response substantially and is essentially free once it is in the architecture. Where a damper is used, a tuned mass damper is tuned to the fundamental period with an optimum mass ratio and damping, and detuning as the building's stiffness changes with cracking or fit-out is a genuine design concern. Active and semi-active systems exist but add reliability obligations. Two further subtleties: torsional response matters where the centre of mass and centre of rigidity do not coincide, and occupants are far more sensitive to rotation than to translation because the visual field moves; and comfort criteria are frequency-dependent, since people tolerate more acceleration at the slower periods of very tall buildings than at the faster periods of mid-rise ones. Serviceability, not strength, is what sizes the lateral system of most tall towers."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Natural period",
+        "plain_definition": "The time a structure takes to complete one full sway cycle on its own. Tall buildings are typically several seconds."
+      },
+      {
+        "term": "Damping",
+        "plain_definition": "Anything that converts motion into heat and settles a swaying structure down. Adding it is usually cheaper than adding stiffness."
+      },
+      {
+        "term": "Vortex shedding",
+        "plain_definition": "Air peeling off alternate sides of a building, giving it a rhythmic sideways push."
+      },
+      {
+        "term": "Tuned mass damper",
+        "plain_definition": "A large weight mounted to move out of step with the building, pulling against its sway."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Swaying means the building is unsafe.",
+        "reality": "Sway is designed in, and the limits that govern it are about occupant comfort, not structural capacity. A building that people can feel moving is typically nowhere near its strength limit."
+      },
+      {
+        "myth": "Engineers would prefer to make buildings rigid but cannot.",
+        "reality": "Rigidity is not the goal. A very stiff building attracts larger forces from earthquakes and costs far more material, and flexibility is a legitimate design choice rather than a compromise."
+      },
+      {
+        "myth": "The main wind force pushes the building downwind.",
+        "reality": "Across-wind motion from vortex shedding often exceeds the along-wind response and is what usually governs the design of very tall towers."
+      },
+      {
+        "myth": "A tuned mass damper stops the building moving.",
+        "reality": "It reduces the amplitude by moving out of phase and absorbing energy. The building still sways; it simply settles faster and peaks lower."
+      }
+    ],
+    "why_it_matters": "It inverts the intuition that strong means rigid. In dynamics, the useful levers are period, mass and damping, and the cheapest fix is often to change the rhythm or absorb the energy rather than resist the force. It also shows a case where the binding constraint on a design is human perception rather than physics — the building is safe long before it is comfortable, and the comfort criterion is what sizes the structure.",
+    "historical_background": {
+      "origin": "Tall building design was governed by strength and gravity until the mid-twentieth century, when lighter curtain-wall construction and greater heights made wind-induced motion a noticeable problem for occupants.",
+      "motivation": "The John Hancock Tower in Boston and the Citigroup Center in New York both became case studies in the 1970s, the first for facade and motion problems and the second for a wind vulnerability discovered after completion.",
+      "evolution": "Wind tunnel testing became routine, tuned mass dampers moved from novelty to standard practice, and aerodynamic shaping emerged as the preferred first line of defence, since it reduces the excitation rather than treating the response."
+    },
+    "diagrams": [
+      {
+        "title": "Three ways to reduce sway",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Wind excites the tower\"] --> B[\"Sway amplitude<br/>felt by occupants\"]\n  C[\"Add stiffness\"] --> D[\"Shorter period,<br/>much more material\"]\n  E[\"Add damping\"] --> F[\"Energy removed,<br/>motion settles faster\"]\n  G[\"Change the shape:<br/>taper, twist, openings\"] --> H[\"Vortex shedding never<br/>organises coherently\"]\n  D --> B\n  F --> B\n  H --> B",
+        "caption": "Only the first branch fights the force. The other two change the rhythm or absorb the energy, and both are usually cheaper."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How buildings are designed for earthquakes instead",
+        "reason": "The opposite loading problem, where flexibility and damping matter even more and stiffness can actively hurt."
+      },
+      {
+        "label": "Why the Millennium Bridge wobbled",
+        "reason": "A different resonance failure, driven by pedestrians rather than wind, and solved with dampers in the same way."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Structural dynamics",
+        "plain_definition": "How structures respond to loads that change with time rather than staying constant.",
+        "role": "covers"
+      },
+      {
+        "name": "Vortex shedding",
+        "plain_definition": "Alternating separation of airflow that pushes a structure sideways at a regular frequency.",
+        "role": "requires"
+      },
+      {
+        "name": "Damping",
+        "plain_definition": "Dissipating vibrational energy so that motion decays.",
+        "role": "covers"
+      },
+      {
+        "name": "Resonance",
+        "plain_definition": "Large response when excitation matches a structure's natural frequency.",
+        "role": "requires"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Tuned mass damper",
+        "url": "https://en.wikipedia.org/wiki/Tuned_mass_damper",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Vortex shedding",
+        "url": "https://en.wikipedia.org/wiki/Vortex_shedding",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Citigroup Center",
+        "url": "https://en.wikipedia.org/wiki/Citigroup_Center",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.68
+      }
+    ],
+    "related_questions": [
+      "Why are arches so strong?",
+      "Why do bridges have expansion joints?"
+    ]
+  },
+  {
+    "title": "Why are arches so strong?",
+    "category_slug": "architecture",
+    "one_sentence_answer": "An arch turns a downward load into a sideways squeeze, and stone is enormously strong in squeeze and almost useless in pull.",
+    "summary": "A flat stone beam breaks because its underside is being stretched. An arch is a shape that lets every stone be pushed rather than pulled — which is why arches could span far more than any lintel of the same material.",
+    "difficulty": "intermediate",
+    "reading_minutes": 6,
+    "curiosity_score": 0.78,
+    "confidence": 0.92,
+    "confidence_reason": "The mechanics of compression-only structures is classical and rigorous, and the thrust line analysis used here is standard in masonry assessment. The historical account of who understood what and when is well documented.",
+    "tags": [
+      "structures",
+      "compression",
+      "masonry",
+      "geometry"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Lay a stone slab flat across two supports and load it. The top of the slab is squashed and the bottom is stretched, and stone hardly tolerates being stretched at all — it cracks underneath and snaps. That is why stone lintels can only span a short distance. Now build the same opening as a curve of wedge-shaped blocks. Load pushes each block against its neighbours, and the curve carries the force around and down to the ground. Nothing is being stretched; every block is simply being squeezed, and stone is superb at being squeezed. That is the whole trick. The consequence is that the arch pushes outwards at its feet as well as downwards, so it needs something to push against — thick walls, buttresses, or another arch on the other side. Take that away and the arch spreads and collapses."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Hold a chain by both ends and let it hang. It takes up a curve in which every link is purely in tension — the chain cannot push, so the shape it finds is the one where no pushing is needed. Now imagine that curve frozen and turned upside down. Every force that was a pull is now a push, and you have the ideal arch for that loading: a shape in which every part is purely in compression. This is exactly how Antoni Gaudí designed, hanging weighted strings upside down and photographing the result. Where the analogy stops: a chain adjusts its shape instantly when the load changes, while a built arch is fixed. Real arches must therefore work for a range of loadings, and the art is in making sure that the line of thrust stays inside the masonry for all of them."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Roman aqueducts are the demonstration at scale: the Pont du Gard has stood for two thousand years, built largely of blocks laid without mortar, held together by nothing but their own weight and the geometry. The same logic ran through Gothic cathedrals, where the pointed arch steepened the thrust and the flying buttress carried the outward push down the outside of the building, letting the walls become mostly glass. The negative case is just as instructive. Many masonry arch failures are not crushing failures at all — the stone is nowhere near its limit — but movement of the supports. If the abutments spread even slightly, the arch is forced into a shape it cannot carry and hinges form. Bridge engineers assessing centuries-old arch bridges therefore worry about the foundations and the fill, not about the strength of the stone."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Masonry has high compressive strength and effectively no tensile strength, since joints simply open. An arch works because the loads can be carried along a path called the thrust line — the locus of the resultant compressive force through the structure. The governing principle, from limit analysis, is the safe theorem: if any thrust line can be found that lies entirely within the masonry and is in equilibrium with the applied loads, the structure is safe. Note what that does not require — it does not require knowing the actual thrust line, only that a valid one exists. The ideal shape for a uniformly distributed horizontal load is a parabola, and for a load proportional to the arch's own length it is a catenary, the inverted hanging chain. The horizontal thrust at the springing scales roughly with load and span and inversely with rise, which is why shallow arches push outward far harder than tall ones. Collapse occurs when the thrust line is forced to the boundary at enough points to form a mechanism, typically four hinges in a fixed arch."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Limit analysis of masonry, developed largely by Jacques Heyman from the 1960s, rests on three assumptions: masonry has no tensile strength, infinite compressive strength, and sliding does not occur. Those are deliberately crude, and their crudeness is the point — they yield safe bounds without requiring material properties nobody can measure in a medieval wall. The geometrical consequence is that safety in masonry is about shape rather than stress, which is why a scale model of a stable arch is also stable and why masonry structures are not governed by the square-cube law in the way intuition suggests. Heyman's geometrical factor of safety expresses how much thicker the arch is than the minimum that would still contain a thrust line. Real assessment must also address the fill above the arch, which is not dead weight but a load-spreading and stabilising element, and the fact that support movement is the dominant real-world cause of distress: settlement changes the geometry, and since the structure's safety is geometric, changing the geometry is precisely what threatens it. Cracks in masonry are therefore often benign accommodations to movement rather than signs of overload, and reading which is which is the central skill in conservation engineering."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Compression",
+        "plain_definition": "Being squeezed. Stone, brick and concrete are strong this way."
+      },
+      {
+        "term": "Tension",
+        "plain_definition": "Being pulled apart. Masonry has almost no strength in tension, which is the constraint the arch is designed around."
+      },
+      {
+        "term": "Thrust line",
+        "plain_definition": "The path the compressive force takes through the structure. If it stays inside the stone, the arch stands."
+      },
+      {
+        "term": "Abutment",
+        "plain_definition": "The support at the base of an arch, which must resist the outward push as well as the downward weight."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "An arch is strong because the stones are wedged tightly together.",
+        "reality": "It is strong because the geometry keeps every stone in compression. Roman arches built without mortar demonstrate that the shape, not the fixing, does the work."
+      },
+      {
+        "myth": "An arch only pushes downward, like a wall.",
+        "reality": "It pushes outward at its base as well, and that horizontal thrust is what buttresses, tie rods and thick abutments exist to resist. Shallow arches push outward much harder than tall ones."
+      },
+      {
+        "myth": "Cracks in a masonry arch mean it is failing.",
+        "reality": "Masonry accommodates movement by opening joints, and many cracks are stable adjustments to settlement. What matters is whether a valid thrust line still fits within the remaining material."
+      },
+      {
+        "myth": "Modern materials made arches obsolete.",
+        "reality": "Steel and reinforced concrete carry tension, which removes the necessity for arches — but the compression-only logic still governs shell structures, domes and long-span concrete arches, and it is why some of the longest spans ever built are arches."
+      }
+    ],
+    "why_it_matters": "It is the clearest case of geometry substituting for material strength: the same stone that fails as a beam spans an order of magnitude further as an arch, because the shape changes which kind of force it has to resist. That habit — matching the form to what your material is good at, instead of demanding a material be good at everything — runs through structural engineering, and it explains a great deal of what buildings look like before steel was available.",
+    "historical_background": {
+      "origin": "True arches appear in Mesopotamian and Etruscan work, but Roman engineering industrialised them, using semicircular arches for aqueducts, bridges and vaults across the empire.",
+      "motivation": "Gothic builders sharpened the geometry: the pointed arch steepens the thrust and reduces the outward push, and the flying buttress carried what remained clear of the wall, which allowed the wall itself to become glass.",
+      "evolution": "The theory arrived long after the practice. Robert Hooke stated the hanging chain principle in 1675 as an anagram; Poleni applied it to assess the dome of St Peter's in 1748; and Jacques Heyman's limit analysis in the twentieth century gave masonry a rigorous safety theory based on geometry rather than stress."
+    },
+    "diagrams": [
+      {
+        "title": "Beam versus arch, same material",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Load on a stone opening\"] --> B{\"Flat lintel<br/>or arch?\"}\n  B -->|\"Lintel\"| C[\"Top squeezed,<br/>underside stretched\"]\n  C --> D[\"Stone fails in tension:<br/>short spans only\"]\n  B -->|\"Arch\"| E[\"Every block squeezed<br/>against its neighbours\"]\n  E --> F[\"Thrust line runs<br/>through the masonry\"]\n  F --> G[\"Long spans — but pushes<br/>outward at the base\"]\n  G --> H[\"Needs buttress,<br/>tie or thick abutment\"]",
+        "caption": "The material is identical on both branches. Only the shape differs, and the shape decides which kind of force the stone has to carry."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why domes need a tension ring",
+        "reason": "A dome is an arch rotated, and rotating it introduces hoop tension that the pure arch never had."
+      },
+      {
+        "label": "What reinforcement does for concrete",
+        "reason": "The modern answer to the same problem: put steel where the tension is, so the shape no longer has to avoid it."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Compression-only structures",
+        "plain_definition": "Forms in which every part is squeezed rather than stretched.",
+        "role": "covers"
+      },
+      {
+        "name": "Thrust line",
+        "plain_definition": "The path of the resultant compressive force through a masonry structure.",
+        "role": "covers"
+      },
+      {
+        "name": "Tensile strength",
+        "plain_definition": "Resistance to being pulled apart, which masonry effectively lacks.",
+        "role": "requires"
+      },
+      {
+        "name": "Catenary",
+        "plain_definition": "The curve a hanging chain takes, which inverted gives the ideal arch for its own weight.",
+        "role": "requires"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Arch",
+        "url": "https://en.wikipedia.org/wiki/Arch",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Catenary",
+        "url": "https://en.wikipedia.org/wiki/Catenary",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Flying buttress",
+        "url": "https://en.wikipedia.org/wiki/Flying_buttress",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.68
+      }
+    ],
+    "related_questions": [
+      "Why do skyscrapers sway in the wind?",
+      "Why are airplane windows round?"
+    ]
+  },
+  {
+    "title": "Why do computers use binary?",
+    "category_slug": "programming",
+    "one_sentence_answer": "Because it is far easier to build a component that reliably tells apart two states than ten, and reliability is what matters when you are switching billions of times a second.",
+    "summary": "Binary is not a mathematical necessity — it is an engineering choice. Two states give the widest possible margin against noise, and that margin is what lets a chip make trillions of decisions without error.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.79,
+    "confidence": 0.93,
+    "confidence_reason": "The noise-margin argument is standard digital design and the historical decimal machines are well documented. The claim that alternatives were tried and abandoned is supported by the record of specific machines rather than being hypothetical.",
+    "tags": [
+      "hardware",
+      "logic",
+      "encoding",
+      "reliability"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Inside a chip, a number is stored as a voltage on a wire. Suppose you wanted to store a decimal digit directly: you would have to divide the available voltage range into ten bands and reliably tell which band you were in. Every wire picks up a little electrical noise from its neighbours, temperature drifts, and the supply voltage wobbles — so those ten bands would each be narrow and easy to confuse. With two states you get the widest possible bands: anything low is zero, anything high is one, and there is an enormous gap in the middle where nothing is allowed to sit. A signal can be badly degraded and still be read correctly, then cleanly regenerated. Binary is not deep mathematics. It is the choice that makes each individual decision almost impossible to get wrong, repeated billions of times a second."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a light switch versus a dimmer. Ask someone across the room whether the light is on or off and they will always be right. Ask them to report the dimmer setting to the nearest tenth and they will disagree with the next person, and the answer will drift as the bulb ages. Now imagine needing that reading to be correct billions of times per second, with the answer feeding into the next question. The switch wins by such a margin that nothing else is worth considering. Where the analogy stops: a light switch is read by a person, while a chip's signal is read by another transistor that also cleans it up — each gate restores a degraded input to a full, sharp output, so errors do not accumulate along a chain the way they would in an analogue system."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The alternatives were genuinely tried. ENIAC, completed in 1945, stored decimal digits using rings of ten flip-flops — it worked, but at enormous cost in components per digit. The Soviet Setun computer, built at Moscow State University in 1958, used balanced ternary with three states, which has some real elegance: negative numbers need no special representation and rounding is naturally symmetric. Around fifty were built and it was not pursued. The place where multi-level storage did win is memory, where density matters more than speed: modern flash storage deliberately stores several bits per cell by distinguishing four, eight or sixteen charge levels, accepting slower writes, shorter endurance and heavy error correction in exchange for capacity. That trade-off is exactly the one binary logic declines to make in a processor."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "A transistor makes a natural switch: below a threshold voltage it is essentially off, above it essentially on, and the transition is sharp. Digital design formalises this with noise margins — defined voltage ranges for a valid logic zero and a valid logic one, with a forbidden band between them. Any input within the valid range produces a clean, full-swing output, so signal degradation is removed at every gate rather than accumulating. That property, called regeneration, is what makes arbitrarily deep logic possible. Binary also matches Boolean algebra, which George Boole formalised in 1847 and Claude Shannon connected to switching circuits in his 1937 master's thesis, giving designers a complete mathematical system for reasoning about and minimising circuits. A three-state system would need more complex gates, would cut noise margins substantially, and would gain only about a 1.6-fold reduction in the number of wires — a poor trade at any speed."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "There is a genuine theoretical argument for base three: if the cost of representing a number is proportional to the base multiplied by the number of digits needed, the optimum is e, and three is the nearest integer. That result is why ternary keeps being revisited and why it never survives contact with silicon — the model prices digits and ignores what actually dominates, which is the cost of reliably discriminating levels, the complexity of the gates and the collapse of noise margin. Multi-level signalling does appear where the channel rather than the logic is the bottleneck: PAM-4 encoding is standard in high-speed serial links and modern DRAM interfaces, trading signal-to-noise ratio for bandwidth over a wire that is already the limiting factor, and it is always paired with forward error correction. The same reasoning governs multi-level flash. Quantum computers are sometimes described as escaping binary, which is a misreading — a qubit is still a two-level system, and what differs is that it can be in a superposition of those levels rather than that it has more of them. The persistent lesson is that binary is not about mathematics being simplest in base two; it is about the physics of telling states apart cheaply and repeatably."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Bit",
+        "plain_definition": "A single binary digit — one wire, one of two states."
+      },
+      {
+        "term": "Noise margin",
+        "plain_definition": "How much a signal can be corrupted and still be read as the intended value."
+      },
+      {
+        "term": "Regeneration",
+        "plain_definition": "Each logic gate producing a clean full-strength output from a degraded input, so errors do not accumulate."
+      },
+      {
+        "term": "Boolean algebra",
+        "plain_definition": "The mathematics of true and false values, which maps exactly onto binary circuits."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Computers use binary because computers only understand ones and zeros in some fundamental way.",
+        "reality": "It is an engineering decision about reliability. Decimal and ternary computers were built and worked; they lost on cost and noise margin, not on principle."
+      },
+      {
+        "myth": "Binary is the mathematically optimal base.",
+        "reality": "Under a simple cost model the optimum is around e, closer to three than two. Binary wins on physical implementation — discrimination margin and gate simplicity — which the mathematical model does not capture."
+      },
+      {
+        "myth": "Modern hardware has moved beyond two states.",
+        "reality": "Logic remains binary. Multi-level encoding appears in flash memory and high-speed links, where density or bandwidth is the constraint, and always with substantial error correction attached."
+      },
+      {
+        "myth": "Quantum computers replace binary with many states.",
+        "reality": "A qubit is a two-level system too. The difference is superposition and entanglement, not a larger number of distinguishable levels."
+      }
+    ],
+    "why_it_matters": "It shows that a foundational-looking design choice is actually a trade-off that was tested against alternatives and won on practical grounds. Understanding the noise-margin argument also explains a lot of otherwise unrelated engineering: why digital audio survives copying and analogue tape does not, why fibre links use error correction, and why storage density and reliability pull in opposite directions in every flash drive you own.",
+    "historical_background": {
+      "origin": "Binary arithmetic was described by Gottfried Leibniz in 1703, and George Boole's 1847 algebra of logic supplied the mathematics of two-valued reasoning long before there was anything to implement it on.",
+      "motivation": "Claude Shannon's 1937 master's thesis connected the two, showing that relay switching circuits could implement Boolean algebra directly — arguably the single most consequential master's thesis ever written.",
+      "evolution": "Early machines were not uniformly binary: ENIAC was decimal and the Setun was ternary. As transistor counts grew, the reliability and simplicity of two-state logic settled the question, and the alternatives survive only where density outweighs margin."
+    },
+    "diagrams": [
+      {
+        "title": "Why two states beat ten",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Voltage on a wire,<br/>0 V to 1 V\"] --> B{\"How many states?\"}\n  B -->|\"Ten\"| C[\"Bands 0.1 V wide\"]\n  C --> D[\"Noise easily crosses<br/>a boundary\"]\n  D --> E[\"Complex, error-prone,<br/>cannot regenerate cleanly\"]\n  B -->|\"Two\"| F[\"Low band, high band,<br/>wide forbidden gap\"]\n  F --> G[\"Signal can degrade badly<br/>and still read correctly\"]\n  G --> H[\"Every gate restores it<br/>to full strength\"]",
+        "caption": "The gap in the middle is the whole advantage: it is the room a signal has to be wrong in without being misread."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How flash memory stores several bits per cell",
+        "reason": "The one place multi-level storage won, and the price it pays in endurance and error correction."
+      },
+      {
+        "label": "Why digital copies do not degrade",
+        "reason": "Regeneration is the reason a file copied a thousand times is identical while a tape copied ten times is not."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Binary representation",
+        "plain_definition": "Encoding information as sequences of two-state values.",
+        "role": "covers"
+      },
+      {
+        "name": "Noise margin",
+        "plain_definition": "The tolerance a digital signal has before it is misread.",
+        "role": "covers"
+      },
+      {
+        "name": "Boolean algebra",
+        "plain_definition": "The two-valued logic system that digital circuits implement.",
+        "role": "requires"
+      },
+      {
+        "name": "Signal regeneration",
+        "plain_definition": "Restoring a degraded signal to full strength at every stage.",
+        "role": "requires"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Binary number",
+        "url": "https://en.wikipedia.org/wiki/Binary_number",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Setun",
+        "url": "https://en.wikipedia.org/wiki/Setun",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.68
+      },
+      {
+        "title": "Noise margin",
+        "url": "https://en.wikipedia.org/wiki/Logic_level",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.68
+      }
+    ],
+    "related_questions": [
+      "Why is 0.1 + 0.2 not exactly 0.3?",
+      "Why do CPUs have cache?"
+    ]
+  },
+  {
+    "title": "Why is 0.1 + 0.2 not exactly 0.3?",
+    "category_slug": "programming",
+    "one_sentence_answer": "One tenth cannot be written exactly in binary, any more than one third can be written exactly in decimal — so the computer stores a very close approximation and the small errors show up when you add them.",
+    "summary": "Nothing is broken. Computers store fractions in base two, and most decimal fractions have no exact binary representation, so the stored values are slightly off before any arithmetic happens at all.",
+    "difficulty": "intermediate",
+    "reading_minutes": 6,
+    "curiosity_score": 0.88,
+    "confidence": 0.97,
+    "confidence_reason": "Floating-point behaviour is exactly specified by the IEEE 754 standard, and every claim here can be verified by direct computation. There is no interpretive uncertainty.",
+    "tags": [
+      "floating-point",
+      "numbers",
+      "precision",
+      "bugs"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Try writing one third as a decimal. You get 0.3333… and it never ends, so if you have to stop somewhere you have written down something slightly smaller than a third. Nothing is wrong with your arithmetic; the number simply cannot be expressed exactly in that notation. Computers have the same problem, but in base two, and the fractions that trouble them are different from the ones that trouble us. One tenth, which looks perfectly tidy written as 0.1, becomes an endlessly repeating pattern in binary. So the computer stores the nearest value it can, which is very slightly off. Do that for 0.1 and again for 0.2, add the two approximations, and the result is a number extremely close to 0.3 but not identical to it. Print enough digits and you can see it: 0.30000000000000004."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Imagine a ruler marked only in halves, quarters, eighths and so on down to tiny divisions — but with no marks at tenths. You can get extremely close to the 0.1 position, closer than the eye can see, but you can never land exactly on it, because the marks you have available do not include that point. Binary fractions are that ruler: every position is a sum of halves, quarters and eighths. One tenth is simply not one of the reachable points. Where the analogy stops: the ruler's marks are evenly spaced, while a computer's representable numbers are not — they bunch up densely near zero and spread out as the magnitude grows, because the format stores a value and a scale separately, like scientific notation."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The most expensive version of this was not a rounding surprise but an accumulation. During the Gulf War in 1991, a Patriot missile battery failed to intercept a Scud that struck a barracks in Dhahran, killing 28 people. The system tracked time in tenths of a second, stored in a fixed-point format that could not represent one tenth exactly, and the small error grew in proportion to how long the system had been running. After about a hundred hours of continuous operation the accumulated drift was around a third of a second, which at the speed of an incoming missile was several hundred metres of tracking error. In ordinary software the same issue shows up more mildly, and the classic instance is money: prices in tenths and hundredths are exactly the values binary cannot hold, which is why financial code does not use ordinary floating point."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Nearly every language stores non-integer numbers in the IEEE 754 double-precision format: 64 bits, split into a sign, an 11-bit exponent and a 52-bit fraction, representing a value as a binary fraction multiplied by a power of two. A decimal fraction is exactly representable only if its denominator, in lowest terms, is a power of two — so 0.5, 0.25 and 0.75 are exact, while 0.1, 0.2 and 0.3 are not. The stored value for 0.1 is very slightly greater than one tenth, and for 0.2 slightly greater than two tenths; their sum rounds to a value that is not the same as the stored approximation of 0.3, so an equality test between them fails. The gap between adjacent representable numbers, sometimes called an ulp, is about 2.2 × 10⁻¹⁶ near 1.0 and grows with magnitude, which is why comparing floating-point results requires a tolerance rather than an equality test."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Two practical rules follow. Never use binary floating point for money: use integer minor units, a decimal type such as Python's decimal or SQL NUMERIC, or a dedicated library, because these represent decimal fractions exactly and follow the rounding rules regulators expect. And never compare floats for equality; compare with a tolerance, and prefer a relative tolerance for large values since the absolute spacing grows with magnitude. Beyond that, floating-point arithmetic is not associative — adding the same set of numbers in a different order can give a different result, which is why parallel and vectorised reductions can produce run-to-run variation, and why reproducibility in numerical code is a genuine engineering concern. Catastrophic cancellation is the sharpest hazard: subtracting two nearly equal quantities annihilates the leading significant digits and promotes rounding error into the most significant position, which is why the textbook quadratic formula is numerically poor for one of its roots and why summation algorithms such as Kahan's exist. It is also worth knowing what the format does well: it is not sloppy, but exactly specified, with defined rounding modes, guaranteed correctly rounded results for the basic operations, and specified values for infinity and not-a-number. The behaviour that surprises people is not error, it is the specification working as designed."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Floating point",
+        "plain_definition": "Storing a number as a fraction times a power of two, so that both very large and very small values fit in a fixed number of bits."
+      },
+      {
+        "term": "IEEE 754",
+        "plain_definition": "The standard almost every processor and language follows for how these numbers are stored and rounded."
+      },
+      {
+        "term": "Precision",
+        "plain_definition": "How many significant digits the format keeps. Double precision keeps about 15 to 17 decimal digits."
+      },
+      {
+        "term": "Catastrophic cancellation",
+        "plain_definition": "Subtracting two nearly equal numbers, which wipes out the accurate digits and leaves the error behind."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "It is a bug in the language, and some other language gets it right.",
+        "reality": "Almost every language uses the same IEEE 754 hardware format and produces the same answer. Languages that appear to get it right are formatting the output to fewer digits, not storing anything different."
+      },
+      {
+        "myth": "The computer made a mistake during the addition.",
+        "reality": "The addition is exact to the last bit permitted by the format. The discrepancy is already present in the stored values of 0.1 and 0.2 before any arithmetic runs."
+      },
+      {
+        "myth": "Using more precision fixes it.",
+        "reality": "More bits move the error further down but never remove it, because one tenth has no finite binary expansion at any precision. What fixes it is changing base — a decimal type — or using integers."
+      },
+      {
+        "myth": "Floating point is inherently imprecise and unreliable.",
+        "reality": "It is exactly specified and deterministic, with guaranteed correctly rounded basic operations. The pitfalls come from expecting decimal behaviour from a binary format, not from randomness."
+      }
+    ],
+    "why_it_matters": "It is the single most common surprise in programming, and the explanation generalises: any finite representation of numbers has values it cannot express, and choosing the representation is choosing which values those are. Knowing that gives you the two rules that prevent most real damage — money is not a float, and floats are not compared for equality — and it explains a whole family of bugs that otherwise look like the machine behaving arbitrarily.",
+    "historical_background": {
+      "origin": "Early computers each had their own floating-point formats with different ranges, rounding behaviour and handling of edge cases, so the same program could give different answers on different machines.",
+      "motivation": "William Kahan led the effort to standardise, and IEEE 754 was published in 1985, specifying formats, rounding modes and the treatment of infinities and not-a-number. Kahan received the Turing Award in 1989 for the work.",
+      "evolution": "The standard was adopted almost universally in hardware, which made numerical results portable. A 2008 revision added decimal floating-point formats aimed precisely at the financial use case where binary fractions are the wrong tool."
+    },
+    "diagrams": [
+      {
+        "title": "Where the error actually enters",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"You write 0.1\"] --> B[\"Binary expansion repeats<br/>forever\"]\n  B --> C[\"Stored as nearest<br/>representable value —<br/>slightly high\"]\n  D[\"You write 0.2\"] --> E[\"Same problem\"]\n  E --> F[\"Stored slightly high\"]\n  C --> G[\"Add the two stored values\"]\n  F --> G\n  G --> H[\"Sum rounded to nearest<br/>representable value\"]\n  H --> I[\"0.30000000000000004\"]\n  J[\"You write 0.3\"] --> K[\"A different nearest value\"]\n  K --> L[\"Equality test fails\"]",
+        "caption": "The arithmetic step is exact. Both errors are already present at the moment the literals are stored."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How to handle money in code correctly",
+        "reason": "Integer minor units or a decimal type, and the rounding rules that go with each."
+      },
+      {
+        "label": "Why summing a list in a different order changes the answer",
+        "reason": "Floating-point addition is not associative, which matters for parallel code and reproducibility."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Floating-point representation",
+        "plain_definition": "Storing numbers as a binary fraction scaled by a power of two.",
+        "role": "covers"
+      },
+      {
+        "name": "Rounding error",
+        "plain_definition": "The difference between a real value and the nearest one the format can hold.",
+        "role": "covers"
+      },
+      {
+        "name": "Binary representation",
+        "plain_definition": "Encoding values in base two, which determines which fractions are exact.",
+        "role": "requires"
+      },
+      {
+        "name": "Numerical stability",
+        "plain_definition": "Whether small representation errors stay small through a calculation or get amplified.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "IEEE 754",
+        "url": "https://en.wikipedia.org/wiki/IEEE_754",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.75
+      },
+      {
+        "title": "Floating-point arithmetic",
+        "url": "https://en.wikipedia.org/wiki/Floating-point_arithmetic",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.75
+      },
+      {
+        "title": "MIM-104 Patriot: Dhahran software problem",
+        "url": "https://en.wikipedia.org/wiki/MIM-104_Patriot",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why do computers use binary?",
+      "Why can't you divide by zero?"
+    ]
+  }
+]

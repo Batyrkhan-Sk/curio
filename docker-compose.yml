@@ -1,0 +1,146 @@
+name: curio
+
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-curio}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-curio}
+      POSTGRES_DB: ${POSTGRES_DB:-curio}
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-curio} -d ${POSTGRES_DB:-curio}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.12
+    restart: unless-stopped
+    environment:
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:-curio_dev_master_key}
+      MEILI_ENV: development
+      MEILI_NO_ANALYTICS: "true"
+    ports:
+      - "${MEILI_PORT:-7700}:7700"
+    volumes:
+      - meili-data:/meili_data
+    healthcheck:
+      test: ["CMD", "meilisearch", "--help"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-curio}:${POSTGRES_PASSWORD:-curio}@db:5432/${POSTGRES_DB:-curio}
+      MEILI_URL: http://meilisearch:7700
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:-curio_dev_master_key}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.5-flash}
+      # Unset falls back to the pool in core/config.py. Worth setting when a
+      # key cannot use some of those models: the client skips them correctly,
+      # but spends one request per rotation rediscovering it.
+      GEMINI_MODEL_POOL: ${GEMINI_MODEL_POOL:-}
+      GEMINI_EMBEDDING_MODEL: ${GEMINI_EMBEDDING_MODEL:-gemini-embedding-001}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-120b}
+      XAI_API_KEY: ${XAI_API_KEY:-}
+      XAI_MODEL: ${XAI_MODEL:-grok-4-fast}
+      LLM_PROVIDER_ORDER: ${LLM_PROVIDER_ORDER:-gemini,groq,xai}
+      LLM_MAX_OUTPUT_TOKENS: ${LLM_MAX_OUTPUT_TOKENS:-32768}
+      GEMINI_THINKING_LEVEL: ${GEMINI_THINKING_LEVEL:-low}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_WEBHOOK_SECRET: ${TELEGRAM_WEBHOOK_SECRET:-}
+      TELEGRAM_WEBAPP_URL: ${TELEGRAM_WEBAPP_URL:-}
+      TELEGRAM_PUBLIC_URL: ${TELEGRAM_PUBLIC_URL:-}
+      TELEGRAM_BOT_USERNAME: ${TELEGRAM_BOT_USERNAME:-}
+      VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY:-}
+      VAPID_PRIVATE_KEY: ${VAPID_PRIVATE_KEY:-}
+      VAPID_SUBJECT: ${VAPID_SUBJECT:-mailto:curiosity@example.com}
+      AUTO_SEED: ${AUTO_SEED:-true}
+      ADMIN_API_ENABLED: ${ADMIN_API_ENABLED:-true}
+      INGESTION_ENABLED: ${INGESTION_ENABLED:-false}
+      REDDIT_USER_AGENT: ${REDDIT_USER_AGENT:-curio/0.1 (collective-curiosity)}
+      THREADS_ENABLED: ${THREADS_ENABLED:-false}
+      THREADS_WORKER_URL: ${THREADS_WORKER_URL:-http://threads-worker:8090}
+      THREADS_TAGS: ${THREADS_TAGS:-}
+      REDDIT_CLIENT_ID: ${REDDIT_CLIENT_ID:-}
+      REDDIT_CLIENT_SECRET: ${REDDIT_CLIENT_SECRET:-}
+    ports:
+      - "${API_PORT:-8000}:8000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      db:
+        condition: service_healthy
+      meilisearch:
+        condition: service_started
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  web:
+    build:
+      context: ./frontend
+      target: dev
+    restart: unless-stopped
+    environment:
+      API_URL: http://api:8000
+      NEXT_PUBLIC_API_URL: http://localhost:${API_PORT:-8000}
+      NEXT_PUBLIC_VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY:-}
+      DEV_ORIGINS: ${DEV_ORIGINS:-}
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    volumes:
+      - ./frontend:/app
+      - web-node-modules:/app/node_modules
+      # The build directory must not be shared with the host. Its output has
+      # container paths baked in, and two dev servers writing one .next
+      # invalidate each other's Turbopack cache on every compile — which shows
+      # up as the page reloading forever. Keeping it in a volume lets the
+      # container and a host `npm run dev` run side by side.
+      - web-next:/app/.next
+    depends_on:
+      - api
+
+  # Chromium lives here and nowhere else. Threads serves a JavaScript shell to
+  # any plain client, so its posts need a real browser to appear — and a
+  # browser is 400MB, occasionally hangs, and has nothing to do with serving
+  # the API. Kept in its own service so the API image stays httpx-only and a
+  # wedged browser costs a discovery run rather than the site.
+  #
+  # Started only when asked for: `docker compose --profile threads up`.
+  threads-worker:
+    profiles: ["threads"]
+    build:
+      context: ./backend/workers/threads
+    restart: unless-stopped
+    environment:
+      THREADS_NAV_TIMEOUT_MS: ${THREADS_NAV_TIMEOUT_MS:-45000}
+      THREADS_SCROLLS: ${THREADS_SCROLLS:-3}
+    # No ports published: only the API talks to it, over the compose network.
+    expose:
+      - "8090"
+    # A browser page is memory-hungry and a leak here should not take the host
+    # with it.
+    mem_limit: 2g
+    shm_size: 1g
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8090/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  db-data:
+  meili-data:
+  web-node-modules:
+  web-next:

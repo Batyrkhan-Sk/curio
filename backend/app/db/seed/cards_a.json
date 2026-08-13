@@ -1,0 +1,915 @@
+[
+  {
+    "title": "Why are airplane windows round?",
+    "category_slug": "aviation",
+    "one_sentence_answer": "Sharp corners concentrate stress into a single point, and at cruising altitude a pressurised cabin pushes hard enough on that point to tear the fuselage open.",
+    "summary": "Early jets had square windows and two of them broke apart in mid-air. The investigation found that corners multiply stress, and every passenger aircraft since has used rounded openings.",
+    "difficulty": "beginner",
+    "reading_minutes": 6,
+    "curiosity_score": 0.82,
+    "confidence": 0.93,
+    "confidence_reason": "The de Havilland Comet accident investigations are extensively documented in public accident reports and engineering literature, and the stress-concentration mechanism is standard material science.",
+    "tags": [
+      "materials",
+      "safety",
+      "fatigue",
+      "pressurisation"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Think about opening a bag of crisps. It is surprisingly hard to tear the plastic in the middle, but once there is a tiny notch in the edge, it rips open easily. The notch gives the tear somewhere to start. A square window is a permanent notch built into the side of an aeroplane. Up at cruising height the air inside the cabin is pushed to a much higher pressure than the thin air outside, so the whole body of the plane is squeezed outwards like a balloon. All that force has to travel around the window openings. At a sharp corner it piles up in one tiny spot instead of spreading out. Round off the corner and the force flows around it smoothly, with nowhere to pile up."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Picture a slow, wide river. If the bank curves gently, the water follows the curve and keeps roughly the same speed everywhere. Now put a sharp square jetty in the way. Right at the point of that jetty, the water has to change direction instantly, and you get a violent churn concentrated in one small place. Stress in metal behaves the same way: it flows like a current, and it bunches up wherever it is forced to turn a sharp corner. A rounded window is a gently curving bank. Where the analogy stops: water actually moves, while the metal is standing still — what is 'flowing' is force being handed from one part of the material to the next, not anything you could watch."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The de Havilland Comet, which entered service in 1952, was the world's first commercial jet airliner, and it had roughly square cabin windows. In January 1954 a Comet broke apart near Elba, and in April another broke apart near Naples. The British investigation pressurised and depressurised an entire Comet fuselage inside a water tank thousands of times, watching for where it would fail. It failed at a corner of an opening in the fuselage skin. The cabins had been cycling between ground pressure and cruising pressure on every single flight, and each cycle grew a crack at the corner a fraction further, until the skin let go all at once. The Comet fleet was grounded, redesigned with rounded windows, and every pressurised airliner built since has followed."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "The effect has a name: stress concentration. Around a hole in a loaded plate, the stress is not uniform — it rises near the edge of the hole. Engineers describe this with a stress concentration factor, the ratio of the peak local stress to the average stress in the surrounding material. For a circular hole in a wide plate under simple tension, that factor is about 3, meaning the metal at the edge of the hole feels roughly three times the load the rest of the panel feels. As a corner gets sharper, its radius shrinks, and the factor climbs steeply — an ideally sharp corner is a mathematical singularity where the predicted stress runs away to infinity. Real corners have some small radius and finite stress, but the number gets large fast. Combine that with fatigue, which is the way metal accumulates permanent damage from repeated loading well below the stress that would break it in one go, and you get failure after a countable number of flights. Rounding a corner is therefore not cosmetic: it directly divides the peak stress the structure has to survive."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Modern practice goes well beyond simply rounding the corner. The window cutout is reinforced with a doubler or a forged frame that redistributes load into the surrounding skin, and aircraft are designed to be damage tolerant rather than crack free: the assumption is that cracks will appear, so the structure must hold with a crack present and the crack must grow slowly enough that scheduled inspection finds it first. That is the fail-safe philosophy that replaced the earlier safe-life approach after the Comet. Fatigue life is estimated from crack-growth models — Paris' law relates growth per cycle to the stress intensity factor range at the crack tip — and validated with full-scale fatigue test articles cycled to several times the intended service life. There is also a manufacturing dimension the textbook version omits: the Comet's failure was worsened by punch-riveted holes, which left microscopic cracks at the hole edge before the aircraft ever flew. Aperture shape is one term in the equation; surface finish, residual stress, fastener installation method, and the choice of alloy all move the same number."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Pressurised cabin",
+        "plain_definition": "The passenger compartment is pumped up to a higher air pressure than the thin air outside, so people can breathe normally at altitude."
+      },
+      {
+        "term": "Stress concentration",
+        "plain_definition": "The way force inside a material bunches up near a hole or corner instead of spreading out evenly."
+      },
+      {
+        "term": "Fatigue",
+        "plain_definition": "The slow accumulation of damage in a material from being loaded and unloaded many times, even when no single load is close to breaking it."
+      },
+      {
+        "term": "Damage tolerance",
+        "plain_definition": "Designing a structure so that it still holds together after a crack appears, rather than assuming cracks never will."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Round windows are about aerodynamics or reducing drag.",
+        "reality": "The windows sit flush inside the fuselage skin and have essentially no effect on drag. The shape is a structural decision about where stress accumulates."
+      },
+      {
+        "myth": "The Comet crashed because jets were a new and inherently risky technology.",
+        "reality": "The jet engines were not the problem. The failure was a metal fatigue problem in the pressurised fuselage, and it would have happened to a propeller aircraft flying the same pressure cycles."
+      },
+      {
+        "myth": "The window glass is what has to be strong.",
+        "reality": "The passenger-facing pane is not the pressure-bearing part at all. Cabin windows are usually multiple panes, with a middle pane carrying the pressure load and a small breather hole in the inner pane equalising the gap. The structural question is about the hole cut in the aluminium, not the transparency filling it."
+      }
+    ],
+    "why_it_matters": "Once you can see stress concentration, you start noticing it everywhere: the rounded corners of a phone screen, the curve where a spanner's handle meets its head, the reason a scratch on a windscreen turns into a crack. It is also a clean example of how safety engineering actually advances — not by predicting every failure in advance, but by investigating the first one thoroughly enough that it never repeats.",
+    "historical_background": {
+      "origin": "The mathematics was in place long before the accidents. Charles Inglis published his analysis of stress around elliptical holes in plates in 1913, and Alan Arnold Griffith's 1921 work on brittle fracture explained why real materials break far below their theoretical strength.",
+      "motivation": "The theory became urgent in 1954, when two Comets broke apart within four months and the Royal Aircraft Establishment ran a full-scale water-tank fatigue test to find out why.",
+      "evolution": "The findings reshaped airworthiness regulation. Fail-safe and damage-tolerant design requirements entered certification rules, full-scale fatigue testing became standard, and the aviation industry adopted the practice of publishing accident investigations openly so that every manufacturer learns from each failure."
+    },
+    "diagrams": [
+      {
+        "title": "Why a corner fails and a curve does not",
+        "kind": "mermaid",
+        "content": "flowchart LR\n  A[\"Cabin pressurised<br/>each flight\"] --> B[\"Fuselage skin<br/>pulled in tension\"]\n  B --> C{\"Shape of the<br/>window opening\"}\n  C -->|\"Sharp corner\"| D[\"Stress piles up<br/>at one point\"]\n  C -->|\"Rounded corner\"| E[\"Stress spreads<br/>around the curve\"]\n  D --> F[\"Tiny crack starts\"]\n  F --> G[\"Grows a little<br/>every flight\"]\n  G --> H[\"Sudden failure\"]\n  E --> I[\"Survives tens of<br/>thousands of cycles\"]",
+        "caption": "Read left to right: the same load takes two very different paths depending on one geometric choice."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Metal fatigue and crack growth",
+        "reason": "Explains why the damage accumulates over thousands of flights rather than appearing all at once."
+      },
+      {
+        "label": "Why aircraft cabins are pressurised at all",
+        "reason": "The load that causes the problem only exists because of a different design decision about human physiology."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Stress concentration",
+        "plain_definition": "Force inside a material bunching up near a hole or corner instead of spreading evenly.",
+        "role": "covers"
+      },
+      {
+        "name": "Metal fatigue",
+        "plain_definition": "Damage that builds up in metal from repeated loading, even below its breaking strength.",
+        "role": "covers"
+      },
+      {
+        "name": "Cabin pressurisation",
+        "plain_definition": "Keeping air inside an aircraft at a higher pressure than the thin air outside.",
+        "role": "requires"
+      },
+      {
+        "name": "Damage tolerant design",
+        "plain_definition": "Building structures that stay safe even after cracks appear.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Aircraft Accident Report: de Havilland Comet G-ALYP and G-ALYY",
+        "url": "https://en.wikipedia.org/wiki/BOAC_Flight_781",
+        "publisher": "Public accident investigation record",
+        "kind": "gov",
+        "reliability": 0.9
+      },
+      {
+        "title": "Stress concentration",
+        "url": "https://en.wikipedia.org/wiki/Stress_concentration",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Fatigue (material)",
+        "url": "https://en.wikipedia.org/wiki/Fatigue_(material)",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      }
+    ],
+    "related_questions": [
+      "Why do SSDs wear out?",
+      "Why do batteries degrade?"
+    ]
+  },
+  {
+    "title": "Why do elevators have mirrors?",
+    "category_slug": "psychology",
+    "one_sentence_answer": "Mirrors were added because complaints about slow elevators dropped sharply when people had something to look at, which was far cheaper than making the elevators faster.",
+    "summary": "One of the clearest examples of solving a perception problem instead of an engineering one — and it worked so well that mirrors became a permanent convention.",
+    "difficulty": "beginner",
+    "reading_minutes": 4,
+    "curiosity_score": 0.71,
+    "confidence": 0.72,
+    "confidence_reason": "The mechanism — occupied time feeling shorter than unoccupied time — is well established in queueing psychology, but the frequently repeated origin anecdote about a specific New York building is not traceable to a primary source.",
+    "tags": [
+      "perception",
+      "queueing",
+      "design",
+      "waiting"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Waiting with nothing to do feels much longer than waiting with something to do. Thirty seconds staring at a blank wall drags. Thirty seconds glancing at your reflection, checking your hair, or discreetly looking at other people goes by almost unnoticed. When building owners got complaints that their elevators were too slow, they had two options. Making an elevator genuinely faster means replacing motors, cables, and control systems, which is enormously expensive and sometimes physically impossible in an old shaft. Putting a mirror on the wall costs almost nothing. The complaints dropped. The elevator was exactly as slow as before — the wait had simply stopped feeling like waiting."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of the difference between a car journey where you are the passenger with your phone, and the same journey where your phone is dead and you have to stare out of the window. Same road, same duration, wildly different experience of how long it took. Your sense of elapsed time is not a clock running in the background — it is more like an estimate you assemble afterwards from how much your attention had to do. Empty attention gets counted; occupied attention does not. Where this breaks down: the effect is not unlimited. If a wait is long enough that you start actively wondering whether something has gone wrong, no amount of distraction rescues it, because now you are anxious rather than merely idle."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Houston airport faced a version of this problem with baggage claim. Passengers complained about waiting for luggage, and the airport initially added staff to speed up bag delivery, which reduced the wait but not the complaints. The fix that worked was rerouting arriving passengers so they walked considerably further from the gate to the baggage carousel. The total time from landing to holding your bag barely changed; the time spent standing still at the carousel dropped to almost nothing, because most of it had been converted into walking. Complaints fell substantially. The same logic explains why restaurants hand you a menu the moment you sit down, and why lift lobbies in tall buildings often have a screen showing headlines."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "This sits in a body of work often summarised as the psychology of queueing, and one influential formulation is David Maister's set of propositions about waiting, published in 1985. Two of them matter here. First, occupied time feels shorter than unoccupied time. Second, uncertain waits feel longer than known, finite waits — which is why a floor indicator showing the car's position helps independently of the mirror. Underneath both is the way people estimate duration retrospectively. In the absence of an external clock, the brain appears to reconstruct elapsed time partly from how many distinct events or changes it registered, so an interval dense with small stimuli can be judged differently from an empty one of identical length. Mirrors are unusually effective stimuli because of a specific human tendency: faces, including one's own, capture and hold attention more reliably than almost any other visual target."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The retrospective-duration literature is genuinely contested, and it is worth being careful here. A common textbook claim is that more remembered events uniformly lengthen a retrospective time estimate, which is close to the opposite of what the elevator story requires. The resolution is that prospective judgements — how long something feels while you are in it — and retrospective judgements — how long you say it was afterwards — dissociate, and complaint behaviour is driven mostly by the prospective, in-the-moment experience. Attentional models of time perception, such as Zakay and Block's attentional-gate framework, handle this: when attention is diverted away from monitoring time, fewer temporal pulses are accumulated and the interval feels shorter as it happens. There is also a plausible secondary mechanism specific to elevators that has nothing to do with time at all. Mirrors make a small enclosed box read as visually larger and let occupants monitor others without turning to face them, which reduces the discomfort of standing very close to strangers. Disentangling perceived duration from reduced crowding stress would need an experiment that, as far as the public literature goes, nobody has cleanly run."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Occupied time",
+        "plain_definition": "Time during which your attention has something to work on, as opposed to time spent simply waiting."
+      },
+      {
+        "term": "Retrospective duration judgement",
+        "plain_definition": "Your estimate, made afterwards, of how long something took."
+      },
+      {
+        "term": "Perceived wait",
+        "plain_definition": "How long a wait feels, which can differ substantially from what a clock would say."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Mirrors are there to help wheelchair users see behind them when reversing out.",
+        "reality": "This is a genuine benefit and appears in some accessibility guidance, but it postdates the practice by decades and does not explain why mirrors appeared in buildings with no such requirement."
+      },
+      {
+        "myth": "Mirrors make the elevator feel faster.",
+        "reality": "They make the wait feel shorter, which is a different claim. Nobody reports the car moving more quickly; they simply stop noticing the journey."
+      },
+      {
+        "myth": "It is a security measure so you can see who is behind you.",
+        "reality": "Retrofitted mirrors predate that rationale, and a mirror is a poor security device — but this has become a real secondary reason for keeping them."
+      }
+    ],
+    "why_it_matters": "It is the cheapest possible demonstration that the experience of a system and the measured performance of a system are different variables, and that you can sometimes move the one that matters without touching the other. Almost every progress bar, estimated arrival time, and skeleton loading screen you have ever seen descends from the same insight.",
+    "historical_background": {
+      "origin": "The practice is usually traced to mid-twentieth-century office buildings in the United States, though the widely repeated specific origin story is anecdotal rather than documented.",
+      "motivation": "Post-war skyscrapers put far more people through far taller shafts than earlier buildings, and complaints about waiting became a real commercial problem for landlords.",
+      "evolution": "The idea generalised well beyond lifts. Maister formalised it in 1985, and the digital era inherited it wholesale: loading animations, optimistic UI updates, and the deliberate slowing of instant results so they feel considered rather than careless."
+    },
+    "diagrams": [
+      {
+        "title": "Two ways to fix a slow elevator",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Complaint:<br/>the lift is too slow\"] --> B{\"What do you<br/>change?\"}\n  B -->|\"Engineering\"| C[\"Faster motors,<br/>new controller\"]\n  B -->|\"Perception\"| D[\"Mirror in the car\"]\n  C --> E[\"Actual wait<br/>drops\"]\n  D --> F[\"Actual wait<br/>unchanged\"]\n  F --> G[\"Attention occupied\"]\n  G --> H[\"Perceived wait drops\"]\n  E --> I[\"Complaints fall\"]\n  H --> I",
+        "caption": "Both branches reach the same outcome; only one of them costs a rebuild."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why progress bars often lie",
+        "reason": "The same trade-off between measured and perceived duration, moved into software."
+      },
+      {
+        "label": "How queueing systems are designed",
+        "reason": "The mathematics of the wait that the mirror is disguising."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Perceived duration",
+        "plain_definition": "How long an interval feels, as distinct from how long it measurably is.",
+        "role": "covers"
+      },
+      {
+        "name": "Queueing psychology",
+        "plain_definition": "The study of how people experience waiting, separate from how long they actually wait.",
+        "role": "covers"
+      },
+      {
+        "name": "Attention",
+        "plain_definition": "The limited mental resource that determines what you notice and process.",
+        "role": "requires"
+      }
+    ],
+    "sources": [
+      {
+        "title": "The Psychology of Waiting Lines",
+        "url": "https://en.wikipedia.org/wiki/Queueing_theory",
+        "publisher": "David Maister, 1985",
+        "kind": "paper",
+        "reliability": 0.8
+      },
+      {
+        "title": "Time perception",
+        "url": "https://en.wikipedia.org/wiki/Time_perception",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      }
+    ],
+    "related_questions": [
+      "Why do bank transfers take days to settle?",
+      "Why do photos of propellers look bent?"
+    ]
+  },
+  {
+    "title": "Why do CPUs have cache?",
+    "category_slug": "programming",
+    "one_sentence_answer": "Main memory is so slow relative to a modern processor that without a small, very fast copy of recently used data sitting next to the core, the processor would spend most of its life waiting.",
+    "summary": "The gap between how fast processors compute and how fast memory delivers has widened for decades. Cache is the entire industry's answer, and it is why the same program can run ten times slower with one small change to how it walks through memory.",
+    "difficulty": "intermediate",
+    "reading_minutes": 7,
+    "curiosity_score": 0.68,
+    "confidence": 0.91,
+    "confidence_reason": "Cache hierarchy behaviour is thoroughly documented in vendor optimisation manuals and standard computer architecture texts, and the latency figures are widely measured and reproducible.",
+    "tags": [
+      "hardware",
+      "memory",
+      "performance",
+      "architecture"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Imagine you are cooking from a recipe, and every single ingredient is in a warehouse twenty minutes' walk away. You could walk there and back for each ingredient, but you would spend the entire day walking and almost no time cooking. Obviously you would instead carry an armful of things back at once and keep them on the counter next to you. A processor has the same problem. The main memory in a computer, the part usually called RAM, is physically separated from the processor and takes a surprisingly long time to answer. So the processor keeps a tiny counter-top of its own — the cache — holding copies of whatever it has used recently, plus whatever sat next to it. Almost every time the processor needs something, it is already on the counter."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a library with an enormous basement archive, a few shelves behind the librarian's desk, and a single small tray on the desk itself. Anything on the tray is instant. The shelves behind the desk take a moment. The basement takes a long trip. A good librarian notices which books keep getting requested and quietly promotes them upward, and notices that people who ask for volume three usually ask for volume four next, so fetches both. That is exactly the structure of a cache hierarchy, and exactly the two habits it exploits. The analogy's limit: a librarian is making conscious decisions, while a cache is fixed hardware following a very simple rule with no understanding of what your program is trying to do — which is why a program that violates its expectations gets no help at all."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Here is a case you can reproduce in an afternoon. Take a large two-dimensional array of numbers — say ten thousand by ten thousand — and add up every element. Do it once walking along each row in order, then do it again walking down each column. The two versions perform exactly the same number of additions and touch exactly the same values. On typical hardware the column version runs several times slower, sometimes by a factor of ten or more. The reason is that memory is laid out one row after another, so walking along a row means every value you need next is already sitting in the block the cache just fetched. Walking down a column means every single access lands in a different block, and the cache is thrown away and refetched every time. Nothing about the arithmetic changed; only the order of the visits."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "The pressure comes from a widening gap. Processor clock speeds improved far faster than memory latency did for several decades, a divergence usually called the memory wall. On a current desktop machine, a value already in the first-level cache is available in roughly one nanosecond, the last-level shared cache takes something like ten to twenty, and a trip to main memory costs on the order of eighty to a hundred nanoseconds. At three billion cycles per second, that last figure is a few hundred cycles of doing nothing. Caches bridge it by exploiting two empirical properties of real programs, together called locality of reference. Temporal locality is the tendency to reuse the same data soon after using it. Spatial locality is the tendency to use data stored near data you just used. Caches exploit the first by keeping recent data and the second by never fetching single bytes — memory moves in fixed blocks called cache lines, typically 64 bytes, so touching one value pulls in its neighbours for free. The hierarchy is tiered because speed and capacity trade against each other: L1 is tiny and per-core, L2 is larger and slower, L3 is larger still and usually shared between cores, and each level catches what the level above missed."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Several details bite in practice. Caches are usually set-associative, meaning an address may only live in one particular set of a handful of slots, so a program striding through memory at an unlucky power-of-two interval can repeatedly evict its own data from a cache that is mostly empty — conflict misses, distinct from the capacity misses people usually imagine. On multicore machines, coherence protocols such as MESI keep each core's private caches consistent, and this creates false sharing: two threads writing to different variables that happen to land in the same 64-byte line will ping the line between cores and destroy scaling, with no data race and no obvious cause in the source. Hardware prefetchers detect sequential and simple strided patterns and fetch ahead, which is why linked-list traversal is punished so much harder than array traversal even at identical miss rates — the prefetcher cannot guess a pointer it has not loaded yet. Caches are also a security surface: because a cache hit and a miss take measurably different times, an attacker sharing hardware can infer which memory another process touched, which is the foundation of Flush+Reload and the mechanism that made Spectre and Meltdown exploitable. And there is a virtual memory interaction most treatments skip — the TLB, which caches address translations, has its own hit rate, and a program can fit comfortably in cache while thrashing the TLB."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "RAM",
+        "plain_definition": "The computer's main working memory: large, but physically separate from the processor and comparatively slow to reach."
+      },
+      {
+        "term": "Cache",
+        "plain_definition": "A small, very fast memory sitting next to the processor holding copies of recently used data."
+      },
+      {
+        "term": "Latency",
+        "plain_definition": "How long you wait between asking for something and receiving it."
+      },
+      {
+        "term": "Cache line",
+        "plain_definition": "The fixed-size block, usually 64 bytes, that memory is always moved in — you never fetch just one byte."
+      },
+      {
+        "term": "Locality of reference",
+        "plain_definition": "The observed habit of programs to reuse recent data and to use data stored close to it."
+      },
+      {
+        "term": "False sharing",
+        "plain_definition": "Two processor cores fighting over one cache line because unrelated variables happen to sit in it together."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Cache is just a smaller, faster kind of RAM you could scale up if you were willing to pay.",
+        "reality": "Cache is built from a different circuit — SRAM, which needs roughly six transistors per bit against DRAM's one transistor and one capacitor. It is faster because it is small and close, and making it large would make it slow, so the size limit is physics rather than cost alone."
+      },
+      {
+        "myth": "More cache always means faster.",
+        "reality": "Larger caches have higher access latency and, past the point where your working set already fits, add nothing. This is why processors use a tiered hierarchy instead of one big cache."
+      },
+      {
+        "myth": "Caching is something the operating system or compiler manages.",
+        "reality": "The hardware cache is entirely transparent to software — no instruction says 'put this in cache'. Software can only influence it indirectly, by choosing access patterns the hardware happens to handle well."
+      }
+    ],
+    "why_it_matters": "Cache behaviour is usually the largest single factor in the speed of code that is not doing heavy arithmetic, and it is invisible in the source. Once you know it exists, a whole class of mysterious performance results stops being mysterious: why arrays beat linked lists, why the order of nested loops matters, why adding a thread sometimes makes a program slower, and why two algorithms with the same complexity can differ by an order of magnitude.",
+    "historical_background": {
+      "origin": "Maurice Wilkes described the idea in 1965 as a 'slave memory', and the IBM System/360 Model 85 shipped the first commercial implementation in 1968.",
+      "motivation": "Core memory was already the bottleneck, and it was clear that processor logic would keep improving faster than memory access.",
+      "evolution": "The gap Wilkes anticipated widened for forty years, and the response has been more levels rather than bigger ones — from a single cache, to split instruction and data caches, to today's three or four tiers with shared last levels, hardware prefetchers, and increasingly elaborate coherence protocols. The side effects took much longer to surface: the timing-channel vulnerabilities inherent in the design were only widely appreciated after 2018."
+    },
+    "diagrams": [
+      {
+        "title": "The memory hierarchy, and what each step costs",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  Core[\"CPU core\"] -->|\"~1 ns\"| L1[\"L1 cache<br/>32-64 KB, per core\"]\n  L1 -->|\"miss, ~4 ns\"| L2[\"L2 cache<br/>0.5-2 MB, per core\"]\n  L2 -->|\"miss, ~15 ns\"| L3[\"L3 cache<br/>8-64 MB, shared\"]\n  L3 -->|\"miss, ~90 ns\"| RAM[\"Main memory<br/>8-128 GB\"]\n  RAM -->|\"page fault, ~100 us\"| SSD[\"SSD\"]",
+        "caption": "Each step down is roughly an order of magnitude slower and an order of magnitude larger."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How virtual memory works",
+        "reason": "The layer below cache, which decides what is in RAM at all."
+      },
+      {
+        "label": "Why SSDs wear out",
+        "reason": "Continues down the same hierarchy into storage, where the constraints change completely."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "CPU cache",
+        "plain_definition": "Small fast memory next to the processor holding copies of recently used data.",
+        "role": "covers"
+      },
+      {
+        "name": "Memory hierarchy",
+        "plain_definition": "The tiered arrangement of storage from tiny and instant to huge and slow.",
+        "role": "covers"
+      },
+      {
+        "name": "Locality of reference",
+        "plain_definition": "The habit of programs to reuse recent data and data stored near it.",
+        "role": "covers"
+      },
+      {
+        "name": "Latency",
+        "plain_definition": "The delay between requesting something and getting it.",
+        "role": "requires"
+      },
+      {
+        "name": "Cache coherence",
+        "plain_definition": "Keeping multiple processor cores' private caches in agreement about shared data.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "CPU cache",
+        "url": "https://en.wikipedia.org/wiki/CPU_cache",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "What Every Programmer Should Know About Memory",
+        "url": "https://www.akkadia.org/drepper/cpumemory.pdf",
+        "publisher": "Ulrich Drepper",
+        "kind": "paper",
+        "reliability": 0.88
+      },
+      {
+        "title": "Locality of reference",
+        "url": "https://en.wikipedia.org/wiki/Locality_of_reference",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      }
+    ],
+    "related_questions": [
+      "Why do SSDs wear out?",
+      "Why do bank transfers take days to settle?"
+    ]
+  },
+  {
+    "title": "Why is the sky blue?",
+    "category_slug": "physics",
+    "one_sentence_answer": "Air molecules scatter short-wavelength light far more strongly than long-wavelength light, so blue arrives at your eye from every direction of the sky while red passes straight through.",
+    "summary": "The classic question, and the usual answer is slightly wrong in an interesting way: violet is scattered even more than blue, and the sky is blue partly because of how human eyes are built.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.94,
+    "confidence": 0.95,
+    "confidence_reason": "Rayleigh scattering is settled physics with a closed-form wavelength dependence, and the colour-perception correction is standard in atmospheric optics literature.",
+    "tags": [
+      "light",
+      "atmosphere",
+      "colour",
+      "scattering"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Sunlight looks white, but it is really every colour mixed together — you can see them separate in a rainbow. When that light comes down through the air, it bumps into the tiny molecules that make up the atmosphere. Here is the key part: the bumping does not treat all colours equally. Blue light gets knocked sideways much more easily than red light does. So blue light gets bounced around the sky in every direction, and when you look up at any random patch of sky away from the sun, the light reaching your eye from that patch is mostly the bounced blue. The red and yellow light mostly carried on in a straight line and went past you. The sky is blue because blue is the colour that gets scattered towards you from everywhere at once."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Imagine rolling balls of different sizes through a forest of thin poles. A large beach ball rolls between the poles and mostly carries on straight. A small marble hits pole after pole and ricochets off in every direction. Long-wavelength red light is the beach ball; short-wavelength blue is the marble. Stand off to the side of the forest and the only balls that reach you are the marbles that bounced — so from the side, the forest looks full of marbles. Where the analogy fails, and it fails in an important way: light is not actually a ball bouncing off an obstacle. The molecule absorbs the wave and immediately re-radiates it in a new direction, and the strong colour preference comes from how much a molecule's electrons get shaken by a wave of a given frequency, not from anything about size fitting through gaps."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Watch the same sky at sunset and the explanation proves itself. When the sun is low, its light travels through a far longer slice of atmosphere to reach you — roughly forty times the vertical thickness when the sun is right on the horizon. Over that distance, so much blue has been scattered out of the beam that almost none is left, and what arrives directly is the red and orange that survived the journey. That is why sunsets are red and midday sun is white. It also explains something people rarely connect: the sun looks yellowish at noon rather than pure white, because even straight overhead a little blue has already been stripped out of the direct beam. And on the Moon, where there is no atmosphere to scatter anything, the sky is black even in full daylight."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "The relevant process is Rayleigh scattering, which applies when the scattering particles are much smaller than the wavelength of the light — true for nitrogen and oxygen molecules, which are about a thousand times smaller than visible light waves. An oscillating electromagnetic wave drives the electron cloud of the molecule into oscillation, and an oscillating dipole re-radiates. The power radiated by an oscillating dipole depends on the fourth power of the frequency, which gives Rayleigh scattering its famous scaling: intensity is proportional to one over wavelength to the fourth. Run the numbers. Violet light at about 400 nanometres against red at about 700 gives a ratio of (700/400) to the fourth power, which is roughly nine. Short-wavelength light is scattered nearly an order of magnitude more strongly than long. The scattering is also strongly polarised at ninety degrees to the sun, which is why a polarising filter dramatically darkens one band of the sky and why some insects navigate by the sky's polarisation pattern."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The standard answer has a real gap: if scattering scales as the inverse fourth power of wavelength, violet should dominate and the sky should look violet. It does not, for three compounding reasons. Sunlight is not flat across the spectrum — there is less power at violet than at blue to begin with. The upper atmosphere absorbs a meaningful fraction of the shortest wavelengths. And most importantly, human colour vision is the last stage of the system: our three cone types respond in a way that maps the actual scattered spectrum, which peaks in the violet, onto a perceived pale blue. A camera with different spectral sensitivity photographs a measurably different sky. There is a second subtlety about the scattering itself. A perfectly uniform medium would not scatter light sideways at all — the re-radiated waves from neighbouring molecules would interfere destructively. What actually scatters is the density fluctuation, the statistical unevenness in how many molecules occupy a small volume at a given instant, which is why the rigorous treatment goes through Einstein and Smoluchowski's fluctuation theory rather than through summing independent molecular scatterers. Finally, Rayleigh's regime ends when particles approach the wavelength: clouds and fog are white rather than blue because water droplets are large enough for Mie scattering, which is nearly wavelength-independent."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Wavelength",
+        "plain_definition": "The distance between one peak of a light wave and the next; it is what determines the colour we see."
+      },
+      {
+        "term": "Scattering",
+        "plain_definition": "Light being sent off in a new direction after interacting with something, rather than continuing straight."
+      },
+      {
+        "term": "Rayleigh scattering",
+        "plain_definition": "The kind of scattering that happens when the particles are much smaller than the light's wavelength, which strongly favours blue over red."
+      },
+      {
+        "term": "Mie scattering",
+        "plain_definition": "Scattering by particles roughly the size of the wavelength or larger, which affects all colours about equally and so looks white."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "The sky is blue because it reflects the ocean.",
+        "reality": "The causation runs the other way — deep open water often looks blue partly because it reflects the sky, and partly because water itself absorbs red light. Landlocked deserts have exactly the same blue sky."
+      },
+      {
+        "myth": "Blue light 'bounces off' air molecules like a ball off a wall.",
+        "reality": "The molecule absorbs and immediately re-emits the energy in a new direction. Nothing rebounds, and the colour dependence comes from how strongly the electron cloud is driven, not from geometry."
+      },
+      {
+        "myth": "The sky should be violet, so the standard explanation must be wrong.",
+        "reality": "The scattering explanation is correct; it is simply incomplete without the last step. The spectrum arriving at your eye does peak towards violet, but the solar spectrum, atmospheric absorption, and the response of human cone cells together render it as blue."
+      }
+    ],
+    "why_it_matters": "The same physics sets the colour of sunsets, explains why the sky is polarised in a pattern some animals navigate by, and is the reason distant mountains look hazy blue. It is also one of the cleanest cases of a question where the physical answer and the perceptual answer are both necessary — knowing what light arrives does not tell you what colour a person sees.",
+    "historical_background": {
+      "origin": "John Tyndall demonstrated in 1859 that small suspended particles scatter blue light preferentially. Lord Rayleigh worked out the wavelength dependence mathematically in the 1870s and showed that the molecules of the air themselves were sufficient — no dust needed.",
+      "motivation": "The colour of the sky was a standing puzzle in nineteenth-century physics, tangled up with the question of whether air was truly transparent and whether the atmosphere contained fine suspended matter.",
+      "evolution": "Einstein and Smoluchowski recast the problem in terms of density fluctuations in the early twentieth century, giving the rigorous derivation. The perceptual half of the answer arrived later still, with quantitative colorimetry in the twentieth century."
+    },
+    "diagrams": [
+      {
+        "title": "Why noon is blue and sunset is red",
+        "kind": "mermaid",
+        "content": "flowchart LR\n  S[\"White sunlight\"] --> A{\"Path length<br/>through air\"}\n  A -->|\"Short: sun overhead\"| B[\"Some blue scattered<br/>across the sky\"]\n  B --> C[\"Sky: blue<br/>Sun: near-white\"]\n  A -->|\"Long: sun on horizon\"| D[\"Nearly all blue<br/>scattered away\"]\n  D --> E[\"Only long wavelengths<br/>survive the trip\"]\n  E --> F[\"Sun and sky: red\"]",
+        "caption": "One mechanism, two outcomes — the only variable that changes is how much air the light crosses."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why sunsets are red",
+        "reason": "The same scattering law with one variable changed."
+      },
+      {
+        "label": "Why clouds are white",
+        "reason": "What happens when the scattering particles get large enough to leave the Rayleigh regime."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Rayleigh scattering",
+        "plain_definition": "Scattering by particles much smaller than the wavelength, strongly favouring short wavelengths.",
+        "role": "covers"
+      },
+      {
+        "name": "Wavelength",
+        "plain_definition": "The spacing of a wave's peaks, which for light determines its colour.",
+        "role": "requires"
+      },
+      {
+        "name": "Colour perception",
+        "plain_definition": "How three types of cone cell in the eye turn a spectrum into a perceived colour.",
+        "role": "covers"
+      },
+      {
+        "name": "Atmospheric optics",
+        "plain_definition": "The study of how light behaves passing through air.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Rayleigh scattering",
+        "url": "https://en.wikipedia.org/wiki/Rayleigh_scattering",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Diffuse sky radiation",
+        "url": "https://en.wikipedia.org/wiki/Diffuse_sky_radiation",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Why is the sky blue?",
+        "url": "https://math.ucr.edu/home/baez/physics/General/BlueSky/blue_sky.html",
+        "publisher": "UCR Physics FAQ",
+        "kind": "docs",
+        "reliability": 0.85
+      }
+    ],
+    "related_questions": [
+      "Why does Wi-Fi get slower through walls?",
+      "Why are rockets launched eastward?",
+      "Why do photos of propellers look bent?"
+    ]
+  },
+  {
+    "title": "Why does Wi-Fi get slower through walls?",
+    "category_slug": "internet",
+    "one_sentence_answer": "Walls absorb and reflect part of the radio signal, and rather than simply arriving quieter, a weakened signal makes your router switch to a slower, more repetitive way of encoding data so it can still be understood.",
+    "summary": "The interesting part is not that the signal gets weaker — it is what the router does about it. Wi-Fi trades speed for reliability automatically, which is why one wall can halve your throughput.",
+    "difficulty": "beginner",
+    "reading_minutes": 6,
+    "curiosity_score": 0.79,
+    "confidence": 0.89,
+    "confidence_reason": "Attenuation figures and rate-adaptation behaviour are documented in IEEE 802.11 standards and vendor deployment guides; exact per-material losses vary with construction and are given as ranges.",
+    "tags": [
+      "radio",
+      "networking",
+      "signal",
+      "wireless"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Wi-Fi is a radio conversation between your router and your laptop, using waves rather than sound. A wall does not block those waves completely, but it soaks up part of them, the way a closed door muffles someone talking in the next room. Now think about what you do when you can barely hear someone. You do not simply carry on at normal speed and hope — you slow down, repeat yourself, and say each word more clearly. Wi-Fi does exactly the same thing automatically. When the signal gets faint, your router and laptop agree to switch to a slower, more repetitive way of sending information so that it still arrives intact. So the wall does not just make the signal quieter. It makes both devices deliberately choose to talk more slowly."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Imagine trying to send a message across a noisy factory floor by holding up cards. When your colleague is close and can see clearly, you can use a big alphabet of subtly different cards and send a lot of meaning per card. As they move further away and the cards get harder to distinguish, you have to switch to a much smaller set of very different-looking cards — maybe just two, held up for longer — because anything subtler would be misread. Fewer distinguishable symbols means less information per card, so the message takes far longer even though you are holding up cards just as fast. Where the analogy stops: a real radio link is not only faded but also competing with every other device on the same channel, so some of your slowdown is waiting for a turn to speak, not weakness of signal at all."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "This is why the 5 GHz band on a dual-band router is often the wrong choice for the far end of a house even though it is the faster band. Sit next to the router and 5 GHz will comfortably outrun 2.4 GHz. Walk through two internal walls and the ranking frequently flips, because higher-frequency waves are absorbed more strongly by building materials. Material matters enormously: a plasterboard partition might cost you a few decibels, while a single reinforced concrete wall or a foil-backed insulation panel can cost twenty or thirty — and every three decibels is a halving of signal power. The worst offender in most homes is not a wall at all. It is a mirror, a metallised window coating, or a fridge, because metal reflects radio almost perfectly rather than letting any through."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Two mechanisms compound. First, attenuation: a material absorbs energy from the passing wave, and absorption generally increases with frequency, which is why 5 GHz and 6 GHz penetrate worse than 2.4 GHz. Loss is measured in decibels, a logarithmic scale where 3 dB is half the power and 10 dB is a tenth. Second, and more consequential, is rate adaptation. Wi-Fi does not have one speed. The standard defines a ladder of modulation and coding schemes — combinations of how many bits each transmitted symbol carries and how much redundant error-correction data is added. At the top of the ladder, 1024-QAM packs ten bits into each symbol by distinguishing 1024 distinct amplitude-and-phase states. Telling those states apart requires a high signal-to-noise ratio, roughly 35 dB or better. As SNR falls, the receiver starts confusing adjacent states, errors rise, and the transmitter steps down the ladder — to 256-QAM, then 64-QAM, eventually to BPSK carrying a single bit per symbol with heavy coding. The link stays reliable and gets dramatically slower. Retransmissions make it worse: a failed frame is sent again, and because Wi-Fi is a shared medium, the retransmission also consumes airtime that every other device on the channel could have used."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Several effects complicate the simple picture. Multipath is the big one, and it is not purely harmful: signals arriving via reflections off walls can add constructively or destructively, producing standing-wave patterns where moving a laptop 15 centimetres changes throughput substantially. Modern Wi-Fi actively exploits multipath through MIMO, using multiple antennas and spatial streams to send independent data over paths that the scattering environment has made distinguishable — so a cluttered room can carry more capacity than an empty one. OFDM divides the channel into many narrow subcarriers so that frequency-selective fading damages only some of them, and per-subcarrier bit loading adapts accordingly. There is also a rate-anomaly effect specific to shared media: because airtime is allocated roughly per-frame rather than per-bit under the older DCF access method, a single distant slow client can drag down the effective throughput of every fast client on the same channel, since its frames occupy the air far longer. 802.11ax addressed this with OFDMA and scheduled access. Finally, a lot of perceived wall-related slowdown in dense housing is actually co-channel interference — the wall is attenuating your signal but not your neighbour's, degrading your SNR from both directions at once."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Attenuation",
+        "plain_definition": "The loss of signal strength as a wave passes through something."
+      },
+      {
+        "term": "Decibel (dB)",
+        "plain_definition": "A logarithmic way of measuring signal strength where every 3 dB lost means half the power."
+      },
+      {
+        "term": "Signal-to-noise ratio",
+        "plain_definition": "How loud the signal is compared to the background radio noise — the thing that actually determines achievable speed."
+      },
+      {
+        "term": "Modulation",
+        "plain_definition": "The scheme for turning bits into a radio wave; denser schemes carry more bits but need a cleaner signal."
+      },
+      {
+        "term": "Rate adaptation",
+        "plain_definition": "The automatic switching to slower, sturdier encoding when the signal degrades."
+      },
+      {
+        "term": "Multipath",
+        "plain_definition": "The same signal arriving several times by different reflected routes."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "The wall blocks part of the signal, so you get proportionally less speed.",
+        "reality": "The relationship is not proportional. Throughput falls in steps as the link drops to lower modulation schemes, so a small extra loss can suddenly cost you half your speed while a larger loss elsewhere costs nothing."
+      },
+      {
+        "myth": "5 GHz is simply better than 2.4 GHz.",
+        "reality": "5 GHz has more channels, less interference, and higher peak rates, but it is absorbed more by building materials. Through several walls, 2.4 GHz frequently wins."
+      },
+      {
+        "myth": "A Wi-Fi extender fixes a weak signal.",
+        "reality": "A traditional repeater receives and retransmits on the same channel, roughly halving the available airtime, so it can improve coverage while reducing total throughput. A wired access point or a mesh system with a dedicated backhaul does not have this problem."
+      },
+      {
+        "myth": "More antennas always mean more range.",
+        "reality": "Extra antennas mainly add spatial streams and diversity, which increase capacity where the signal is already decent. They do very little for a link that is failing purely on signal strength."
+      }
+    ],
+    "why_it_matters": "It changes what you actually do about bad Wi-Fi. The instinct is to buy a more powerful router, but transmit power is legally capped and rarely the constraint. Understanding that the bottleneck is signal-to-noise at the receiver points to the things that genuinely work: moving the router away from metal and out of a corner, choosing a less crowded channel, and putting a wired access point on the far side of the wall rather than a repeater on your side of it.",
+    "historical_background": {
+      "origin": "The physics is Maxwell's, but the practical foundation is Claude Shannon's 1948 result relating channel capacity to bandwidth and signal-to-noise ratio — the reason a weaker signal has a hard mathematical ceiling on how fast it can carry data.",
+      "motivation": "Wi-Fi itself became possible when the US regulator opened the unlicensed ISM bands to spread-spectrum use in 1985, and 802.11 was standardised in 1997.",
+      "evolution": "Every generation since has fought the same battle for signal-to-noise: OFDM in 802.11a/g, MIMO in 802.11n, wider channels and denser modulation in 802.11ac, and scheduled multi-user access in 802.11ax. Peak rates rose roughly a thousandfold, but the behaviour through a wall improved far less, because the underlying physics of absorption did not change."
+    },
+    "diagrams": [
+      {
+        "title": "What actually happens when you walk into the next room",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Router transmits\"] --> B[\"Wall absorbs and<br/>reflects part of the wave\"]\n  B --> C[\"Weaker signal<br/>at the laptop\"]\n  C --> D[\"Signal-to-noise<br/>ratio falls\"]\n  D --> E{\"Can the receiver still<br/>tell symbols apart?\"}\n  E -->|\"No\"| F[\"Step down to a<br/>simpler modulation\"]\n  F --> G[\"Fewer bits per symbol\"]\n  G --> H[\"Lower throughput\"]\n  E -->|\"Marginal\"| I[\"Errors and<br/>retransmissions\"]\n  I --> J[\"Airtime wasted\"]\n  J --> H",
+        "caption": "The wall causes the first box; every box after it is a decision the equipment makes."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why 5 GHz has shorter range than 2.4 GHz",
+        "reason": "The frequency-dependence of absorption, isolated on its own."
+      },
+      {
+        "label": "How routers choose channels",
+        "reason": "The interference half of the problem, which the wall explanation leaves out."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Signal attenuation",
+        "plain_definition": "Loss of signal strength as a wave passes through material.",
+        "role": "covers"
+      },
+      {
+        "name": "Signal-to-noise ratio",
+        "plain_definition": "How far the signal stands above background noise.",
+        "role": "covers"
+      },
+      {
+        "name": "Modulation and coding",
+        "plain_definition": "The scheme used to turn bits into a transmitted wave, traded off against robustness.",
+        "role": "covers"
+      },
+      {
+        "name": "Radio propagation",
+        "plain_definition": "How radio waves travel, reflect, and fade in real environments.",
+        "role": "requires"
+      },
+      {
+        "name": "Shannon capacity",
+        "plain_definition": "The mathematical ceiling on data rate for a given bandwidth and noise level.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "IEEE 802.11",
+        "url": "https://en.wikipedia.org/wiki/IEEE_802.11",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Link adaptation",
+        "url": "https://en.wikipedia.org/wiki/Link_adaptation",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Shannon–Hartley theorem",
+        "url": "https://en.wikipedia.org/wiki/Shannon%E2%80%93Hartley_theorem",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      }
+    ],
+    "related_questions": [
+      "Why is the sky blue?",
+      "Why do CPUs have cache?"
+    ]
+  },
+  {
+    "title": "Why are rockets launched eastward?",
+    "category_slug": "space",
+    "one_sentence_answer": "The Earth's surface is already moving east at up to about 1,670 km/h at the equator, and launching in that direction means the rocket starts with that speed for free.",
+    "summary": "A rocket's entire job is accumulating horizontal speed, so any velocity the planet donates is fuel you do not have to carry. It also explains why launch sites cluster near the equator and near coastlines.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.66,
+    "confidence": 0.92,
+    "confidence_reason": "Orbital mechanics is exact, the rotation figures are simple geometry, and launch azimuth practice is documented by every space agency.",
+    "tags": [
+      "orbits",
+      "rockets",
+      "physics",
+      "launch"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Getting to orbit is not really about going up. It is about going sideways fast enough that when you fall, you keep missing the ground. A rocket needs to reach something like 28,000 km/h sideways, and almost all of its fuel goes into building up that sideways speed. Now, the Earth is spinning, and everything on its surface is being carried east with it. Stand at the equator and you are already travelling east at roughly 1,670 km/h without doing anything. If a rocket launches towards the east, it starts with that speed already in its pocket. If it launched west, it would have to cancel out that 1,670 km/h first and then build up the full amount in the other direction. That is a difference of over 3,000 km/h in a job where every extra bit of speed costs a great deal of fuel."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think about throwing a ball while running. Throw it forwards and it flies further, because your running speed adds to the throw. Throw it backwards and it barely goes anywhere, because you have to overcome your own motion first. The rocket is the ball and the spinning planet is you, running east at a thousand miles an hour and never stopping. Where the analogy breaks: when you throw a ball forwards you feel the difference immediately, but a rocket sitting on the pad does not feel the Earth's rotation at all, because it, the pad, and the air are all moving together. The advantage only shows up when you measure the rocket's speed against the fixed background of space rather than against the ground beneath it."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "This is visible in where launch sites are built. Cape Canaveral in Florida sits at about 28 degrees north and fires east over the Atlantic. Guiana Space Centre in Kourou is at about 5 degrees north, close enough to the equator that it captures nearly the full rotational bonus, which is a large part of why Europe launches from South America. The pattern also holds in reverse. Israel launches its satellites westward from Palmachim, into a retrograde orbit, accepting a substantial payload penalty — because launching east would send spent stages over neighbouring countries. That trade tells you exactly how big the effect is: it is worth losing a meaningful fraction of your payload capacity to avoid the political problem, but nobody makes that choice for free."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "The budget for reaching orbit is expressed as delta-v, the total change in velocity a vehicle must produce. Low Earth orbit costs roughly 9.4 km/s once you include gravity losses and atmospheric drag, against an orbital velocity of about 7.8 km/s. The Earth's equatorial rotational speed is 465 metres per second, and it falls off as the cosine of the latitude — so about 410 m/s at Cape Canaveral's 28 degrees, and about 328 m/s at Baikonur's 46 degrees. Launching due east contributes that full amount; launching at an azimuth away from due east contributes only the eastward component. Because the rocket equation is logarithmic in mass ratio, a few hundred metres per second translates into a disproportionate change in deliverable payload. There is a second, independent reason latitude matters: a launch cannot directly reach an orbital inclination lower than the launch site's latitude, because the orbital plane must pass through the launch point. Reaching equatorial geostationary orbit from a high-latitude site therefore requires an expensive plane change on top of the lost rotational assist."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The eastward preference is a default, not a rule, and it is routinely overridden. Sun-synchronous orbits — the workhorse for Earth observation — need retrograde inclinations near 98 degrees, so those launches head roughly south or slightly west of south from sites like Vandenberg, paying the rotational penalty deliberately in exchange for an orbit that crosses every latitude at the same local solar time. Polar launches get almost no rotational assist at any latitude. Range safety usually dominates site selection as much as physics does: the reason coastal eastward sites are so common is that the downrange corridor must be over water, and that constraint is why Baikonur, which is deep inland, drops stages onto the Kazakh steppe. Ascent trajectories are also not simply aimed east — a gravity turn, where the vehicle pitches over early and lets gravity gradually rotate the velocity vector, minimises steering losses, and the optimal profile balances gravity losses against drag losses in a way that depends heavily on the vehicle's thrust-to-weight ratio. Finally, the rotational bonus is not free money for every mission: launching into a retrograde orbit from an eastward-favouring site costs roughly twice the rotational speed, which is why the effect shows up as an asymmetry in payload tables rather than a constant."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Orbit",
+        "plain_definition": "Moving sideways fast enough that you continuously fall around the planet instead of into it."
+      },
+      {
+        "term": "Delta-v",
+        "plain_definition": "The total change in speed a spacecraft has to produce; the real currency of space travel."
+      },
+      {
+        "term": "Inclination",
+        "plain_definition": "The tilt of an orbit relative to the equator."
+      },
+      {
+        "term": "Launch azimuth",
+        "plain_definition": "The compass direction a rocket heads after lift-off, which sets the orbit's inclination."
+      },
+      {
+        "term": "Gravity turn",
+        "plain_definition": "An ascent path where the rocket tips over early and lets gravity curve its course, wasting less fuel on steering."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Rockets go east because it is 'downhill' or because the atmosphere helps.",
+        "reality": "There is no downhill and the atmosphere only hinders. The entire benefit is the velocity the rotating planet has already given the vehicle relative to space."
+      },
+      {
+        "myth": "Getting to orbit is mostly about altitude.",
+        "reality": "Altitude is the cheap part. A suborbital hop above 100 km costs well under a fifth of the delta-v needed to actually stay in orbit; the expensive part is horizontal speed."
+      },
+      {
+        "myth": "The rotational boost is a small detail.",
+        "reality": "465 m/s is roughly five per cent of the total delta-v budget, and because payload responds exponentially to mass ratio, five per cent of delta-v is a large fraction of deliverable payload."
+      }
+    ],
+    "why_it_matters": "It reframes what a rocket is doing. Once you see orbit as a horizontal-speed problem rather than a height problem, a lot of things fall into place: why reentry is violently hot, why changing an orbit's plane is so expensive, why a satellite in low orbit circles the planet every ninety minutes, and why the map of the world's launch sites looks the way it does.",
+    "historical_background": {
+      "origin": "Konstantin Tsiolkovsky derived the rocket equation in 1903, establishing the logarithmic relationship between mass ratio and achievable delta-v that makes every saved metre per second matter so much.",
+      "motivation": "The practical question became urgent in the 1950s, when both superpowers had to choose permanent launch sites and discovered that latitude and downrange geography were strategic assets.",
+      "evolution": "Site selection has stayed remarkably stable, but the calculus around it has shifted. Reusable first stages introduced a competing constraint — the booster has to come back — and sea-based launch platforms were tried specifically to reach the equator, with Sea Launch operating from the Pacific between 1999 and 2014."
+    },
+    "diagrams": [
+      {
+        "title": "Where the speed comes from",
+        "kind": "mermaid",
+        "content": "flowchart LR\n  A[\"Rocket on pad<br/>at the equator\"] --> B[\"Already moving east<br/>at 465 m/s\"]\n  B --> C{\"Launch direction\"}\n  C -->|\"East\"| D[\"Needs ~7.4 km/s more\"]\n  C -->|\"West\"| E[\"Needs ~8.3 km/s more\"]\n  C -->|\"Polar\"| F[\"Needs ~7.8 km/s more<br/>and wastes the 465\"]\n  D --> G[\"Largest payload\"]\n  E --> H[\"Smallest payload\"]",
+        "caption": "Same rocket, same orbit altitude — the launch direction alone changes what it can carry."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why reentry generates so much heat",
+        "reason": "The same horizontal speed has to be given back, and that energy has to go somewhere."
+      },
+      {
+        "label": "Why geostationary orbit is at one specific altitude",
+        "reason": "Follows directly from the relationship between orbital speed and radius."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Orbital mechanics",
+        "plain_definition": "The rules governing how objects move under gravity in space.",
+        "role": "covers"
+      },
+      {
+        "name": "Delta-v budget",
+        "plain_definition": "The total velocity change a mission requires, and the fuel that implies.",
+        "role": "covers"
+      },
+      {
+        "name": "Earth's rotation",
+        "plain_definition": "The planet's daily spin, which carries everything on its surface eastward.",
+        "role": "requires"
+      },
+      {
+        "name": "Tsiolkovsky rocket equation",
+        "plain_definition": "The formula linking a rocket's fuel fraction to the speed change it can achieve.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Launch window and azimuth",
+        "url": "https://en.wikipedia.org/wiki/Launch_window",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Tsiolkovsky rocket equation",
+        "url": "https://en.wikipedia.org/wiki/Tsiolkovsky_rocket_equation",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Basics of Space Flight",
+        "url": "https://science.nasa.gov/learn/basics-of-space-flight/",
+        "publisher": "NASA",
+        "kind": "gov",
+        "reliability": 0.9
+      }
+    ],
+    "related_questions": [
+      "Why is the sky blue?",
+      "Why are airplane windows round?"
+    ]
+  }
+]

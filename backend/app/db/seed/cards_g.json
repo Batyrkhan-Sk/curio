@@ -1,0 +1,920 @@
+[
+  {
+    "title": "Why do tyres have treads?",
+    "category_slug": "cars",
+    "one_sentence_answer": "Not for grip — a smooth tyre grips a dry road better. The grooves exist to give water somewhere to go, so the tyre can still touch the road in the rain.",
+    "summary": "Rubber grips best with maximum contact, which is why racing slicks are smooth. Tread is a deliberate sacrifice of dry grip to prevent the tyre from floating on a film of water.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.79,
+    "confidence": 0.92,
+    "confidence_reason": "The trade-off between contact area and water evacuation is standard tyre engineering, demonstrated directly by the use of slicks in dry racing and treaded tyres in the wet. Specific drainage rates vary by design and are given as orders of magnitude.",
+    "tags": [
+      "friction",
+      "safety",
+      "materials",
+      "design"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Rubber grips by making intimate contact with the road surface, so more rubber touching means more grip — which is why racing cars on a dry track run completely smooth tyres. Cutting grooves into a tyre removes rubber and makes dry grip worse, not better. So why do road tyres have them? Because of water. A film of water between rubber and road stops them touching at all, and a tyre at speed cannot simply push the water aside — there is not enough time. The grooves are drainage channels: the water is squeezed into them and thrown out behind, so the raised parts of the tread can reach dry tarmac. That is the whole purpose. Tread is a price you pay in dry grip to keep any grip at all when it rains."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of trying to press a flat plate onto a wet table. The water has nowhere to escape and the plate slides around on it. Now cut channels across the plate: press it down and the water squirts out through the channels, letting the flat parts meet the table. That is a tread pattern, working at roughly a tonne of load and tens of metres per second. Where the analogy stops: at speed the water does not have time to escape lazily — it has milliseconds, and the tyre must actively pump it away, which is why the channels are sized and angled deliberately rather than simply being gaps. It is also why a worn tyre fails suddenly rather than gradually: shallower channels hold less water and the capacity runs out abruptly."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Formula One makes the trade-off visible. In the dry, cars run slicks with no grooves at all. When rain comes they switch to intermediates and then full wets, and a full wet tyre can displace tens of litres of water per second at speed — and is dramatically slower on a dry line, wearing out in a few laps. The road version is the tread depth limit: 1.6 millimetres in the UK and much of Europe, 2/32 of an inch in the United States. Testing consistently shows wet braking distances lengthening sharply as tread approaches that limit, which is why many manufacturers and safety bodies recommend replacing at 3 millimetres instead. Aircraft tyres show the same logic pared down: they have circumferential grooves only, because an aeroplane runs almost straight down a runway and needs drainage in one direction."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Rubber friction on road is not the simple Coulomb friction of school physics. It comes mainly from two mechanisms: adhesion, the molecular bonding between rubber and the road surface, and hysteresis, the energy lost as the rubber deforms around surface asperities. Both depend on real contact area, so removing rubber reduces both, and this is why slicks win in the dry. Water defeats both by preventing contact. Above a critical speed the water wedge lifts the tyre entirely — aquaplaning — with the onset speed depending on water depth, tyre pressure, load and tread depth. The tread's job is to break the water film into three zones: bulk water pushed into the main circumferential grooves, a thinner film handled by lateral grooves, and the last microscopic layer wiped by sipes, the fine slits in the tread blocks. Those sipes also give the blocks edges that bite, and let the blocks flex, which matters greatly on snow."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Modern tread design is a multi-objective optimisation and drainage is only one axis. Block stiffness governs steering response and uneven wear; pattern pitch is deliberately randomised so that block impacts do not all occur at one frequency, which is what keeps tyres from producing a pure tone; and rolling resistance, which drives fuel consumption, fights both grip and drainage. Winter tyres differ in two ways at once that are often conflated: the compound uses a different polymer blend that stays pliable below about 7 degrees Celsius, where a summer compound stiffens and loses adhesion, and the tread carries far more sipes to produce biting edges and to compact snow into the grooves, since snow grips snow better than rubber does. Directional and asymmetric patterns exist because drainage wants an angled channel that only works one way round, which is why some tyres must be fitted to a specific side. The failure mode worth understanding is that aquaplaning is not gradual: below the critical speed the tread copes and grip is near normal, and above it grip approaches zero within a small speed increment, which is why the sensible response is to lift off rather than brake or steer."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Slick tyre",
+        "plain_definition": "A completely smooth tyre with no grooves, which grips best on a dry surface."
+      },
+      {
+        "term": "Aquaplaning",
+        "plain_definition": "The tyre riding up on a wedge of water and losing contact with the road entirely."
+      },
+      {
+        "term": "Sipe",
+        "plain_definition": "A fine slit cut into a tread block, providing biting edges and clearing the last thin film of water."
+      },
+      {
+        "term": "Hysteresis",
+        "plain_definition": "Energy lost as rubber deforms over road texture — one of the two mechanisms that produce grip."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Tread provides grip.",
+        "reality": "On a dry road it reduces grip by removing contact area, which is why racing slicks exist. Its purpose is water evacuation, and it earns its keep only when the road is wet."
+      },
+      {
+        "myth": "Wider tyres grip better because friction depends on contact area.",
+        "reality": "Classical friction is independent of area, but rubber friction is not, because adhesion and hysteresis both scale with real contact. Width helps for reasons of pressure distribution and heat, not because the textbook formula says so."
+      },
+      {
+        "myth": "A tyre at the legal limit is safe in the wet.",
+        "reality": "Wet braking distances lengthen sharply as depth approaches the limit. The legal figure is a minimum, not a performance threshold, and many safety bodies recommend replacing well before it."
+      },
+      {
+        "myth": "Winter tyres work because of their tread pattern.",
+        "reality": "Half the effect is the compound, which stays flexible in cold where a summer compound hardens. Pattern and sipes do the rest, but a summer tyre with winter tread would still be poor in the cold."
+      }
+    ],
+    "why_it_matters": "It is a clean case of a design feature whose purpose is the opposite of what everyone assumes, and of an engineering decision made for the worst case rather than the typical one. The dry road is common and the wet road is dangerous, so the tyre is compromised for conditions it will mostly not meet. That logic — accept a penalty in the normal case to avoid catastrophe in the rare one — is the same reasoning behind crumple zones, circuit breakers and structural redundancy.",
+    "historical_background": {
+      "origin": "Early pneumatic tyres were largely smooth, and grip on unpaved roads came mostly from studs and rudimentary patterns aimed at mud rather than water.",
+      "motivation": "As sealed roads and higher speeds spread in the twentieth century, aquaplaning became the dominant wet-weather hazard, and tread design shifted toward water evacuation.",
+      "evolution": "Motorsport made the trade-off explicit by running slicks in the dry and heavily grooved wets in the rain. Computational fluid dynamics later allowed tread patterns to be simulated for drainage, noise and wear together rather than developed purely by test."
+    },
+    "diagrams": [
+      {
+        "title": "What the grooves are actually for",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Tyre meets the road\"] --> B{\"Wet or dry?\"}\n  B -->|\"Dry\"| C[\"Grip scales with<br/>real contact area\"]\n  C --> D[\"Grooves remove rubber:<br/>slightly worse grip\"]\n  B -->|\"Wet\"| E[\"Water film prevents<br/>contact entirely\"]\n  E --> F[\"Main grooves take bulk water\"]\n  F --> G[\"Lateral grooves take the film\"]\n  G --> H[\"Sipes wipe the last layer\"]\n  H --> I[\"Rubber reaches tarmac:<br/>grip restored\"]",
+        "caption": "The left branch is the cost, paid on every dry journey. The right branch is what it buys."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why rubber friction breaks the textbook rule",
+        "reason": "Adhesion and hysteresis explain why contact area matters here when the school formula says it should not."
+      },
+      {
+        "label": "What actually happens during aquaplaning",
+        "reason": "The onset is sudden rather than gradual, which determines the correct reaction behind the wheel."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Rubber friction",
+        "plain_definition": "Grip generated by adhesion and by energy loss as rubber deforms over road texture.",
+        "role": "requires"
+      },
+      {
+        "name": "Aquaplaning",
+        "plain_definition": "Loss of contact when a water wedge lifts the tyre off the road.",
+        "role": "covers"
+      },
+      {
+        "name": "Tread design",
+        "plain_definition": "The arrangement of grooves and sipes that evacuates water from the contact patch.",
+        "role": "covers"
+      },
+      {
+        "name": "Design trade-off",
+        "plain_definition": "Accepting a penalty in ordinary conditions to avoid failure in dangerous ones.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Tread",
+        "url": "https://en.wikipedia.org/wiki/Tread",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.68
+      },
+      {
+        "title": "Aquaplaning",
+        "url": "https://en.wikipedia.org/wiki/Aquaplaning",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Slick tyre",
+        "url": "https://en.wikipedia.org/wiki/Slick_tyre",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.68
+      }
+    ],
+    "related_questions": [
+      "Why do cars have crumple zones?",
+      "Why do bridges have expansion joints?"
+    ]
+  },
+  {
+    "title": "Why do prices end in .99?",
+    "category_slug": "economics",
+    "one_sentence_answer": "People read prices left to right and stop paying attention early, so £9.99 lands in the mind as 'nine something' rather than 'basically ten'.",
+    "summary": "The effect is real and repeatedly measured, but it is smaller and stranger than the folklore suggests — it depends on the category, sometimes reverses, and the original reason for the practice may have had nothing to do with psychology at all.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.82,
+    "confidence": 0.75,
+    "confidence_reason": "Field experiments consistently find an effect, but effect sizes vary widely by category and several studies find reversals. The historical origin story about cash registers is widely repeated and poorly evidenced, and is flagged as such.",
+    "tags": [
+      "pricing",
+      "psychology",
+      "retail",
+      "behavioural-economics"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Reading a price is not a careful calculation; it is a glance. And a glance goes left to right and stops as soon as it has enough to place the item roughly. Faced with £9.99, the first thing your eye lands on is the 9, and the number gets filed near nine rather than near ten — even though it is one penny away from ten. The single penny does almost nothing to what you pay and a surprising amount to how the price feels. There is a second, quieter signal too: a price ending in .99 has come to mean 'this is a keen price', while a round £10.00 reads as considered, or premium. So retailers use the ending as a message about what kind of price it is, not only as a trick about the first digit."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of glancing at a clock reading 2:58 and telling someone it is 'nearly three', versus glancing at 2:02 and saying 'just gone two'. You anchor on the hour digit and treat the rest as detail. Prices are read the same way, except that retailers get to choose which side of the boundary to sit on, and they always choose the side that reads lower. Where the analogy stops: with time you have no stake in the answer, while with prices your mind is doing something more purposeful — it is deciding whether the item is in your budget band. That is why the effect is strongest for cheap, quickly chosen items and much weaker where people deliberate, compare and calculate."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Field experiments have tested this properly rather than in the abstract. In a well-known catalogue study, the same dress was offered at $34, $39 and $44, and $39 outsold both of the others — including the cheaper $34, which is the result that makes the psychological reading hard to avoid. But the practice is not universal, and where it is absent tells you as much. Luxury retailers price at round numbers, because a .99 ending signals discounting and that is precisely the wrong message. Restaurants often drop currency symbols and odd endings for the same reason. And in categories where buyers deliberate — cars, houses, industrial equipment — prices tend to be round or oddly specific for negotiation reasons rather than ending in 99."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Two mechanisms are usually proposed and they are separable. The left-digit effect holds that price encoding is anchored on the leftmost digit and that magnitude judgement is disproportionately influenced by it, so the drop from 10.00 to 9.99 changes the perceived magnitude far more than one penny should. The signalling account holds that .99 endings have become a learned cue for a discount or a value proposition, independent of any encoding effect, which is why the same ending can lower perceived quality as well as perceived price. The two predict different things: left-digit effects should be strongest at digit boundaries, while signalling effects should depend on category norms and prior exposure. Both have experimental support, and studies that separate them find the ending carries information about the type of price as well as its magnitude. Notably, the effect is not universally positive for the seller — in categories where quality inference dominates, a .99 ending can reduce willingness to pay."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The commonly repeated origin story — that odd pricing was introduced to force cashiers to open the till and make change, preventing theft — is widely cited and poorly evidenced; contemporary sources for it are thin, and odd pricing appears in advertising before the cash register was widespread. A more defensible account is that it began as a competitive advertising device in late nineteenth-century American newspapers, where undercutting a round price was a visible claim. Two further complications matter for anyone tempted to treat this as a settled lever. First, effect sizes in the literature vary enormously and several careful studies find null or reversed results, particularly where consumers face the price repeatedly or where the item is expensive relative to income. Second, the practice interacts with rounding regimes: countries that have withdrawn small coins, such as Australia and Canada, round cash totals at the till, which weakens the mechanism for cash purchases without eliminating the shelf-price effect. The honest summary is that this is a real behavioural regularity with a large folklore attached, and that the folklore is more confident than the evidence."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Psychological pricing",
+        "plain_definition": "Setting prices for how they are perceived rather than only for what they recover."
+      },
+      {
+        "term": "Left-digit effect",
+        "plain_definition": "Judging a number's size disproportionately from its leftmost digit."
+      },
+      {
+        "term": "Price signalling",
+        "plain_definition": "The price ending acting as a message about what kind of offer this is — a bargain, or a premium item."
+      },
+      {
+        "term": "Field experiment",
+        "plain_definition": "A test run on real customers making real purchases, rather than in a laboratory."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "It works because people are stupid or not paying attention.",
+        "reality": "It works because reading a price is a fast heuristic judgement, which is usually the correct thing to do. The effect exploits an efficient shortcut rather than a failure of intelligence."
+      },
+      {
+        "myth": "It always increases sales.",
+        "reality": "Effect sizes vary widely and several studies find reversals. In premium categories the ending signals discounting and can reduce willingness to pay, which is why luxury retailers avoid it."
+      },
+      {
+        "myth": "It was invented to stop cashiers stealing.",
+        "reality": "That story is widely repeated but weakly evidenced. Odd pricing appears in newspaper advertising as a competitive device before it can be explained by cash register discipline."
+      },
+      {
+        "myth": "Charm pricing is just about the last digit.",
+        "reality": "The catalogue experiments where $39 outsold $34 show the price level itself is being read as a signal, which no purely digit-based account explains."
+      }
+    ],
+    "why_it_matters": "It is a good calibration exercise: an effect everyone has heard of, which is real, smaller than advertised, sometimes reversed, and attached to an origin story that does not survive checking. Learning to hold those four facts at once is more useful than the pricing lesson. It also shows how much of consumer behaviour is fast pattern-matching rather than calculation, which is the foundation of most of behavioural economics.",
+    "historical_background": {
+      "origin": "Odd pricing appears in American newspaper advertising in the late nineteenth century, where a price just under a round figure was a visible competitive claim.",
+      "motivation": "The cash-register theft explanation became the standard telling in the twentieth century despite thin contemporary evidence, and it persists largely because it is a satisfying story.",
+      "evolution": "Systematic testing began in the mid-twentieth century and accelerated with retail field experiments in the 1990s, which established that the effect is real, category-dependent and entangled with what the price ending signals about quality."
+    },
+    "diagrams": [
+      {
+        "title": "Two mechanisms behind one price ending",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Price shown as £9.99\"] --> B[\"Left-digit effect:<br/>anchored near 9, not 10\"]\n  A --> C[\"Signalling:<br/>'this is a value price'\"]\n  B --> D[\"Perceived magnitude<br/>drops more than 1p\"]\n  C --> E[\"Inference about the offer\"]\n  E --> F{\"Which category?\"}\n  F -->|\"Everyday goods\"| G[\"Reads as a bargain:<br/>sales rise\"]\n  F -->|\"Premium goods\"| H[\"Reads as cheap:<br/>can reduce demand\"]",
+        "caption": "The same ending carries two messages, and in some categories the second one works against the seller."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why anchoring changes what you will pay",
+        "reason": "The first number you see shapes every judgement after it, and retailers arrange which number that is."
+      },
+      {
+        "label": "How decoy options steer choices",
+        "reason": "A third option nobody buys can change which of the other two people pick — the same family of effect."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Psychological pricing",
+        "plain_definition": "Choosing prices for perceptual effect rather than purely on cost or margin.",
+        "role": "covers"
+      },
+      {
+        "name": "Left-digit effect",
+        "plain_definition": "Disproportionate weight given to the leading digit when judging magnitude.",
+        "role": "covers"
+      },
+      {
+        "name": "Heuristic judgement",
+        "plain_definition": "Fast approximate reasoning used instead of deliberate calculation.",
+        "role": "requires"
+      },
+      {
+        "name": "Price signalling",
+        "plain_definition": "Using price format to communicate what kind of product or offer this is.",
+        "role": "requires"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Psychological pricing",
+        "url": "https://en.wikipedia.org/wiki/Psychological_pricing",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.68
+      },
+      {
+        "title": "Anchoring effect",
+        "url": "https://en.wikipedia.org/wiki/Anchoring_effect",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Behavioral economics",
+        "url": "https://en.wikipedia.org/wiki/Behavioral_economics",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why is cinema popcorn so expensive?",
+      "Why do elevators have mirrors?"
+    ]
+  },
+  {
+    "title": "Why do central banks raise interest rates to fight inflation?",
+    "category_slug": "finance",
+    "one_sentence_answer": "Raising the price of borrowing makes spending and investment less attractive today, which cools demand — and the central bank is deliberately slowing the economy because it has no direct lever on prices.",
+    "summary": "A central bank cannot set prices. It can only make credit dearer, which reduces spending, weakens the pressure on prices, and does so at the cost of slower growth and higher unemployment.",
+    "difficulty": "intermediate",
+    "reading_minutes": 6,
+    "curiosity_score": 0.79,
+    "confidence": 0.78,
+    "confidence_reason": "The transmission mechanism is standard macroeconomics and the policy practice is documented. The size and timing of effects, and the relative weight of demand versus supply causes in any particular episode, are genuinely contested among economists.",
+    "tags": [
+      "monetary-policy",
+      "inflation",
+      "interest-rates",
+      "macroeconomics"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Inflation is what you get when there is more money chasing goods than there are goods to buy. A central bank cannot make more goods appear, and it cannot forbid price rises. What it can do is change the price of money itself. Raise the interest rate and borrowing becomes dearer, so a company delays an expansion, a family postpones a car, and mortgage payments take a bigger bite of household budgets. Saving becomes more attractive at the same time. Less spending across the economy means less pressure on prices, and eventually inflation eases. The uncomfortable part is that this is the mechanism working as intended: the central bank is deliberately slowing the economy down. Slower activity means fewer jobs. That is not a side effect it failed to prevent — it is the channel through which the policy operates."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a shower running too hot, with a tap that responds slowly. Turning it down is the only control you have, but the temperature will not change for a while, so if you keep turning while nothing happens you will overshoot into cold. Central banking has exactly that structure: the effect of a rate change takes many months to work through, so the decision has to be made on a forecast of where inflation will be, not where it is. Where the analogy stops: a shower's delay is fixed and known, while the lag in monetary policy varies with circumstances and is famously described as long and variable. And unlike water temperature, the thing being controlled is partly driven by what people expect the controller to do next."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The reference episode is the United States at the start of the 1980s. Inflation had been running in double digits, and Paul Volcker's Federal Reserve pushed interest rates above 19%. Inflation fell sharply — and the economy went into a severe recession with unemployment above 10%. The episode is cited both as proof that the tool works and as a demonstration of what it costs. The 2021 to 2023 inflation surge produced a much-argued sequel: prices rose from a mixture of pandemic supply disruption, energy shocks and strong demand, and central banks raised rates rapidly. Inflation came down, but economists still disagree about how much of the fall was the policy and how much was supply chains and energy prices normalising — which is a genuine attribution problem rather than a failure to look."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "The policy rate is the rate at which the central bank lends to or pays commercial banks, and it propagates outward through several channels. The interest rate channel raises borrowing costs for firms and households, reducing investment and consumption. The asset price channel lowers the present value of future cash flows, so equity and property prices fall, reducing wealth and therefore spending. The exchange rate channel attracts capital seeking higher returns, strengthening the currency and making imports cheaper, which directly reduces imported inflation. The credit channel tightens bank lending conditions beyond the price effect. And the expectations channel matters more than any single one: if households and firms believe inflation will return to target, wage and price setting behaves accordingly, which makes the target partly self-fulfilling. Most central banks operate an explicit inflation target — commonly 2% — precisely to anchor those expectations."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The tool is blunt in a specific way: it acts on aggregate demand, and inflation driven by a supply shock is not a demand problem. Raising rates in response to an energy price spike reduces demand across the whole economy to offset a price rise in one part of it, which is why central banks distinguish headline from core inflation and why the question of whether a shock is transitory is so consequential and so hard. The theoretical requirement for stability is the Taylor principle: the nominal policy rate must rise by more than the increase in inflation, so that the real rate rises — otherwise policy is loosening while appearing to tighten. Transmission lags of roughly one to two years mean policy must be forecast-driven, and forecasts at turning points are poor, which is the structural reason for overshooting in both directions. The effective lower bound complicates the symmetric case: once rates approach zero the conventional tool is exhausted, which is what drove quantitative easing and forward guidance after 2008. There is also a distributional dimension that the aggregate framing hides — rate rises fall hardest on borrowers, younger households and workers in cyclical sectors, while benefiting savers and holders of financial assets, so a policy described as economy-wide has very unequal incidence."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Inflation",
+        "plain_definition": "A sustained rise in the general level of prices, which reduces what a unit of currency buys."
+      },
+      {
+        "term": "Policy rate",
+        "plain_definition": "The interest rate the central bank sets, which propagates into the rates everyone else faces."
+      },
+      {
+        "term": "Aggregate demand",
+        "plain_definition": "Total spending in the economy by households, firms, government and net exports."
+      },
+      {
+        "term": "Inflation expectations",
+        "plain_definition": "What people believe inflation will be, which influences wage and price setting and therefore what it actually becomes."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Higher rates directly lower prices.",
+        "reality": "They lower spending, which reduces the pressure pushing prices up. The mechanism runs through demand, which is why it is slow and why it costs output and jobs."
+      },
+      {
+        "myth": "The recession is an unfortunate accident of the policy.",
+        "reality": "Slowing the economy is the channel through which the policy works. The debate is about how much slowdown is needed, not about whether it is part of the mechanism."
+      },
+      {
+        "myth": "Rate rises work on any kind of inflation.",
+        "reality": "They act on demand. An inflation caused by a supply shock — energy, shipping, harvest failure — is reduced only by suppressing demand elsewhere, which is a poor match for the problem and unusually costly."
+      },
+      {
+        "myth": "The effect is immediate, so a rate rise that has not worked within months has failed.",
+        "reality": "Transmission takes roughly one to two years. Policy must be set on forecasts, which is also why over- and under-shooting at turning points is common."
+      }
+    ],
+    "why_it_matters": "It explains why the institution most responsible for prices controls something apparently unrelated, and why its decisions show up in mortgage payments and job security rather than on price tags. It is also an unusually clear case of a control system with long lags acting on a target it can only influence indirectly — the same structure as steering a supertanker or dosing a drug with slow onset, and it produces the same characteristic overshooting.",
+    "historical_background": {
+      "origin": "Central banks began as lenders of last resort and managers of currency convertibility rather than as inflation managers, with the gold standard supplying the nominal anchor.",
+      "motivation": "The high inflation of the 1970s, following the collapse of the Bretton Woods system, forced the question of what anchored prices once currencies were not convertible into anything.",
+      "evolution": "The Volcker disinflation demonstrated both the power and the cost of the interest rate tool. Explicit inflation targeting followed — New Zealand first in 1990 — along with central bank independence, both aimed at anchoring expectations. The 2008 crisis added unconventional tools once rates reached their lower bound."
+    },
+    "diagrams": [
+      {
+        "title": "How a rate change reaches prices",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Central bank raises<br/>the policy rate\"] --> B[\"Borrowing costs rise\"]\n  A --> C[\"Asset prices fall\"]\n  A --> D[\"Currency strengthens\"]\n  A --> E[\"Expectations anchored\"]\n  B --> F[\"Firms delay investment,<br/>households delay purchases\"]\n  C --> F\n  D --> G[\"Imports cheaper\"]\n  F --> H[\"Aggregate demand falls\"]\n  H --> I[\"Less pressure on prices\"]\n  G --> I\n  E --> I\n  H --> J[\"Slower growth,<br/>higher unemployment\"]",
+        "caption": "Every path to lower inflation runs through less spending — which is why the cost on the right is not avoidable."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why central banks target 2% rather than zero",
+        "reason": "A small positive target buys room to cut rates in a downturn and avoids the risks of deflation."
+      },
+      {
+        "label": "What quantitative easing does differently",
+        "reason": "The tool reached for once the policy rate cannot go lower, and why it works through different channels."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Monetary policy transmission",
+        "plain_definition": "The chain from a policy rate change to spending and then to prices.",
+        "role": "covers"
+      },
+      {
+        "name": "Aggregate demand",
+        "plain_definition": "Total spending in an economy, which is what rate policy acts on.",
+        "role": "requires"
+      },
+      {
+        "name": "Inflation expectations",
+        "plain_definition": "Beliefs about future inflation, which influence actual price and wage setting.",
+        "role": "covers"
+      },
+      {
+        "name": "Policy lag",
+        "plain_definition": "The delay between a policy action and its effect, which forces decisions to be forecast-based.",
+        "role": "requires"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Monetary policy",
+        "url": "https://en.wikipedia.org/wiki/Monetary_policy",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Inflation targeting",
+        "url": "https://en.wikipedia.org/wiki/Inflation_targeting",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Volcker shock",
+        "url": "https://en.wikipedia.org/wiki/Volcker_shock",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.68
+      }
+    ],
+    "related_questions": [
+      "Why do bank transfers take days to settle?",
+      "Why is cinema popcorn so expensive?"
+    ]
+  },
+  {
+    "title": "Why can't you tickle yourself?",
+    "category_slug": "psychology",
+    "one_sentence_answer": "Your brain predicts the sensations your own movements will produce and quietly turns them down, so a self-administered tickle arrives already expected and therefore not ticklish.",
+    "summary": "The nervous system continuously forecasts the consequences of its own commands and subtracts them from what you feel. Tickling depends on surprise, and you cannot surprise the system that issued the instruction.",
+    "difficulty": "intermediate",
+    "reading_minutes": 5,
+    "curiosity_score": 0.9,
+    "confidence": 0.85,
+    "confidence_reason": "The prediction-and-cancellation mechanism is supported by brain imaging and by robotic delay experiments that manipulate it directly. Why tickling exists at all, and why it is pleasurable, remains less settled.",
+    "tags": [
+      "neuroscience",
+      "perception",
+      "prediction",
+      "touch"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Your brain is not a passive receiver of sensations. Every time it sends a command to move, it also sends a copy of that command to the sensory side, effectively saying: here is what you are about to feel because of this. When the incoming sensation matches the forecast, it is turned down, because a signal you predicted carries no news. That is enormously useful — it is why you do not notice your own clothes, why the world does not appear to jump when you move your eyes, and why you can tell a touch from another person apart from your own hand. Tickling depends entirely on the sensation being unpredictable. Your own finger arrives exactly where and when your brain expected, so the response is dialled down before it reaches awareness, and the tickle never happens."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of noise-cancelling headphones. They work by generating a signal that is the opposite of the noise they predict, so the two cancel and you hear silence. Your nervous system does the same thing with self-produced sensations: it predicts and subtracts, leaving only the part that was unexpected. Where the analogy stops: headphones cancel by measuring the noise as it arrives, while the brain cancels using a forecast built from the motor command, before the sensation exists. That distinction is testable, and it is the source of the most interesting experiment in this area — introduce a small delay between the movement and the touch, so the forecast no longer lines up, and the cancellation weakens until you can, in fact, tickle yourself."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Sarah-Jayne Blakemore and colleagues built exactly that experiment: a robotic device where the participant moved one lever and a robot arm tickled their palm in response. With no delay, the sensation felt as it always does when self-produced — unremarkable. As the delay was increased to around 200 milliseconds, participants rated the sensation as progressively more tickly, and adding a spatial rotation between movement and touch had the same effect. The cancellation is therefore precise in both time and place. The same mechanism shows up in the clinic: some people with schizophrenia rate self-produced tactile sensations as more intense than control participants do, consistent with weaker prediction, and this is one line of evidence connecting the disorder to problems with distinguishing self-generated from external events."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "When the motor cortex issues a command, an internal copy — an efference copy — is routed to a forward model, a neural circuit that predicts the sensory consequences of the action. That prediction is compared with the actual incoming signal, and the matching component is attenuated, leaving the prediction error. Imaging studies point to the cerebellum as central to the forward model, with reduced somatosensory and anterior cingulate activity for self-produced touch compared with the same touch delivered externally. The functional purpose is to separate reafference — sensory change caused by your own movement — from exafference, change caused by the world. That distinction is essential: without it, moving your eyes would look like the room swinging, and every step would register as the ground shoving your feet. Tickling is a niche casualty of a very general mechanism."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The forward model framework generalises well beyond touch. It underlies saccadic suppression, the reason you never see the blur of your own eye movements, and the fact that your own voice sounds different to you than a recording does. It fits naturally into predictive processing accounts, where perception is treated as inference and what reaches awareness is largely prediction error. Two open threads remain. First, tickling itself is not one phenomenon: knismesis, the light irritating kind, and gargalesis, the heavy laughter-inducing kind, differ in their neural handling, and gargalesis is far more social — it typically requires another person and is closely tied to play. Rats emit ultrasonic vocalisations when tickled, and neurons in somatosensory cortex respond, suggesting deep evolutionary roots and a link to play behaviour rather than to touch alone. Second, the cancellation is not absolute: it can be partially defeated by adding unpredictability, and some people with cerebellar differences, or in certain altered states, report being able to tickle themselves — which is exactly what the model predicts should happen when the forecast degrades."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Efference copy",
+        "plain_definition": "A duplicate of a motor command sent to sensory systems so they know what movement is coming."
+      },
+      {
+        "term": "Forward model",
+        "plain_definition": "A neural prediction of what a movement will feel like, generated before the sensation arrives."
+      },
+      {
+        "term": "Sensory attenuation",
+        "plain_definition": "Turning down a sensation because it was predicted, leaving only the unexpected part."
+      },
+      {
+        "term": "Prediction error",
+        "plain_definition": "The difference between what was forecast and what actually arrived — the part that reaches awareness."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "You cannot tickle yourself because you know it is coming.",
+        "reality": "Conscious knowledge is not the mechanism. Being told exactly when someone else will tickle you does not prevent it — the cancellation depends on the motor command itself, not on expectation in the everyday sense."
+      },
+      {
+        "myth": "The sensation is blocked at the skin.",
+        "reality": "The receptors fire normally. The attenuation happens centrally, when the incoming signal is compared against the prediction generated from the motor command."
+      },
+      {
+        "myth": "Nobody can ever tickle themselves.",
+        "reality": "Introduce a delay of a couple of hundred milliseconds or a spatial offset between the movement and the touch and the ticklishness returns, which is precisely how the mechanism was demonstrated."
+      },
+      {
+        "myth": "Tickling is just a sensation, like any other touch.",
+        "reality": "There are two distinct phenomena — the light, irritating kind and the heavy, laughter-inducing kind — and the second is strongly social, tied to play, and present in other mammals."
+      }
+    ],
+    "why_it_matters": "It is a trivial-seeming fact that opens onto one of the central ideas in neuroscience: perception is not reception, it is prediction, and what you experience is mostly the part that did not match the forecast. That framework explains why you do not see your own eye movements, why your voice sounds wrong on a recording, and why disturbances of the self-monitoring machinery show up in conditions where the boundary between self-generated and external events becomes unclear.",
+    "historical_background": {
+      "origin": "Hermann von Helmholtz proposed in the nineteenth century that the brain must account for its own commands to interpret sensation correctly, working from the observation that pressing gently on the eyeball makes the world appear to move while moving the eye normally does not.",
+      "motivation": "The idea was formalised in the 1950s as the efference copy and reafference principle by von Holst and Mittelstaedt, and independently by Sperry, explaining how animals distinguish self-caused sensory change from external events.",
+      "evolution": "Blakemore, Wolpert and Frith brought it to tickling directly in the late 1990s with imaging and robotic delay experiments, and the framework has since been absorbed into broader predictive processing accounts of perception."
+    },
+    "diagrams": [
+      {
+        "title": "Predict, compare, subtract",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Motor cortex issues<br/>a movement command\"] --> B[\"Efference copy sent<br/>to a forward model\"]\n  A --> C[\"Hand moves and<br/>touches your skin\"]\n  B --> D[\"Prediction of the<br/>expected sensation\"]\n  C --> E[\"Actual sensory signal\"]\n  D --> F{\"Do they match?\"}\n  E --> F\n  F -->|\"Yes\"| G[\"Attenuated:<br/>no tickle\"]\n  F -->|\"No — delayed,<br/>displaced, or someone else\"| H[\"Prediction error survives:<br/>ticklish\"]",
+        "caption": "The right-hand branch is what the robot experiments produced artificially, by delaying the touch until the forecast no longer fitted."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why you do not see your own eye movements",
+        "reason": "Saccadic suppression is the same cancellation mechanism applied to vision, and it is even more dramatic."
+      },
+      {
+        "label": "Predictive processing as a theory of perception",
+        "reason": "The general framework in which perception is inference and awareness is largely prediction error."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Efference copy",
+        "plain_definition": "A copy of a motor command used to anticipate its sensory consequences.",
+        "role": "covers"
+      },
+      {
+        "name": "Sensory attenuation",
+        "plain_definition": "Reducing the response to predicted, self-generated sensations.",
+        "role": "covers"
+      },
+      {
+        "name": "Forward model",
+        "plain_definition": "An internal predictor of the outcome of an action.",
+        "role": "requires"
+      },
+      {
+        "name": "Predictive processing",
+        "plain_definition": "The account of perception as prediction plus correction by error.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Tickling",
+        "url": "https://en.wikipedia.org/wiki/Tickling",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.68
+      },
+      {
+        "title": "Efference copy",
+        "url": "https://en.wikipedia.org/wiki/Efference_copy",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Predictive coding",
+        "url": "https://en.wikipedia.org/wiki/Predictive_coding",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why does time seem to speed up as you get older?",
+      "Why do we get goosebumps?"
+    ]
+  },
+  {
+    "title": "Why does time seem to speed up as you get older?",
+    "category_slug": "psychology",
+    "one_sentence_answer": "Because you judge elapsed time largely by how much you remember of it, and a familiar year lays down far fewer distinct memories than a novel one.",
+    "summary": "The effect is well documented and its explanation is not settled. The strongest account is about memory: routine compresses, novelty expands, and adult life contains steadily less that is genuinely new.",
+    "difficulty": "intermediate",
+    "reading_minutes": 6,
+    "curiosity_score": 0.89,
+    "confidence": 0.68,
+    "confidence_reason": "That people report the effect is robustly established by survey. Which mechanism produces it is not: the memory-density account has the best support, the proportional theory is popular but weakly evidenced, and results on whether the effect appears in laboratory timing tasks are mixed.",
+    "tags": [
+      "memory",
+      "perception",
+      "ageing",
+      "time"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "There are two different questions hiding here. How long does an hour feel while you are in it, and how long did last year feel once it is over? The second is the one people mean, and the answer seems to be that you judge a past stretch of time by how much of it you can retrieve. A childhood summer contained a great deal that had never happened before — new places, new skills, first times — and each of those laid down a distinct memory, so the season is richly represented and feels long in retrospect. An adult year of familiar work, familiar routes and familiar routines lays down far fewer distinguishable memories, because your brain does not store the ten thousandth commute separately. Less recorded, less to look back on, and the year feels as though it went past in a moment."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a video compression algorithm. It stores a full frame occasionally and then records only what changes; a scene of a busy street needs a great deal of data, while a static shot of an empty room compresses to almost nothing. Play both back and the file sizes differ enormously even though the durations are identical. Your memory of a year works similarly: novelty is expensive to store and routine is nearly free. Where the analogy stops: a compressed video still plays back at the correct duration, whereas your sense of how long a period was is derived from the size of the file rather than read off a clock. That is exactly why the illusion works — you have no direct record of duration, only of content."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The everyday version is a holiday. A week somewhere new feels long while you look back on it, and yet it seemed to pass quickly at the time — the two questions again, giving opposite answers. Meanwhile a week of ordinary routine feels unremarkable in the moment and almost invisible in retrospect. The pandemic lockdowns produced a widely reported version of the same thing: days that dragged and months that vanished, with surveys in several countries finding widespread distortion of time judgement associated precisely with reduced novelty and social contact. Anyone who has moved to a new city has felt the reverse: the first month in an unfamiliar place feels far longer than the sixth, though nothing about the calendar changed."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Retrospective duration judgements depend on the amount of retrievable contextual detail, sometimes described as the memory-density or contextual-change account: more encoded change means a longer-seeming interval. Novelty drives encoding, partly through attention and partly through neuromodulatory signals — including dopaminergic responses to novelty — that promote consolidation. Routine produces the opposite: repeated experiences are absorbed into existing schemas rather than stored separately, which is efficient and costs you the record. Prospective timing, judging duration while it passes, works differently, depending on attention to time itself, which is why a boring meeting drags in the moment and vanishes in memory. The often-cited proportional theory, that each year is a smaller fraction of your life so far, is intuitive but explains the smoothness of the effect rather than its mechanism, and does not account for the holiday reversal or for lockdown findings."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The evidence base is more mixed than popular accounts suggest. Surveys reliably find that older adults report time passing more quickly over long intervals, but the effect is much weaker or absent for short intervals, and laboratory timing tasks do not consistently show age differences in the direction the folk account predicts — so this is largely a phenomenon of retrospective judgement rather than of a slowed internal clock. Several candidate mechanisms remain live. The memory-density account has the best support. A second proposal, from Adrian Bejan, argues that the rate of processing perceptual images slows with age, so fewer are registered per unit of clock time; it is elegant but has attracted criticism for resting on a physical analogy rather than on behavioural evidence. A third looks at the reminiscence bump — the disproportionate density of autobiographical memories from roughly ages 10 to 30 — which supplies a specific reason why that period feels dense in retrospect. The practical implication, if the memory account is right, is unusually actionable and testable: deliberately introducing novelty and varied routines increases the density of encoded events, and people who do so report longer-feeling intervals. That prediction is at least falsifiable, which distinguishes it from the proportional theory."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Retrospective timing",
+        "plain_definition": "Judging how long a past period was, based on what you can remember of it."
+      },
+      {
+        "term": "Prospective timing",
+        "plain_definition": "Judging duration while it is happening, which depends on how much attention you pay to time itself."
+      },
+      {
+        "term": "Memory density",
+        "plain_definition": "How many distinct, retrievable events a period contains — the main input to retrospective judgement."
+      },
+      {
+        "term": "Reminiscence bump",
+        "plain_definition": "The unusually high density of autobiographical memories from roughly ages 10 to 30."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Your internal clock literally slows down with age.",
+        "reality": "Laboratory tests of short-interval timing do not consistently show this. The effect is mainly in retrospective judgement of long periods, which is a memory phenomenon rather than a clock one."
+      },
+      {
+        "myth": "It is because each year is a smaller proportion of your life.",
+        "reality": "That framing is intuitive but has little direct evidence, and it fails to explain why a novel week feels long in retrospect or why lockdown distorted time for people of all ages."
+      },
+      {
+        "myth": "Time feeling fast and time feeling slow are the same measure.",
+        "reality": "An interval can drag while it happens and vanish in memory, or fly by and feel long afterwards. Prospective and retrospective judgements are separate and often opposite."
+      },
+      {
+        "myth": "Nothing can be done about it.",
+        "reality": "If the memory-density account is right, novelty and varied routine increase the number of distinct encoded events, which is the input the judgement is built from. That prediction is testable and broadly supported."
+      }
+    ],
+    "why_it_matters": "It shows that a subjective experience everyone shares can be well documented and still lack a settled explanation — and that the popular explanation is often the least supported one. It also carries a rare directly usable implication: if how long a period feels depends on how much of it you encoded, then the composition of your routine is the variable you control, and sameness has a specific cost.",
+    "historical_background": {
+      "origin": "Paul Janet proposed the proportional theory in 1877 — that each interval is judged against the length of life so far — and it has remained the popular explanation ever since despite thin evidence.",
+      "motivation": "Twentieth-century psychology separated prospective from retrospective timing, which showed that the two behave differently and often oppositely, and that the folk question is about the second.",
+      "evolution": "Survey work has since established the phenomenon across cultures and ages, while the mechanism remains contested between memory-density accounts, processing-rate proposals, and explanations grounded in the reminiscence bump."
+    },
+    "diagrams": [
+      {
+        "title": "Two judgements, opposite answers",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"A period of time\"] --> B[\"While it happens:<br/>prospective\"]\n  A --> C[\"Looking back:<br/>retrospective\"]\n  B --> D[\"Depends on attention<br/>paid to time itself\"]\n  D --> E[\"Boredom drags,<br/>absorption flies\"]\n  C --> F[\"Depends on how many<br/>distinct events encoded\"]\n  F --> G{\"Novel or routine?\"}\n  G -->|\"Novel\"| H[\"Dense memory:<br/>feels long\"]\n  G -->|\"Routine\"| I[\"Sparse memory:<br/>feels short\"]",
+        "caption": "The same week can travel down both branches and produce contradictory verdicts, which is why the question needs splitting before it can be answered."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why memories cluster between 10 and 30",
+        "reason": "The reminiscence bump gives a specific reason that period feels so dense when you look back on it."
+      },
+      {
+        "label": "How attention shapes duration in the moment",
+        "reason": "The other half of the question, which works by an entirely different mechanism."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Retrospective duration judgement",
+        "plain_definition": "Estimating a past interval's length from remembered content.",
+        "role": "covers"
+      },
+      {
+        "name": "Memory encoding",
+        "plain_definition": "The laying down of distinct retrievable records of events.",
+        "role": "requires"
+      },
+      {
+        "name": "Novelty and attention",
+        "plain_definition": "The factors that determine how much of an experience is stored separately.",
+        "role": "requires"
+      },
+      {
+        "name": "Reminiscence bump",
+        "plain_definition": "The concentration of autobiographical memory in adolescence and early adulthood.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Time perception",
+        "url": "https://en.wikipedia.org/wiki/Time_perception",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.68
+      },
+      {
+        "title": "Reminiscence bump",
+        "url": "https://en.wikipedia.org/wiki/Reminiscence_bump",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.68
+      },
+      {
+        "title": "Memory consolidation",
+        "url": "https://en.wikipedia.org/wiki/Memory_consolidation",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why can't you tickle yourself?",
+      "Why do elevators have mirrors?"
+    ]
+  },
+  {
+    "title": "Why do some countries drive on the left?",
+    "category_slug": "history",
+    "one_sentence_answer": "Left was the older custom across much of the world, and the countries that changed did so because of specific historical pressures — mainly Napoleon, and later the pull of neighbours and American vehicles.",
+    "summary": "Neither side is better. What settled it was path dependence: an early convention, a few forced conversions, and then the enormous cost of ever switching once everyone's cars and roads assumed one answer.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.83,
+    "confidence": 0.82,
+    "confidence_reason": "The modern history of which countries drive on which side and when they changed is well documented. The medieval origin explanations are plausible and widely repeated but rest on limited direct evidence, which is flagged.",
+    "tags": [
+      "conventions",
+      "path-dependence",
+      "transport",
+      "standards"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "There is no advantage to either side. What matters overwhelmingly is that everyone in one place agrees, because the cost of disagreement is head-on collisions. So the question is not which side is better but how each country's answer got locked in. The usual account is that keeping left was the older habit in much of Europe: a right-handed rider passing a stranger on the left keeps his sword arm between them, and mounting a horse from the left is easier if you carry a sword on your left hip. Then France changed, Napoleon exported the change across the territories he controlled, and the map began to split. After that, each country's roads, vehicles and habits accumulated around whichever answer it had, and switching became progressively more expensive until almost nobody did."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a keyboard layout. QWERTY is not the best arrangement by any measure anyone has proposed, but it arrived early, everyone learned it, every machine was built for it, and the cost of a coordinated change now vastly exceeds the benefit. Driving side is the same kind of fact — an arbitrary choice frozen by everything that was built on top of it. Where the analogy stops: a person can learn a new keyboard alone and bear the cost privately, while driving side must change for everyone at the same instant or people die. That is why the few countries that did switch had to do it overnight, with enormous preparation, and why it is essentially never done for convenience alone."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Sweden switched on 3 September 1967, at 5am — Dagen H — after years of preparation, thousands of new signs installed under covers and removed the night before, and a public information campaign that reached essentially everyone. Accidents actually fell immediately afterwards, because everyone was driving with enormous care, before returning to the previous trend. The reason for the change was practical: Sweden's neighbours drove on the right and most Swedes already owned left-hand-drive cars. Iceland followed in 1968. Movement in the other direction happens too, though rarely: Samoa switched to the left in 2009 so that it could import cheap used cars from Australia, New Zealand and Japan, and gave its population a two-year notice period and a public holiday to manage it."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "This is a coordination problem with multiple equilibria: two conventions are equally good, only agreement matters, and once a population has settled on one, no individual has any incentive to deviate. Such equilibria are stabilised by complementary investments — vehicle steering position, road geometry, junction and roundabout design, signage, driver training and habit — which is what economists mean by path dependence. Switching cost scales with the size of those complementary assets, which grows over time, so the window for change closes progressively. That is why conversions cluster either in small countries, or in periods of low motorisation, or under external compulsion. Empirical work comparing accident rates between left- and right-driving countries has found no robust safety difference attributable to side, which is the expected result if the choice really is arbitrary and only coordination matters."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The medieval origin story deserves more scepticism than it usually gets. Archaeological evidence from a Roman quarry track in Wiltshire showing deeper wear on one side is often cited, and the sword-arm reasoning is plausible, but the direct evidence for a consistent pre-modern rule is thin, and practice appears to have varied by region and by whether traffic was mounted or driving wagons. The wagon argument is the strongest structural one: American teamsters rode the left rear horse of a team, which made passing on the left of the road awkward and passing on the right natural, so the practical requirement of a specific vehicle type pushed the convention. Colonial administration then spread whichever answer the metropole used, which is why the left-driving map correlates strongly with the former British Empire and Japan's independent adoption is the notable exception. About a third of the world's population drives on the left today, mostly in India, Indonesia, Japan, the United Kingdom and their historical spheres. There are also residual asymmetries worth knowing: left-driving countries generally have headlight patterns dipped to the left, which is why cars driven abroad need beam deflectors, and rail networks frequently disagree with their own roads — France's trains run on the left while its cars run on the right, a legacy of British-built railways."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Coordination problem",
+        "plain_definition": "A situation where the specific choice matters less than everyone making the same one."
+      },
+      {
+        "term": "Path dependence",
+        "plain_definition": "An early arbitrary choice becoming locked in because everything built afterwards assumes it."
+      },
+      {
+        "term": "Switching cost",
+        "plain_definition": "The total cost of changing convention, which grows as more infrastructure accumulates around the old one."
+      },
+      {
+        "term": "Dagen H",
+        "plain_definition": "Sweden's 1967 changeover day, the best-documented example of a national switch."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "One side is safer than the other.",
+        "reality": "Comparisons between left- and right-driving countries find no robust safety difference attributable to side. What matters is that everyone in a country agrees and that the vehicles match the convention."
+      },
+      {
+        "myth": "Countries drive on the left because they were British colonies.",
+        "reality": "Colonial administration spread the convention widely, but Japan adopted it independently, and several former British territories switched later under pressure from neighbours. The correlation is strong but not the whole explanation."
+      },
+      {
+        "myth": "Switching sides is impossible.",
+        "reality": "Sweden did it in 1967 and Samoa in 2009. It is expensive and requires enormous preparation, but the obstacle is cost and coordination, not feasibility."
+      },
+      {
+        "myth": "The medieval sword-arm explanation is established fact.",
+        "reality": "It is a plausible and widely repeated story with limited direct evidence. Practice appears to have varied regionally, and the wagon-driving argument for right-side travel is better supported."
+      }
+    ],
+    "why_it_matters": "It is the most tangible everyday example of path dependence: an arbitrary early choice, locked in by everything constructed on top of it, and now unchangeable at any sensible price. The same structure explains keyboard layouts, rail gauges, mains voltages, character encodings and file formats — all cases where the world would choose differently starting from scratch and cannot get there from here.",
+    "historical_background": {
+      "origin": "Keeping left appears to have been common in medieval Europe, with the usual explanation being that a right-handed traveller keeps his weapon hand toward oncoming strangers, though the direct evidence is limited.",
+      "motivation": "France moved to the right around the Revolution, and Napoleon's conquests spread the practice across much of continental Europe, splitting the map along political lines rather than practical ones.",
+      "evolution": "The British Empire exported left-hand travel worldwide, mass-produced American vehicles pushed others toward the right, and a handful of countries have switched since — Sweden in 1967, Iceland in 1968, Samoa in 2009 — each for specific practical reasons rather than principle."
+    },
+    "diagrams": [
+      {
+        "title": "How an arbitrary choice becomes permanent",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Early custom,<br/>either side\"] --> B[\"Vehicles built to<br/>match it\"]\n  B --> C[\"Roads, junctions and<br/>signs designed for it\"]\n  C --> D[\"Drivers trained<br/>and habituated\"]\n  D --> E[\"Switching cost rises<br/>every year\"]\n  E --> F{\"Strong enough<br/>external pressure?\"}\n  F -->|\"Yes: neighbours,<br/>vehicle supply\"| G[\"Overnight national switch:<br/>Sweden 1967, Samoa 2009\"]\n  F -->|\"No\"| H[\"Convention locked in<br/>indefinitely\"]",
+        "caption": "Nothing about the original choice matters. Everything about what was built on top of it does."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why QWERTY survived",
+        "reason": "The same lock-in argument, with a much better-documented origin and a long history of failed replacements."
+      },
+      {
+        "label": "How rail gauges got standardised",
+        "reason": "Another arbitrary choice frozen by infrastructure, with the added complication of networks meeting at borders."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Path dependence",
+        "plain_definition": "History constraining present choices because of what was built on earlier ones.",
+        "role": "covers"
+      },
+      {
+        "name": "Coordination equilibrium",
+        "plain_definition": "A stable outcome where agreement matters more than which option was chosen.",
+        "role": "covers"
+      },
+      {
+        "name": "Switching cost",
+        "plain_definition": "The accumulated expense of moving from one convention to another.",
+        "role": "requires"
+      },
+      {
+        "name": "Technical standard",
+        "plain_definition": "An agreed convention that lets independently built things work together.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Left- and right-hand traffic",
+        "url": "https://en.wikipedia.org/wiki/Left-_and_right-hand_traffic",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Dagen H",
+        "url": "https://en.wikipedia.org/wiki/Dagen_H",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Path dependence",
+        "url": "https://en.wikipedia.org/wiki/Path_dependence",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why do keyboards use QWERTY?",
+      "Why do we have leap years?"
+    ]
+  }
+]

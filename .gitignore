@@ -1,0 +1,28 @@
+# Secrets. The example files are the checked-in ones; .env holds real tokens
+# (bot token, API keys) and must never be committed.
+.env
+.env.*
+!.env.example
+!.env.production.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Node / Next
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+.eslintcache
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+*.swp

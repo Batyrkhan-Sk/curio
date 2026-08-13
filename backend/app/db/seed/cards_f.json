@@ -1,0 +1,1073 @@
+[
+  {
+    "title": "Why do websites need cookies?",
+    "category_slug": "internet",
+    "one_sentence_answer": "The web was designed to forget you between every click, so a cookie is the note the site hands you to carry back, because it has no other way to know you are the same person.",
+    "summary": "HTTP has no memory. Every request arrives as if from a stranger, so anything that has to persist — being logged in, a basket, a language setting — needs an identifier the browser sends back each time.",
+    "difficulty": "beginner",
+    "reading_minutes": 6,
+    "curiosity_score": 0.81,
+    "confidence": 0.93,
+    "confidence_reason": "The statelessness of HTTP and the mechanics of cookies are defined in published specifications. The tracking and regulation section describes an actively changing landscape, which is flagged as such.",
+    "tags": [
+      "http",
+      "privacy",
+      "sessions",
+      "tracking"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "The web was built on a protocol that treats every single request as unrelated to every other one. You ask for a page, the server sends it, and the conversation is over. Click a link and a completely fresh request arrives, with nothing to say it came from the same person as the last one. That design made the early web simple and scalable, but it makes anything that has to persist impossible — being logged in, keeping items in a basket, remembering that you chose dark mode. So a mechanism was added: the server hands your browser a small piece of text, and your browser sends it back with every later request to that site. That is a cookie. Its core job is answering one question the protocol cannot: is this the same visitor as a moment ago?"
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Imagine a cloakroom where the attendant has no memory at all. You hand over your coat and they give you a numbered ticket, because without it they would have no way to connect you to your coat when you return. The ticket does not contain your coat; it identifies which coat is yours. A session cookie works exactly like that ticket, and the state it refers to lives on the server. Where the analogy stops: some cookies do carry the data itself rather than a reference to it, like a ticket with your details written on it — which is why cookies are signed or encrypted, since anything held by the visitor can be altered by the visitor. And unlike a cloakroom ticket, a cookie is presented automatically, without you choosing to hand it over."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Log into a site and the server checks your password once, then sets a session cookie. Every subsequent page load presents that cookie, and the server looks up who it belongs to — which is why closing the tab and returning finds you still logged in, and why clearing cookies logs you out everywhere at once. The banners are a different story. Cookies set by the site you are visiting are first-party; cookies set by a domain embedded in that page — an advertising script, an analytics tag, a social button — are third-party, and the same cookie is presented on every other site carrying the same embed. That is what makes a shoe you looked at once follow you around the web. European law requires consent for cookies not strictly necessary to provide the service, which is why the banner asks about the second kind and not about your login."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "HTTP is stateless by design: each request is self-contained and the server keeps no connection-level memory of previous ones. Cookies were introduced to layer state on top. The server sends a Set-Cookie header with a name, a value and attributes; the browser stores it and includes a matching Cookie header on subsequent requests to that domain and path. The attributes carry the security properties. Expires or Max-Age decides whether it is a session cookie discarded when the browser closes or a persistent one. Secure restricts it to HTTPS. HttpOnly hides it from JavaScript, which is the main defence against a cross-site scripting attack stealing a session. SameSite controls whether the cookie is attached to requests originating from other sites, which is the defence against cross-site request forgery. Typically the cookie holds only an opaque session identifier while the real data lives server-side, though signed tokens containing claims are also common."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The identifier and tracking uses have diverged sharply. Browsers now block or partition third-party cookies by default — Safari and Firefox already do, and Chrome's approach has changed repeatedly — and storage partitioning means an embedded resource gets a separate cookie jar per top-level site, breaking cross-site correlation without breaking embeds. The response from the tracking industry has been to move identifiers elsewhere: CNAME cloaking makes a third party look first-party, and browser fingerprinting derives a stable identifier from the combination of fonts, canvas rendering, screen metrics and dozens of other signals, requiring no storage at all and therefore no consent prompt. Fingerprinting is harder to detect and harder to opt out of than the mechanism it replaced. On the engineering side, the choice between server-side sessions and self-contained signed tokens is a real trade-off: tokens scale without shared session storage but cannot be revoked before expiry without reintroducing exactly the state they were meant to avoid, which is why short lifetimes plus refresh tokens is the usual compromise. It is also worth noting that the consent banner is largely a failure of implementation rather than of law — the regulation requires informed consent, not a wall of dark patterns, and enforcement has increasingly said so."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Stateless protocol",
+        "plain_definition": "A design where every request stands alone and the server remembers nothing between them."
+      },
+      {
+        "term": "Session",
+        "plain_definition": "A period of continuous interaction with a site, tied together by an identifier the browser presents each time."
+      },
+      {
+        "term": "First-party and third-party",
+        "plain_definition": "Whether a cookie belongs to the site in your address bar or to some other domain embedded in the page."
+      },
+      {
+        "term": "Fingerprinting",
+        "plain_definition": "Identifying a browser from the combination of its characteristics, without storing anything on the device."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Cookies are programs, or can carry viruses.",
+        "reality": "A cookie is a short piece of text. It cannot execute, and the browser only ever sends it back to the domain that set it."
+      },
+      {
+        "myth": "Cookies are inherently about tracking.",
+        "reality": "Their original and most common purpose is holding a session together so you can stay logged in. Tracking is a specific use of third-party cookies, which is why consent rules distinguish between the two."
+      },
+      {
+        "myth": "Blocking cookies makes you anonymous.",
+        "reality": "Fingerprinting identifies a browser from its characteristics without storing anything, and it grew in use precisely as cookie blocking spread. Blocking cookies removes one identifier, not the ability to identify."
+      },
+      {
+        "myth": "The consent banner is required by law in the form you see it.",
+        "reality": "The law requires informed, freely given consent. The manipulative banners are an implementation choice, and regulators have repeatedly ruled against making refusal harder than acceptance."
+      }
+    ],
+    "why_it_matters": "It explains a piece of infrastructure everyone interacts with daily and almost nobody has had explained — including why the banners exist and what they are actually about. It also introduces statelessness, a design choice that shows up everywhere from REST APIs to serverless functions, and shows the standard consequence: statelessness scales beautifully and then requires you to reintroduce state carefully at a higher layer.",
+    "historical_background": {
+      "origin": "Lou Montulli invented the cookie at Netscape in 1994, to solve a specific problem for a client who needed a shopping basket that survived between page loads.",
+      "motivation": "The mechanism was deliberately minimal — a small opaque value returned to the same site — and was not designed with cross-site tracking in mind.",
+      "evolution": "Third-party advertising discovered that an embedded resource on many sites could correlate visitors across all of them. Regulation followed in the 2000s and 2010s, and browsers eventually began restricting third-party cookies by default, which pushed the tracking industry toward fingerprinting instead."
+    },
+    "diagrams": [
+      {
+        "title": "Statelessness, and the note that fixes it",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Browser requests a page\"] --> B[\"Server has no memory<br/>of previous requests\"]\n  B --> C[\"Server sends page +<br/>Set-Cookie: id=abc123\"]\n  C --> D[\"Browser stores it\"]\n  D --> E[\"Next request includes<br/>Cookie: id=abc123\"]\n  E --> F[\"Server looks up the session:<br/>'this is the same visitor'\"]\n  F --> G[\"Logged in, basket intact,<br/>settings remembered\"]",
+        "caption": "Nothing in the protocol connects the two requests. The cookie is the only thread between them."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How browser fingerprinting works",
+        "reason": "The identification technique that grew as cookie blocking spread, and which no banner asks you about."
+      },
+      {
+        "label": "Why sessions are hard to scale",
+        "reason": "Server-side sessions and signed tokens trade revocability against statelessness, and every large system picks a side."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "HTTP statelessness",
+        "plain_definition": "Each request being independent, with no server memory between them.",
+        "role": "requires"
+      },
+      {
+        "name": "HTTP cookie",
+        "plain_definition": "A small value stored by the browser and returned to the same site on later requests.",
+        "role": "covers"
+      },
+      {
+        "name": "Session management",
+        "plain_definition": "Keeping a user's identity and state consistent across many separate requests.",
+        "role": "covers"
+      },
+      {
+        "name": "Browser fingerprinting",
+        "plain_definition": "Identifying a browser from its characteristics rather than from stored data.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "HTTP cookie",
+        "url": "https://en.wikipedia.org/wiki/HTTP_cookie",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Using HTTP cookies",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies",
+        "publisher": "MDN Web Docs",
+        "kind": "docs",
+        "reliability": 0.9
+      },
+      {
+        "title": "Device fingerprint",
+        "url": "https://en.wikipedia.org/wiki/Device_fingerprint",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why can't websites read files on your computer?",
+      "Why do websites have names instead of numbers?"
+    ]
+  },
+  {
+    "title": "Why do websites have names instead of numbers?",
+    "category_slug": "internet",
+    "one_sentence_answer": "Machines route by number, people remember words, and the domain name system is the enormous distributed directory that translates between the two on every click.",
+    "summary": "Every server is reached by a numeric address. Names exist because humans cannot remember numbers, and because a name can be pointed at a different number tomorrow without anything you typed having to change.",
+    "difficulty": "beginner",
+    "reading_minutes": 6,
+    "curiosity_score": 0.76,
+    "confidence": 0.93,
+    "confidence_reason": "DNS is defined in published standards and its operation is directly observable with ordinary tools. The outage examples come from published post-incident reports.",
+    "tags": [
+      "dns",
+      "networking",
+      "infrastructure",
+      "naming"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Every machine on the internet is reached by a number, because routing equipment needs something fixed-size and quick to compare. People are hopeless at that. So there is a directory: you type a name, your computer asks the directory what number that name currently points to, and then it connects to the number. The translation happens before any of the page loads, in a few thousandths of a second, and you never see it. Names buy something beyond memorability, though, and it is the more important half. A name is a level of indirection. The company behind it can move to a different machine, a different data centre or a different country, change the number the name points to, and everyone's bookmarks and links keep working. If we all used numbers, every move would break every reference to it."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a phone directory, but one that is consulted automatically every time you place a call. You dial a name; the phone looks it up and dials the number. If the person changes provider, they update their entry and everyone who calls by name is unaffected. Where the analogy stops badly: a printed directory is one book with one publisher. There is no single copy of the internet's directory anywhere. It is split into a tree of zones, each maintained by whoever owns that part of the name space, and answers are cached at every level — in your browser, your operating system, your router and your provider's resolver — which is why a change can take hours to become visible everywhere and why the system keeps working even though no one machine has all of it."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Because DNS runs before everything else, a DNS failure looks like the whole internet breaking. In October 2021 a configuration change withdrew the network routes to Facebook's own name servers; with the name servers unreachable, nothing could resolve any of their domain names, and services including WhatsApp and Instagram disappeared for hours. Worse, the company's internal tools and even physical access systems depended on the same names, which made recovery far harder. A smaller and more common version happens whenever a site is migrated: the name is repointed to a new server, but visitors whose resolvers still hold the old answer keep arriving at the old one until the cache expires, which is why engineers lower the time-to-live before a planned move. You can watch the whole process yourself with dig or nslookup, which shows each step of the lookup."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "The domain name system is a distributed hierarchical database. A name is read right to left: the root, then a top-level domain such as com, then the registered domain, then any subdomains. Resolution normally goes through a recursive resolver, which asks a root server which name servers handle the top-level domain, asks those which servers are authoritative for the domain, and asks those for the record itself. Records come in types: A for an IPv4 address, AAAA for IPv6, CNAME to alias one name onto another, MX for mail, TXT for arbitrary text used in verification and policy. Each record carries a time-to-live telling resolvers how long they may cache it, which is what keeps the load on authoritative servers manageable — the vast majority of lookups are answered from a cache. The system is also the internet's most-used load balancing mechanism, since one name can return different addresses to different clients based on geography or health checks."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "DNS was designed without authentication, so a resolver historically could not tell a genuine answer from a forged one — the basis of cache poisoning attacks, most sharply demonstrated by Dan Kaminsky in 2008. DNSSEC addresses this by signing records with a chain of trust from the root, but deployment remains partial and it protects integrity rather than confidentiality. Privacy came later and separately: DNS over HTTPS and DNS over TLS encrypt the query so that a network operator cannot read or tamper with it, which improved privacy against local observers while concentrating visibility in whichever resolver you chose, a trade-off that remains politically contested. Operationally, DNS is also the internet's most widely used control plane — anycast routing means the same address is announced from hundreds of locations and the network delivers you to the nearest, which is how root servers and large content networks scale and absorb attacks. The failure modes worth knowing are the coupling ones: because almost everything resolves names first, a DNS outage presents as a total outage, and any system whose recovery tooling depends on the same names it serves has built a circular dependency that only becomes visible on the worst day."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "IP address",
+        "plain_definition": "The number that actually identifies a machine on the network and that routing equipment works with."
+      },
+      {
+        "term": "DNS",
+        "plain_definition": "The domain name system: the distributed directory that turns a name into an address."
+      },
+      {
+        "term": "Resolver",
+        "plain_definition": "The service that performs the lookup on your behalf and caches the result."
+      },
+      {
+        "term": "Time-to-live",
+        "plain_definition": "How long an answer may be cached before it must be looked up again."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "The name is the address, just written differently.",
+        "reality": "They are separate things joined by a lookup. One name can point to many addresses, one address can serve many names, and the mapping can change at any moment without the name changing."
+      },
+      {
+        "myth": "There is a central server holding all the names.",
+        "reality": "It is a hierarchy of independently operated zones with heavy caching at every level. No single machine holds the whole database, which is what makes it survivable."
+      },
+      {
+        "myth": "A DNS change takes effect immediately.",
+        "reality": "Old answers stay in caches until their time-to-live expires, so a change propagates gradually. This is why the time-to-live is lowered in advance of a planned migration."
+      },
+      {
+        "myth": "Encrypted DNS makes your browsing private.",
+        "reality": "It hides the query from your local network and provider, but the resolver you use sees everything, and the destination address is still visible in the connection that follows."
+      }
+    ],
+    "why_it_matters": "Indirection through a name is one of the most reusable ideas in computing: put a stable label in front of a changing thing, and everything referring to the label survives the change. Variables, file paths, service discovery and package managers all do the same. DNS is also the clearest example of a dependency so universal that its failure is indistinguishable from everything failing, which is a useful thing to recognise when a system goes dark.",
+    "historical_background": {
+      "origin": "Early ARPANET name resolution used a single file, HOSTS.TXT, maintained centrally and distributed to every machine — workable for a few hundred hosts and hopeless beyond that.",
+      "motivation": "Paul Mockapetris designed DNS in 1983 to replace it with a distributed, hierarchical, cacheable system that no single organisation had to maintain.",
+      "evolution": "Security was added afterwards rather than designed in: DNSSEC for integrity from the 1990s onward with slow uptake, and encrypted transports for privacy from the late 2010s, each solving a problem the original design had not anticipated."
+    },
+    "diagrams": [
+      {
+        "title": "One lookup, four questions",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"You type example.com\"] --> B{\"Cached anywhere<br/>already?\"}\n  B -->|\"Yes\"| C[\"Answer returned<br/>in milliseconds\"]\n  B -->|\"No\"| D[\"Ask a root server:<br/>who handles .com?\"]\n  D --> E[\"Ask the .com servers:<br/>who is authoritative<br/>for example.com?\"]\n  E --> F[\"Ask that server:<br/>what is the address?\"]\n  F --> G[\"Address returned<br/>and cached for its TTL\"]\n  G --> H[\"Browser finally<br/>opens a connection\"]",
+        "caption": "All of this happens before the first byte of the page is requested, which is why DNS failures look like total failures."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How anycast routing serves one address from hundreds of places",
+        "reason": "The technique that lets a handful of addresses answer the whole world's queries."
+      },
+      {
+        "label": "What DNSSEC actually protects",
+        "reason": "Integrity, not privacy — and the distinction explains why encrypted DNS was needed as well."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Domain name system",
+        "plain_definition": "The distributed directory translating names into network addresses.",
+        "role": "covers"
+      },
+      {
+        "name": "Indirection",
+        "plain_definition": "Referring to something through a stable label so the thing behind it can change.",
+        "role": "covers"
+      },
+      {
+        "name": "Caching",
+        "plain_definition": "Keeping a copy of an answer to avoid asking again, with a defined expiry.",
+        "role": "requires"
+      },
+      {
+        "name": "IP addressing",
+        "plain_definition": "The numeric identification of machines that routing equipment uses.",
+        "role": "requires"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Domain Name System",
+        "url": "https://en.wikipedia.org/wiki/Domain_Name_System",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.75
+      },
+      {
+        "title": "2021 Facebook outage",
+        "url": "https://en.wikipedia.org/wiki/2021_Facebook_outage",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "DNSSEC",
+        "url": "https://en.wikipedia.org/wiki/Domain_Name_System_Security_Extensions",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why do websites need cookies?",
+      "Why does Wi-Fi get slower through walls?"
+    ]
+  },
+  {
+    "title": "Why can't a website tell you your forgotten password?",
+    "category_slug": "cybersecurity",
+    "one_sentence_answer": "A well-built site never stored your password in the first place — only a one-way scramble of it, which can be checked against but cannot be turned back.",
+    "summary": "Password hashing is deliberately irreversible. The site can verify that what you typed matches, and still be unable to produce the original, which is exactly what limits the damage when its database is stolen.",
+    "difficulty": "intermediate",
+    "reading_minutes": 6,
+    "curiosity_score": 0.86,
+    "confidence": 0.94,
+    "confidence_reason": "Password storage practice is well established and the algorithms named here are current recommendations from published guidance. The breach examples are documented public incidents.",
+    "tags": [
+      "passwords",
+      "hashing",
+      "breaches",
+      "authentication"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "When you set a password, a properly built site does not keep it. It runs the password through a one-way process that produces a scrambled result, stores only that, and throws the password away. Next time you log in, it scrambles what you typed the same way and compares the two scrambles. If they match, you knew the password. At no point does the site need the original, and at no point can it work backwards from the scramble to recover it. That is the whole design, and the reason for it is simple: databases get stolen. If the site kept your actual password, a single breach would hand an attacker every password — and since people reuse them, that means their email and bank accounts too. So being unable to tell you your password is not an inconvenience the site has failed to fix. It is the point."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a fingerprint. You can compare a fingerprint at the door with the one on file and be confident it is the same person, but you cannot reconstruct the person from the print. A password hash is that: enough to verify, not enough to recreate. And if the file of prints is stolen, the thief cannot walk in — they have prints, not fingers. Where the analogy stops: fingerprints are unique, while a hash is a fixed-size output and different inputs can in principle collide. More importantly, a thief with a stolen hash file can guess: hash a common password, see if it matches anything in the file. That is why the scrambling process is deliberately made slow, so that guessing billions of candidates becomes impractical rather than routine."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The 2012 LinkedIn breach is the standard teaching case. Around six and a half million password hashes were leaked, computed with a single pass of an algorithm designed to be fast and with no salt — meaning identical passwords produced identical hashes. Within days most had been cracked, because attackers could hash a dictionary once and match it against the entire file at a stroke. Contrast that with breaches at services using a slow, salted algorithm, where the same theft yields a file that is expensive to attack and where each password must be attacked separately. There is also a simple test you can apply to any site: if it emails you your existing password when you ask, it stored it in recoverable form and you should assume the worst about the rest of its security. A site that can only offer a reset link is behaving correctly."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "A cryptographic hash function maps input of any length to a fixed-size output, is deterministic, and is designed so that finding an input producing a given output is computationally infeasible. Storing hashes alone is not enough, though, because attackers precompute tables of hashes for common passwords. The answer is a salt: a unique random value stored alongside each user's hash and mixed into the computation, so identical passwords produce different hashes and precomputed tables are useless. The second necessity is slowness. General-purpose hash functions are optimised for speed, which is exactly wrong here, so password-specific functions apply deliberate work: bcrypt and PBKDF2 use many iterations, while Argon2 and scrypt additionally require substantial memory, which blunts the advantage of graphics cards and custom hardware that make parallel guessing cheap. Current guidance is Argon2id where available, bcrypt as an accepted alternative, with parameters tuned so a single verification takes on the order of a fraction of a second."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Memory-hardness is the key modern idea and it is an economic argument rather than a mathematical one: an attacker's advantage comes from parallelism, and while thousands of hashing cores are cheap, thousands of independent megabytes of fast memory are not, so a function that demands memory per guess narrows the gap between the defender's single verification and the attacker's billions. A pepper — a secret value held outside the database, in a hardware module or application config — adds a layer that a database-only breach does not compromise, at the cost of key management. Comparison must be constant-time to avoid leaking information through timing, and rate limiting and lockout policies handle the online guessing case, which is a different threat from the offline one. Guidance has also shifted on what users should be asked for: the current position from NIST and others is that length matters far more than composition rules, that mandatory periodic rotation is counterproductive because it pushes people toward predictable variations, and that checking new passwords against lists of known-breached ones is more effective than any complexity requirement. The direction of travel beyond passwords is toward public-key credentials such as passkeys, where the server stores only a public key and there is no shared secret to steal at all."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Hash function",
+        "plain_definition": "A one-way transformation producing a fixed-size output that cannot practically be reversed."
+      },
+      {
+        "term": "Salt",
+        "plain_definition": "A unique random value mixed into each password before hashing, so identical passwords do not produce identical results."
+      },
+      {
+        "term": "Memory-hard function",
+        "plain_definition": "A deliberately slow hash that also demands a lot of memory, making mass guessing expensive."
+      },
+      {
+        "term": "Credential stuffing",
+        "plain_definition": "Trying passwords stolen from one site against many others, which works because people reuse them."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "The site has your password but refuses to send it for policy reasons.",
+        "reality": "A correctly built site genuinely cannot produce it. It holds a one-way transformation that can be checked against but not inverted."
+      },
+      {
+        "myth": "Hashing alone is enough to protect a password database.",
+        "reality": "Without a unique salt, identical passwords hash identically and precomputed tables crack them en masse. Without deliberate slowness, an attacker can try billions of candidates per second."
+      },
+      {
+        "myth": "Encryption and hashing are the same thing here.",
+        "reality": "Encryption is reversible with a key, which means a stolen key exposes every password. Hashing has no key and no inverse, which is why it is the correct choice for storage."
+      },
+      {
+        "myth": "Complex character requirements make passwords strong.",
+        "reality": "Length and unpredictability matter far more. Current guidance favours long passphrases, checking against known-breached lists, and dropping both composition rules and forced periodic changes."
+      }
+    ],
+    "why_it_matters": "It turns an everyday annoyance into a visible security property, and gives you a one-question test for any service you use: if it can tell you your password, it stored it badly. The underlying idea — verify without retaining, so that a breach reveals less than the thing being protected — recurs throughout security, in signatures, in zero-knowledge proofs, and in the passkey systems now replacing passwords entirely.",
+    "historical_background": {
+      "origin": "Password hashing dates to the early Unix systems of the 1970s, where Robert Morris and Ken Thompson introduced both hashing and salting, explicitly to make precomputation useless.",
+      "motivation": "As computers got faster, general-purpose hash functions became far too quick for the job, and by the 2000s a stolen file of unsalted fast hashes could be cracked at enormous rates on commodity graphics hardware.",
+      "evolution": "Purpose-built slow functions followed — bcrypt in 1999, scrypt in 2009 — and the Password Hashing Competition selected Argon2 in 2015. The current trajectory is away from shared secrets entirely, toward public-key credentials such as passkeys."
+    },
+    "diagrams": [
+      {
+        "title": "Why the database is worth less than it looks",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"You set a password\"] --> B[\"Random salt generated\"]\n  B --> C[\"Slow, memory-hard hash<br/>of password + salt\"]\n  C --> D[\"Store salt and hash;<br/>discard the password\"]\n  E[\"You log in later\"] --> F[\"Hash what you typed<br/>with the stored salt\"]\n  F --> G{\"Matches?\"}\n  G -->|\"Yes\"| H[\"Authenticated\"]\n  G -->|\"No\"| I[\"Rejected\"]\n  D --> J[\"Database stolen\"]\n  J --> K[\"Attacker must guess each<br/>password separately,<br/>slowly\"]",
+        "caption": "The salt removes the attacker's bulk shortcut; the slowness removes the speed. Neither is optional."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How passkeys remove the shared secret",
+        "reason": "The server stores a public key and there is nothing worth stealing, which is where authentication is heading."
+      },
+      {
+        "label": "Why password reuse is the real danger",
+        "reason": "Credential stuffing turns one badly protected site into a compromise of the accounts that matter."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Password hashing",
+        "plain_definition": "Storing a one-way transformation of a password rather than the password itself.",
+        "role": "covers"
+      },
+      {
+        "name": "Salting",
+        "plain_definition": "Adding unique random data per user so identical passwords hash differently.",
+        "role": "covers"
+      },
+      {
+        "name": "Memory-hard functions",
+        "plain_definition": "Hashes designed to require substantial memory, making parallel guessing expensive.",
+        "role": "requires"
+      },
+      {
+        "name": "Hash collision",
+        "plain_definition": "Two different inputs producing the same hash output.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Password hashing",
+        "url": "https://en.wikipedia.org/wiki/Key_derivation_function",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Argon2",
+        "url": "https://en.wikipedia.org/wiki/Argon2",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "2012 LinkedIn hack",
+        "url": "https://en.wikipedia.org/wiki/2012_LinkedIn_hack",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.68
+      }
+    ],
+    "related_questions": [
+      "Why do 23 people give a 50% chance of a shared birthday?",
+      "Why can't websites read files on your computer?"
+    ]
+  },
+  {
+    "title": "Why does 0.999... equal exactly 1?",
+    "category_slug": "mathematics",
+    "one_sentence_answer": "Because the notation does not mean a number creeping toward one — it means the value the sequence of finite pieces converges to, and that value is exactly one.",
+    "summary": "The dots are not an instruction to keep adding forever without arriving. They denote a limit, and the limit is one, so 0.999… and 1 are two spellings of the same number.",
+    "difficulty": "intermediate",
+    "reading_minutes": 6,
+    "curiosity_score": 0.88,
+    "confidence": 0.97,
+    "confidence_reason": "This is a theorem with several independent proofs. The disagreement people have with it concerns what the notation means, not whether the mathematics is right, and that distinction is what the card addresses.",
+    "tags": [
+      "limits",
+      "real-numbers",
+      "notation",
+      "proof"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Ask what number lies between 0.999… and 1. If they were different, there would have to be one — between any two different numbers you can always find another, for instance their average. But nothing fits: any candidate you propose is either bigger than 1 or smaller than 0.999…, because 0.999… has more nines than any gap you can name. Two numbers with nothing between them are the same number. Another route is the one from school: one third is 0.333…, and three thirds is 1, so three lots of 0.333… is 0.999… and also 1. The resistance most people feel is not really about arithmetic. It is that the notation looks like a process — nines being added one after another, forever approaching but never arriving. The notation does not mean the process. It means where the process is headed."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Imagine walking half the remaining distance to a wall, then half of what is left, and so on. You never take a final step, and yet the total distance you cover is exactly the whole distance — because the total is not any one of the partial sums, it is the value they close in on. That value is reached in the sense that matters: no positive distance from the wall survives it. 0.999… is the same statement with tenths instead of halves. Where the analogy stops: walking is a process in time, and this is the source of all the trouble. The number 0.999… does not do anything over time. It is a static object, defined as the limit of a sequence, and the sequence is a tool for specifying which number is meant, not an activity the number is engaged in."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The same idea is why an infinitely repeating decimal can be converted to a fraction at all. Take 0.454545…, multiply by 100 to get 45.454545…, subtract the original, and the infinite tails cancel exactly, leaving 99 times the number equal to 45, so the number is 45/99. That manoeuvre only works because the repeating decimal denotes a definite value rather than an unfinished process. Applied to 0.999…, the same steps give ten times the number minus the number equals 9, so the number is 1. The convention also matters practically: every terminating decimal has a second representation ending in repeating nines, which is why 0.5 and 0.4999… are the same number, and why a careful treatment of decimal expansions has to say explicitly that this is the only way two different-looking decimals can be equal."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "An infinite decimal 0.d₁d₂d₃… is defined as the sum of dₖ divided by 10 raised to k, and an infinite sum is defined as the limit of its partial sums. For 0.999… the nth partial sum is 1 − 10⁻ⁿ. The limit of a sequence is the number L such that for any positive tolerance, all terms beyond some point lie within that tolerance of L. Here, given any tolerance, choose n large enough that 10⁻ⁿ is smaller than it, and every later term qualifies. So the limit is exactly 1, and since 0.999… is by definition that limit, it equals 1. The geometric series formula gives the same result directly: a first term of 0.9 with ratio 0.1 sums to 0.9/(1 − 0.1) = 1. A third argument uses completeness of the real numbers: 1 − 0.999… is a non-negative quantity smaller than every positive rational, and the only such real number is zero."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The result is a fact about the real numbers specifically, and that is the honest way to answer someone who insists on an infinitesimal difference. In the hyperreal numbers of non-standard analysis, infinitesimals genuinely exist, and one can define objects that differ from 1 by an infinitesimal amount. But 0.999… is not one of them: the standard decimal notation still denotes the limit, and the hyperreals contain the reals with that limit intact. Constructing a system where the two differ requires abandoning either the definition of decimal notation or the Archimedean property, and what you get is a different number system in which most familiar arithmetic reasoning no longer transfers unchanged. The deeper point is about representation: decimal expansion is a map from strings to numbers, and it is not injective. Every number with a terminating expansion has exactly two representations, and this is unavoidable for any positional system — in binary, 0.111… equals 1 for the same reason. Educational research has studied the persistence of the intuition at length, and the consistent finding is that the obstacle is the reading of '…' as an unfinished process rather than any error in computation, which is why arguing arithmetic rarely convinces and clarifying the definition usually does."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Limit",
+        "plain_definition": "The single value a sequence gets and stays arbitrarily close to. It is a number, not a process."
+      },
+      {
+        "term": "Partial sum",
+        "plain_definition": "The total after finitely many terms — 0.9, then 0.99, then 0.999, and so on."
+      },
+      {
+        "term": "Geometric series",
+        "plain_definition": "A sum where each term is a fixed multiple of the previous one. If that multiple is less than one, the sum has a finite value."
+      },
+      {
+        "term": "Real numbers",
+        "plain_definition": "The number system of ordinary mathematics, in which there are no infinitely small non-zero quantities."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "0.999… gets closer and closer to 1 but never quite reaches it.",
+        "reality": "The partial sums do that; the number 0.999… does not, because it is not a process. It denotes the limit of those partial sums, which is exactly 1."
+      },
+      {
+        "myth": "The difference is 0.000…1, an infinitely small amount.",
+        "reality": "That notation does not describe a real number — there is no last digit to place the 1 in. In the real numbers, a non-negative quantity smaller than every positive number is zero."
+      },
+      {
+        "myth": "It is a convention or an approximation that mathematicians accept for convenience.",
+        "reality": "It follows from the definitions of decimal notation and limits, with multiple independent proofs. Rejecting it means rejecting the standard definition of what an infinite decimal denotes."
+      },
+      {
+        "myth": "Infinitesimals in non-standard analysis prove the difference is real.",
+        "reality": "Those systems do contain infinitesimals, but the standard decimal notation still denotes a limit within them, and 0.999… still equals 1. Making them differ requires redefining the notation itself."
+      }
+    ],
+    "why_it_matters": "It is a small statement that exposes a large habit: reading notation as an instruction to do something rather than as a name for a value. That confusion is behind a lot of difficulty with infinite series, with integrals, and with recursion in programming. It is also a clean example of a case where two people can agree entirely on the arithmetic and still disagree, because they are using the same symbols to mean different things — and where progress comes from settling the definition rather than repeating the calculation.",
+    "historical_background": {
+      "origin": "Infinite series were used productively for centuries before they were rigorous, and the paradoxes of Zeno had already raised the question of whether infinitely many steps can sum to a finite total.",
+      "motivation": "Eighteenth-century mathematics produced contradictions by manipulating divergent series carelessly, which made a precise definition of convergence necessary rather than merely tidy.",
+      "evolution": "Cauchy and Weierstrass supplied the epsilon-based definition of a limit in the nineteenth century, and the rigorous constructions of the real numbers by Dedekind and Cantor settled what an infinite decimal denotes — from which this result follows immediately."
+    },
+    "diagrams": [
+      {
+        "title": "Three independent routes to the same answer",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"0.999...\"] --> B[\"Algebra:<br/>10x − x = 9, so x = 1\"]\n  A --> C[\"Geometric series:<br/>0.9 / (1 − 0.1) = 1\"]\n  A --> D[\"Limit of 1 − 10⁻ⁿ\"]\n  A --> E[\"No number lies<br/>strictly between it and 1\"]\n  B --> F[\"= 1\"]\n  C --> F\n  D --> F\n  E --> F",
+        "caption": "Four arguments from different parts of mathematics, all forced to the same conclusion by the same definition of what the notation means."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why some infinite sums have a finite total",
+        "reason": "The general condition for convergence, of which this is the most familiar special case."
+      },
+      {
+        "label": "How the real numbers are constructed",
+        "reason": "The definition that settles the question, and which also explains why no infinitely small non-zero real exists."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Limit of a sequence",
+        "plain_definition": "The value a sequence approaches arbitrarily closely and stays near.",
+        "role": "covers"
+      },
+      {
+        "name": "Geometric series",
+        "plain_definition": "A sum with a constant ratio between terms, convergent when that ratio is less than one.",
+        "role": "requires"
+      },
+      {
+        "name": "Decimal representation",
+        "plain_definition": "Writing a number as a sum of digits scaled by powers of ten, which is not a one-to-one naming.",
+        "role": "covers"
+      },
+      {
+        "name": "Completeness of the reals",
+        "plain_definition": "The property that guarantees limits exist and that no infinitely small non-zero number does.",
+        "role": "requires"
+      }
+    ],
+    "sources": [
+      {
+        "title": "0.999...",
+        "url": "https://en.wikipedia.org/wiki/0.999...",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.78
+      },
+      {
+        "title": "Limit of a sequence",
+        "url": "https://en.wikipedia.org/wiki/Limit_of_a_sequence",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Geometric series",
+        "url": "https://en.wikipedia.org/wiki/Geometric_series",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      }
+    ],
+    "related_questions": [
+      "Why can't you divide by zero?",
+      "Why is 0.1 + 0.2 not exactly 0.3?"
+    ]
+  },
+  {
+    "title": "Why can't you divide by zero?",
+    "category_slug": "mathematics",
+    "one_sentence_answer": "Division asks what you must multiply by to get back where you started, and multiplying by zero destroys that information — so the question either has no answer or has every answer.",
+    "summary": "It is not a rule imposed to be awkward. Defining a value for division by zero would break the arithmetic that everything else depends on, and mathematicians have checked what happens if you try.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.84,
+    "confidence": 0.96,
+    "confidence_reason": "This follows directly from the field axioms and can be demonstrated in a few lines. The extensions where a value is assigned are well-defined systems with documented trade-offs, so even the exceptions are precise.",
+    "tags": [
+      "arithmetic",
+      "definitions",
+      "limits",
+      "proof"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Dividing asks a multiplication question backwards. Six divided by two means: what times two gives six? The answer is three, and it is the only answer. Now try six divided by zero: what times zero gives six? Nothing does, because everything times zero is zero. So there is no answer at all. Then try zero divided by zero: what times zero gives zero? Everything does — one works, five works, a million works. Now there are too many answers and no reason to prefer any of them. So division by zero fails in two different ways: for any other numerator there is no candidate, and for zero there are infinitely many. Either way you cannot name a single value, and arithmetic requires that every operation give exactly one result. The prohibition is not stubbornness; there is simply nothing to put there."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of division as sharing out. Twelve sweets among four children gives three each. Twelve sweets among zero children is not a question with an answer — there is nobody to share with, so no number describes how much each got. It is not that they got nothing; there is no 'each' at all. Where the analogy stops, and it is worth being careful here: the sharing picture makes it sound like a language problem, as if the question is merely badly phrased. The real obstacle is stronger. If you insist on assigning any value at all, you can derive contradictions like 1 = 2 from ordinary algebra, which means the whole system breaks, not just this one expression."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Computers had to decide what to do, and the answers reveal the structure. Integer division by zero raises an error on essentially every processor, because there is no integer to return. Floating-point arithmetic, following the IEEE 754 standard, instead returns infinity for a non-zero numerator, with a sign, and returns NaN — not a number — for zero divided by zero, which is precisely the case with too many candidate answers. That NaN then propagates through every subsequent calculation, which is deliberate: it marks the result as meaningless rather than silently producing a plausible-looking number. There is also a famous operational case. In 1997 the USS Yorktown suffered a propulsion failure after a division by zero in a database entry cascaded through the ship's control network, leaving it dead in the water for hours."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "In the algebraic structure that ordinary arithmetic uses, a field, division is defined through multiplicative inverses: a divided by b means a multiplied by the inverse of b, where the inverse of b is the number satisfying b times it equals 1. Zero has no such inverse. The proof is short: zero times anything is zero, so zero times any candidate can never be 1. Suppose we forced it anyway and declared some value k with 0 × k = 1. Then 1 = 0 × k = (0 + 0) × k = 0 × k + 0 × k = 1 + 1 = 2, and the system collapses. This is why the field axioms explicitly require the multiplicative identity to differ from the additive identity, and why zero's lack of an inverse is a theorem rather than a convention. Limits are a separate matter: as the denominator approaches zero the quotient grows without bound, which describes behaviour near zero and says nothing about the value at zero."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "There are structures where division by zero is defined, and knowing what they cost is the sharpest way to see why ordinary arithmetic declines. The projectively extended real line adds a single unsigned infinity and defines a/0 = ∞ for non-zero a; the Riemann sphere does the same for complex numbers and is genuinely standard in complex analysis, where it makes rational functions continuous everywhere. Both leave 0/0 undefined, because that case cannot be repaired. Wheel theory goes further and defines a total division operation, at the cost of weakening the distributive law — you can have totality or you can have familiar algebra, not both. In computing, IEEE 754's choice of signed infinities and NaN is engineering pragmatism: it keeps a long calculation running while marking which parts are meaningless, and NaN's defining property that it compares unequal to everything including itself is what makes the contamination detectable. In calculus, 0/0 appears as an indeterminate form, which is a statement about limits rather than division — it means the limit is not determined by the individual limits and requires further work, which is what L'Hôpital's rule provides."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Multiplicative inverse",
+        "plain_definition": "The number you multiply by to get 1. Division is multiplication by the inverse, and zero has none."
+      },
+      {
+        "term": "Undefined",
+        "plain_definition": "Not assigned a value, because no consistent value exists — different from being infinite or unknown."
+      },
+      {
+        "term": "Indeterminate form",
+        "plain_definition": "A limit expression like 0/0 whose value is not fixed by its parts and must be evaluated another way."
+      },
+      {
+        "term": "NaN",
+        "plain_definition": "'Not a number' — the floating-point value marking a result that has no meaningful value."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Dividing by zero gives infinity.",
+        "reality": "Infinity is not a real number, and the quotient does not approach a single value: coming from above it grows without bound, from below it falls without bound. Some extended systems assign an unsigned infinity, but ordinary arithmetic cannot."
+      },
+      {
+        "myth": "Zero divided by zero is one, because anything divided by itself is one.",
+        "reality": "That rule holds precisely because a non-zero number has a unique inverse. For zero, every number satisfies the defining equation, so no single answer can be selected."
+      },
+      {
+        "myth": "It is just a convention mathematicians agreed on.",
+        "reality": "Assigning any value lets you derive 1 = 2 in a few lines of ordinary algebra. The prohibition is forced by consistency, not chosen for convenience."
+      },
+      {
+        "myth": "Nothing can be done about it in any system.",
+        "reality": "The Riemann sphere and the projectively extended real line do define division by zero for non-zero numerators, and are used routinely. They still leave 0/0 undefined, and they give up some ordinary properties in exchange."
+      }
+    ],
+    "why_it_matters": "It is the cleanest example of a definition being forced rather than chosen: mathematicians did not decide to forbid it, they discovered that permitting it destroys everything else. Recognising the difference between undefined, infinite and indeterminate is also directly useful — it is the distinction between a program that crashes, one that returns infinity and one that returns NaN, and knowing which you are looking at tells you what went wrong.",
+    "historical_background": {
+      "origin": "Brahmagupta, writing in 628, gave rules for arithmetic with zero and stumbled at division, asserting that zero divided by zero is zero — an answer later rejected.",
+      "motivation": "Bhāskara II in the twelfth century proposed that a quantity divided by zero is infinite, which captures the limiting behaviour but not a value, and the ambiguity persisted for centuries.",
+      "evolution": "The nineteenth-century development of abstract algebra settled it: once division was defined through multiplicative inverses and fields were axiomatised, zero's lack of an inverse became a proved consequence rather than a matter of opinion. IEEE 754 later made a separate engineering decision for computation."
+    },
+    "diagrams": [
+      {
+        "title": "Two different failures",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"a ÷ 0 asks:<br/>what times 0 gives a?\"] --> B{\"Is a zero?\"}\n  B -->|\"No, e.g. a = 6\"| C[\"Everything times 0 is 0\"]\n  C --> D[\"No candidate exists<br/>→ undefined\"]\n  B -->|\"Yes, a = 0\"| E[\"Every number works\"]\n  E --> F[\"No unique answer<br/>→ indeterminate\"]\n  D --> G[\"Forcing a value derives<br/>1 = 2\"]\n  F --> G",
+        "caption": "The two cases fail in opposite directions — nothing fits, or everything does — and both are fatal to a single-valued operation."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "What indeterminate forms mean in calculus",
+        "reason": "0/0 as a limit is a genuinely useful expression, and it is a completely different statement from division by zero."
+      },
+      {
+        "label": "How the Riemann sphere handles infinity",
+        "reason": "The system where division by zero is defined, and what it gives up to get there."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Multiplicative inverse",
+        "plain_definition": "The number that multiplies with a given one to give 1.",
+        "role": "requires"
+      },
+      {
+        "name": "Field axioms",
+        "plain_definition": "The rules ordinary arithmetic obeys, which force zero to have no inverse.",
+        "role": "covers"
+      },
+      {
+        "name": "Indeterminate form",
+        "plain_definition": "A limit whose value is not determined by the limits of its parts.",
+        "role": "covers"
+      },
+      {
+        "name": "Floating-point representation",
+        "plain_definition": "How computers store non-integer numbers, including infinities and NaN.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Division by zero",
+        "url": "https://en.wikipedia.org/wiki/Division_by_zero",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.75
+      },
+      {
+        "title": "Field (mathematics)",
+        "url": "https://en.wikipedia.org/wiki/Field_(mathematics)",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Indeterminate form",
+        "url": "https://en.wikipedia.org/wiki/Indeterminate_form",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      }
+    ],
+    "related_questions": [
+      "Why does 0.999... equal exactly 1?",
+      "Why is 0.1 + 0.2 not exactly 0.3?"
+    ]
+  },
+  {
+    "title": "Why do planes fly so high?",
+    "category_slug": "aviation",
+    "one_sentence_answer": "Thin air means less drag for the same lift, so an airliner burns far less fuel up high — and the altitude also buys smoother air, weather avoidance and time to react if something fails.",
+    "summary": "Cruising altitude is chosen by fuel economy first. Thin air halves the resistance, jet engines work efficiently in the cold, and the remaining benefits — weather, turbulence, gliding range — come free with the choice.",
+    "difficulty": "intermediate",
+    "reading_minutes": 6,
+    "curiosity_score": 0.8,
+    "confidence": 0.91,
+    "confidence_reason": "The aerodynamics and engine performance arguments are standard aeronautical engineering, and the operational reasons are documented in flight planning practice. Exact optimum altitudes vary by aircraft type, which is noted rather than given as a single figure.",
+    "tags": [
+      "aerodynamics",
+      "efficiency",
+      "atmosphere",
+      "flight"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Air resistance is what an aircraft spends most of its fuel fighting, and there is much less air to push through at 11 kilometres up — roughly a quarter of the density at sea level. Less air means less drag, so the same aircraft needs far less thrust to hold the same speed. There is a catch, of course: thin air also produces less lift, so the aircraft has to fly faster through it to stay up. That turns out to be a good bargain rather than a wash, because the speed gained is worth more than the extra effort. An airliner in thin air travels much faster over the ground for less fuel per kilometre than the same aircraft down low. Everything else — flying above the weather, above most turbulence, above other traffic — follows from a decision that was made on fuel economy."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of cycling through water versus cycling through air. The water is far denser, so you would exhaust yourself at walking pace; in air, the same effort carries you along at speed. Climbing to cruising altitude is a smaller version of that change, moving the aircraft into a thinner medium where each kilometre costs less to travel. Where the analogy stops: the cyclist does not need the fluid to hold them up, and the aircraft does. Thin air gives less lift as well as less drag, which is why the aircraft must fly faster and why there is an optimum rather than 'the higher the better'. Climb far enough and the wing can no longer generate the lift required at any speed the airframe can survive, which sets a hard ceiling."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Airliners typically cruise between about 9 and 12 kilometres, and the optimum rises as the flight progresses because the aircraft burns fuel and gets lighter — which is why long flights are often granted step climbs, moving up a level or two as weight decreases. Concorde flew far higher, around 18 kilometres, because supersonic flight demands even thinner air to keep drag manageable. Business jets also cruise higher than airliners, partly because they are lighter for their wing area. The limits are visible in the opposite direction too: the coffin corner is the altitude at which the minimum speed needed to generate lift and the maximum speed before the airflow goes supersonic over the wing converge, leaving almost no usable speed range. That narrowing margin is one factor in several high-altitude upset accidents."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Both lift and drag scale with air density and with the square of true airspeed. To maintain level flight, lift must equal weight, so as density falls the aircraft must fly faster to compensate. Because drag scales the same way, the drag force at the new equilibrium is similar — but the aircraft covers more ground for it, so drag per kilometre falls. Jet engines add a second effect: thrust falls with density, but so does fuel flow, and the very low temperatures at altitude improve thermodynamic efficiency, so specific fuel consumption improves. There is also the transonic constraint: airliners cruise at a Mach number just below the point where shock waves form over the wing and drag rises steeply, and because the speed of sound depends only on temperature, cruising in the cold upper atmosphere means a given Mach number corresponds to a lower true airspeed than it would lower down. The optimum altitude for a given weight balances these, and it rises as fuel burns off."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The performance parameter that matters is the product of Mach number and lift-to-drag ratio divided by specific fuel consumption, and the tropopause — around 11 kilometres at mid-latitudes, where temperature stops falling — is close to the sweet spot for typical transport aircraft, which is not a coincidence but a design target. Above it, temperature is roughly constant so the speed-of-sound benefit stops accruing while the lift penalty continues. The narrowing gap between stall speed and critical Mach number at high altitude is the coffin corner, and it is a genuine handling constraint: buffet margin, not thrust, often sets the maximum operating altitude for a given weight. The operational advantages are real but secondary. Weather avoidance matters because most convective weather tops out below cruising level, though thunderstorm anvils can exceed it. Glide range from altitude is substantial — roughly 100 to 150 kilometres from cruise for a typical airliner — which is a meaningful safety margin over oceans and is why ETOPS planning depends on it. Cabin pressurisation is the cost side of the same decision: the higher the cruise, the greater the pressure differential the fuselage must contain on every flight, which is the fatigue loading that made rounded windows necessary in the first place."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Air density",
+        "plain_definition": "How much air occupies a given volume. It falls with altitude, roughly to a quarter of sea level by 11 kilometres."
+      },
+      {
+        "term": "Drag",
+        "plain_definition": "The resistance an aircraft has to push through, and the thing most of its fuel is spent overcoming."
+      },
+      {
+        "term": "Mach number",
+        "plain_definition": "Speed as a fraction of the local speed of sound, which depends only on air temperature."
+      },
+      {
+        "term": "Coffin corner",
+        "plain_definition": "The altitude where the slowest safe speed and the fastest safe speed converge, leaving almost no margin."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Planes fly high mainly to avoid bad weather.",
+        "reality": "Weather avoidance is a real benefit but a secondary one. The altitude is chosen for fuel economy, and the aircraft is designed around cruising there."
+      },
+      {
+        "myth": "Higher is always better, so aircraft climb as high as they can.",
+        "reality": "There is an optimum for each weight, above which the lift penalty outweighs the drag benefit and the safe speed range narrows dangerously. The optimum rises during a flight as fuel is burned."
+      },
+      {
+        "myth": "The air is thinner so the engines struggle.",
+        "reality": "Thrust does fall with density, but fuel flow falls too and the cold improves efficiency. Engines are designed for these conditions; the thrust available is sized for take-off, not cruise."
+      },
+      {
+        "myth": "If the engines stopped at cruise the aircraft would fall out of the sky.",
+        "reality": "It would glide, typically 100 to 150 kilometres from cruising altitude. That range is part of the safety case for long overwater routes."
+      }
+    ],
+    "why_it_matters": "It is a good demonstration that an engineering decision is usually one variable being optimised with several benefits following behind — and that the reason people assume for a design choice is often the least important one. It also connects directly to why an airliner is built the way it is: cruising high forces cabin pressurisation, which drives the fatigue loading on the fuselage that shaped window design and inspection regimes.",
+    "historical_background": {
+      "origin": "Early airliners flew low because unpressurised cabins limited them to altitudes people could breathe at, which meant flying through weather rather than over it.",
+      "motivation": "The Boeing 307 Stratoliner introduced a pressurised cabin in 1938, making higher cruise possible, and the arrival of jet engines in the 1950s made it desirable, since a jet is far more efficient at altitude than a piston engine.",
+      "evolution": "The de Havilland Comet's fatigue failures in 1954 showed the cost of the pressurisation that high cruise requires, and the resulting damage-tolerance rules reshaped airframe design. Optimum cruise altitude has since been a routine flight-planning calculation rather than a fixed number."
+    },
+    "diagrams": [
+      {
+        "title": "The trade that sets cruising altitude",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Climb into thinner air\"] --> B[\"Drag falls with density\"]\n  A --> C[\"Lift falls with density\"]\n  C --> D[\"Must fly faster<br/>to stay up\"]\n  B --> E[\"Less fuel per kilometre\"]\n  D --> E\n  A --> F[\"Colder air improves<br/>engine efficiency\"]\n  F --> E\n  A --> G[\"Speed range narrows:<br/>stall vs critical Mach\"]\n  G --> H[\"Optimum altitude,<br/>rising as fuel burns off\"]\n  E --> H",
+        "caption": "Three effects push up and one pushes back. Where they balance is the cruising level, and it moves during the flight."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why aircraft cabins are pressurised",
+        "reason": "The direct cost of cruising high, and the loading that governs fuselage design."
+      },
+      {
+        "label": "How far an airliner can glide",
+        "reason": "The safety margin that altitude buys, and how it shapes route planning over oceans."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Aerodynamic drag",
+        "plain_definition": "Resistance to motion through air, scaling with density and the square of speed.",
+        "role": "requires"
+      },
+      {
+        "name": "Cruise optimisation",
+        "plain_definition": "Choosing the altitude and speed that minimise fuel per distance for a given weight.",
+        "role": "covers"
+      },
+      {
+        "name": "Mach number",
+        "plain_definition": "Speed relative to the local speed of sound, set by air temperature.",
+        "role": "requires"
+      },
+      {
+        "name": "Cabin pressurisation",
+        "plain_definition": "Maintaining breathable pressure inside the fuselage at altitude.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Cruise (aeronautics)",
+        "url": "https://en.wikipedia.org/wiki/Cruise_(aeronautics)",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Coffin corner (aerodynamics)",
+        "url": "https://en.wikipedia.org/wiki/Coffin_corner_(aerodynamics)",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Tropopause",
+        "url": "https://en.wikipedia.org/wiki/Tropopause",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why are airplane windows round?",
+      "Why does food taste bland on planes?"
+    ]
+  },
+  {
+    "title": "Why do astronauts float if gravity is still there?",
+    "category_slug": "space",
+    "one_sentence_answer": "They are not beyond gravity — they are falling, continuously, and so is their spacecraft, so nothing pushes back against them.",
+    "summary": "Gravity at the space station's altitude is nearly as strong as on the ground. Weightlessness comes from falling freely: in orbit you fall around the planet rather than into it, and everything falls together.",
+    "difficulty": "intermediate",
+    "reading_minutes": 6,
+    "curiosity_score": 0.91,
+    "confidence": 0.95,
+    "confidence_reason": "Orbital mechanics is classical physics verified by every spaceflight ever conducted, and the strength of gravity at orbital altitude is a straightforward calculation. The equivalence principle framing is standard.",
+    "tags": [
+      "gravity",
+      "orbits",
+      "free-fall",
+      "misconceptions"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "The International Space Station orbits about 400 kilometres up. That sounds far, but the Earth is 6,400 kilometres in radius, so the station is only about 6% further from the centre than you are — and gravity there is still about 90% as strong as at ground level. So gravity is not switched off. What is missing is the floor. Standing on the ground, you feel your weight because the ground pushes up on you; the sensation of weight is that push, not gravity itself. In orbit, the station and everyone in it are falling together, with nothing pushing back. There is no floor resisting the fall because the floor is falling too. You feel exactly what you feel in the instant after jumping off a diving board, except that in orbit the fall never ends."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Imagine being in a lift when the cable is cut. For those seconds you and the lift fall together, and you float inside it — not because gravity has gone, but because nothing is pushing you. Now imagine that fall never ending. That is orbit. The trick that makes it endless is sideways speed: fire a cannonball hard enough and it falls toward the Earth exactly as fast as the Earth's surface curves away beneath it, so it keeps missing. Where the analogy stops: the falling lift is a straight drop toward the ground and hits it in seconds, while orbital motion is a fall with enough sideways velocity — roughly 7.7 kilometres per second — that the path curves all the way around."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Aircraft reproduce the effect deliberately. Fly a parabolic arc — climbing steeply, then following the trajectory a thrown object would take — and everyone inside experiences about 20 to 25 seconds of weightlessness per arc, because the aircraft is falling on the same path they are. NASA has used this for training and research for decades, and the aircraft acquired the nickname 'vomit comet' for good reason. The scenes in the film Apollo 13 were filmed this way rather than simulated. The opposite demonstration is equally instructive: astronauts on a launch feel several times their normal weight, not because gravity has increased but because the rocket is pushing them hard. What you feel is always the push, never the gravity."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Gravitational acceleration falls with the square of the distance from the Earth's centre. At 400 kilometres altitude the distance is about 6,780 kilometres against 6,371 at the surface, giving roughly 8.7 metres per second squared — about 89% of the surface value. Orbit is the condition where an object's velocity is such that its gravitational acceleration exactly supplies the centripetal acceleration for a curved path around the Earth, requiring about 7.7 kilometres per second at that altitude, with an orbital period near 92 minutes. Because everything in the station experiences essentially the same acceleration, there is no relative acceleration between the astronaut and the walls, and no contact force — which is what a scale measures and what your body interprets as weight. The correct term is free fall or microgravity rather than zero gravity; small residual accelerations remain from atmospheric drag, tidal gradients across the station's length and crew movement."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "This is Einstein's equivalence principle in its most vivid form: locally, free fall is indistinguishable from the absence of gravity, and uniform acceleration is indistinguishable from a gravitational field. Locally is the important word. Over an extended body the field is not uniform, and the residual differences are tidal forces — the part of gravity that cannot be transformed away by choosing a falling frame, and the same effect that raises ocean tides and would stretch an object falling toward a black hole. On the station, tidal gradients produce accelerations on the order of a millionth of Earth gravity across its structure, which is why 'microgravity' is the accurate term and why sensitive experiments must be isolated from crew activity, which produces larger disturbances. Orbital decay is the other reality: at 400 kilometres there is still enough atmosphere to produce measurable drag, so the station loses altitude continuously and requires periodic reboosts. Finally, weightlessness is not the same as being unaffected — the human body treats the absence of load as a signal to shed bone and muscle, which is why crews exercise for hours daily and why long-duration flight remains a physiological problem rather than a solved one."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Free fall",
+        "plain_definition": "Moving under gravity alone, with no surface or force pushing back. This is what produces weightlessness."
+      },
+      {
+        "term": "Orbit",
+        "plain_definition": "Falling toward a body while moving sideways fast enough that the path curves around it instead of into it."
+      },
+      {
+        "term": "Microgravity",
+        "plain_definition": "The correct term for the station's environment: not zero gravity, but very small residual accelerations."
+      },
+      {
+        "term": "Equivalence principle",
+        "plain_definition": "The principle that being in free fall is locally indistinguishable from having no gravity at all."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "There is no gravity in space.",
+        "reality": "Gravity at the space station's altitude is about 89% of its strength at the ground. It is what holds the station in orbit — without it the station would fly off in a straight line."
+      },
+      {
+        "myth": "Astronauts float because they are so far away that gravity is negligible.",
+        "reality": "Distance is not the reason. They float because they are in free fall along with their spacecraft, which would produce the same sensation at any altitude, including in a falling lift."
+      },
+      {
+        "myth": "Orbit means being beyond the pull of the Earth.",
+        "reality": "Orbit is a continuous fall that keeps missing the ground because of sideways speed. Escaping the Earth's influence entirely is a completely different and much more demanding manoeuvre."
+      },
+      {
+        "myth": "Weightlessness means the body is unstressed and comfortable.",
+        "reality": "The absence of load causes bone density and muscle loss, fluid shifts toward the head, and vision changes. It is a demanding environment that requires hours of daily countermeasures."
+      }
+    ],
+    "why_it_matters": "It corrects one of the most widely held physical misconceptions, and the correction contains a genuinely deep idea: what you feel as weight is the force pushing back on you, not gravity itself. That reframing is the first step toward the equivalence principle and general relativity — and it explains why a falling lift, a parabolic aircraft and an orbiting station all produce the same sensation for exactly the same reason.",
+    "historical_background": {
+      "origin": "Isaac Newton posed the thought experiment in the Principia: a cannon fired from a high mountain with increasing charge lands further away each time, until at sufficient speed the ball never lands at all and circles the Earth.",
+      "motivation": "That picture unified falling apples and orbiting moons under a single law, but the sensation of weightlessness was not observed directly until human spaceflight in 1961.",
+      "evolution": "Einstein reframed the whole matter in 1907 with the equivalence principle — his 'happiest thought' was that a person in free fall does not feel their own weight — which became the foundation of general relativity in 1915."
+    },
+    "diagrams": [
+      {
+        "title": "Falling, with and without a floor",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Gravity acts on you\"] --> B{\"Is something<br/>pushing back?\"}\n  B -->|\"Yes — the ground\"| C[\"Contact force on your feet\"]\n  C --> D[\"You feel weight\"]\n  B -->|\"No — free fall\"| E[\"You and everything<br/>around you accelerate<br/>identically\"]\n  E --> F[\"No contact force\"]\n  F --> G[\"You feel weightless\"]\n  G --> H[\"Falling lift: ends in seconds\"]\n  G --> I[\"Orbit: sideways speed means<br/>the fall never ends\"]",
+        "caption": "Gravity is present on both branches. The sensation of weight comes entirely from what pushes back."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why orbits decay and need reboosting",
+        "reason": "Even at 400 kilometres there is enough atmosphere to matter, which is why orbit is not maintenance-free."
+      },
+      {
+        "label": "What the equivalence principle led to",
+        "reason": "The observation that free fall feels like no gravity is the starting point of general relativity."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Free fall",
+        "plain_definition": "Motion under gravity alone, with no supporting force.",
+        "role": "covers"
+      },
+      {
+        "name": "Orbital mechanics",
+        "plain_definition": "The relationship between speed, altitude and the curved path of an orbiting body.",
+        "role": "covers"
+      },
+      {
+        "name": "Equivalence principle",
+        "plain_definition": "The local indistinguishability of free fall and the absence of gravity.",
+        "role": "requires"
+      },
+      {
+        "name": "Tidal forces",
+        "plain_definition": "The part of a gravitational field that varies across an extended object and cannot be transformed away.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Weightlessness",
+        "url": "https://en.wikipedia.org/wiki/Weightlessness",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Orbital mechanics",
+        "url": "https://en.wikipedia.org/wiki/Orbital_mechanics",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Equivalence principle",
+        "url": "https://en.wikipedia.org/wiki/Equivalence_principle",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      }
+    ],
+    "related_questions": [
+      "Why are rockets launched eastward?",
+      "Why can't anything travel faster than light?"
+    ]
+  }
+]

@@ -1,0 +1,921 @@
+[
+  {
+    "title": "Why can a paracetamol overdose be deadly even when you feel fine?",
+    "category_slug": "medicine",
+    "one_sentence_answer": "The damage is done by a chemical your liver makes while breaking the drug down, and it destroys liver cells for a day or more before you feel anything at all.",
+    "summary": "Paracetamol poisoning has almost no early symptoms, and the antidote works best in the window when nothing seems wrong. That gap between harm and sensation is what makes it dangerous.",
+    "difficulty": "beginner",
+    "reading_minutes": 6,
+    "curiosity_score": 0.74,
+    "confidence": 0.93,
+    "confidence_reason": "The metabolic pathway, the delayed presentation and the time-dependence of the antidote are settled clinical pharmacology, documented in toxicology guidelines used in emergency departments worldwide.",
+    "tags": [
+      "health",
+      "safety",
+      "first-aid",
+      "poisoning",
+      "practical"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "At normal doses your liver disposes of paracetamol easily. A small fraction of it gets converted into a reactive chemical that would damage cells, but the liver keeps a supply of a protective substance that mops that chemical up as fast as it appears. Take far too much and the disposal routes get saturated, so much more of the reactive chemical is produced, and the protective supply runs out. After that, every additional molecule attacks liver cells directly. The critical part is the timing. Liver cells dying does not hurt, and for the first day a person may feel nothing worse than mild nausea, or nothing at all. By the time jaundice, pain and confusion appear, two or three days later, a great deal of the liver may be gone — and the antidote, which works by replenishing the protective substance, is far less effective by then."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a factory that produces a small amount of toxic waste and a tank of neutralising fluid that handles it automatically. Nobody monitors the tank because it has never run dry. Increase production tenfold and the tank empties within hours; from that moment the waste goes straight into the building. Nothing alarms, nothing smells, and the damage accumulates silently. Refilling the tank stops further harm but does not undo what has already happened, which is why refilling early matters more than refilling thoroughly. Where the analogy stops: a factory can be shut down, while your liver has to keep processing whatever is already in your bloodstream. That is why treatment is about supporting the liver through the process rather than removing the drug."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The most common route to an accidental overdose is not one large dose but several ordinary ones. Paracetamol appears under many brand names and inside a great number of combination products — cold and flu sachets, night-time remedies, some prescription painkillers — so someone treating a bad cold can take a cold remedy, a headache tablet and a night-time preparation and exceed the daily limit without ever knowingly taking two of the same thing. Regulation has responded to the deliberate route: after the United Kingdom restricted pack sizes in 1998, studies over the following decade found a substantial fall in deaths and in liver transplants attributed to paracetamol, an unusually clear demonstration that limiting availability changes outcomes. Paracetamol remains one of the leading causes of acute liver failure in the UK and the United States."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Most paracetamol is cleared by attaching it to other molecules — glucuronidation and sulfation — producing harmless products excreted in urine. A minority is instead oxidised by a liver enzyme system, cytochrome P450, chiefly the CYP2E1 form, into a reactive metabolite called NAPQI. At therapeutic doses NAPQI is immediately conjugated with glutathione, an antioxidant the liver holds in reserve, and excreted. In overdose the conjugation routes saturate, NAPQI production rises sharply, and glutathione stores are depleted — typically once they fall below about 30% of normal, free NAPQI binds to cellular proteins and causes centrilobular hepatic necrosis. The antidote, acetylcysteine, works by replenishing glutathione precursors. Its effectiveness is strongly time-dependent: given within roughly eight hours of ingestion it is close to fully protective, and its benefit declines as the interval lengthens. Blood levels plotted against time on a treatment nomogram determine who needs it."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Individual susceptibility varies more than the fixed dose limits suggest. Chronic alcohol use induces CYP2E1, increasing NAPQI production, while acute intoxication competes for the same enzyme; malnutrition, fasting and chronic illness lower baseline glutathione; and low body weight reduces the absolute dose required to cause harm. This is why staggered overdoses — repeated supratherapeutic doses over hours or days, often taken for genuine pain — are managed cautiously even when no single dose looks alarming, and why the nomogram does not apply to them. Modified-release preparations complicate the picture further by producing late peaks that a single early blood level can miss. Two practical points follow from all of this and are worth stating plainly. First, the correct response to a suspected overdose is immediate medical assessment regardless of how well the person feels, because feeling well is the expected state during the window when treatment works best. Second, do not wait for symptoms or induce vomiting; emergency services and poisons information lines exist for exactly this call, and the decision to treat is made on dose and timing, not on how ill someone looks."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Metabolite",
+        "plain_definition": "A substance your body produces while breaking something else down. Here, the harmful one is made from the drug itself."
+      },
+      {
+        "term": "Glutathione",
+        "plain_definition": "A protective substance the liver keeps in reserve to neutralise reactive chemicals before they damage cells."
+      },
+      {
+        "term": "NAPQI",
+        "plain_definition": "The reactive product of paracetamol breakdown that damages liver cells once the protective reserve is gone."
+      },
+      {
+        "term": "Acetylcysteine",
+        "plain_definition": "The antidote, which restores the liver's supply of the protective substance. Most effective within about eight hours."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "If you feel fine several hours later, the overdose was not serious.",
+        "reality": "Feeling fine is the normal state during the first day, and it is exactly the period when treatment works best. Symptoms appearing two or three days later signal damage that has already happened."
+      },
+      {
+        "myth": "It is a safe drug, so exceeding the dose a little is harmless.",
+        "reality": "It is very safe at the correct dose and has an unusually narrow margin above it. The gap between the maximum daily dose and a potentially harmful one is far smaller than for most over-the-counter medicines."
+      },
+      {
+        "myth": "Overdoses happen only when someone takes a whole packet at once.",
+        "reality": "Accidental staggered overdose from combination products is common — a cold remedy, a painkiller and a night-time preparation can each contain paracetamol without the name appearing prominently."
+      },
+      {
+        "myth": "You should make the person vomit.",
+        "reality": "Inducing vomiting is not recommended and delays proper treatment. The decision to give the antidote is based on the dose taken and the time since, which is why the correct action is immediate medical advice."
+      }
+    ],
+    "why_it_matters": "It is one of the clearest cases where the body's warning system and the actual danger are out of step, and where acting on how you feel produces exactly the wrong decision. The practical consequence is simple and worth remembering: with paracetamol, the time to seek help is when nothing seems wrong. It is also a reminder to read what is actually in a combination remedy, since that is how most accidental overdoses happen.",
+    "historical_background": {
+      "origin": "Paracetamol was synthesised in 1878 and came into wide use in the 1950s as a safer alternative to phenacetin, which damaged kidneys.",
+      "motivation": "Cases of liver failure after overdose were described from the 1960s, and the NAPQI mechanism was worked out in the 1970s by researchers including David Jollow and James Mitchell, explaining why damage appeared after a delay.",
+      "evolution": "Acetylcysteine was introduced as an antidote in the 1970s, the Rumack-Matthew nomogram standardised who to treat, and pack-size restrictions introduced in the UK in 1998 were followed by measurable falls in deaths and transplants."
+    },
+    "diagrams": [
+      {
+        "title": "Two disposal routes, and what happens when they fill up",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Paracetamol taken\"] --> B[\"Most: joined to other molecules<br/>and excreted safely\"]\n  A --> C[\"Some: oxidised into NAPQI\"]\n  C --> D{\"Glutathione<br/>still available?\"}\n  D -->|\"Yes — normal dose\"| E[\"NAPQI neutralised,<br/>no harm\"]\n  D -->|\"No — reserves used up\"| F[\"NAPQI attacks liver cells\"]\n  F --> G[\"Damage accumulates<br/>with no symptoms\"]\n  G --> H[\"Day 2–3: jaundice, pain,<br/>liver failure\"]\n  F -.->|\"Acetylcysteine within ~8 h\"| E",
+        "caption": "The dotted line is the treatment window — it closes while the person still feels well."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How the liver processes drugs generally",
+        "reason": "The same enzyme system determines why some drugs interact dangerously and why alcohol changes the picture."
+      },
+      {
+        "label": "Why some medicines have a narrow safety margin",
+        "reason": "The gap between an effective dose and a harmful one varies enormously between drugs, and it explains a great deal of prescribing practice."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Drug metabolism",
+        "plain_definition": "The chemical processing a medicine undergoes in the body, which can produce harmful products.",
+        "role": "covers"
+      },
+      {
+        "name": "Glutathione depletion",
+        "plain_definition": "Exhaustion of the liver's protective reserve, after which reactive chemicals damage cells.",
+        "role": "covers"
+      },
+      {
+        "name": "Therapeutic index",
+        "plain_definition": "The gap between a dose that works and a dose that harms.",
+        "role": "requires"
+      },
+      {
+        "name": "Delayed presentation",
+        "plain_definition": "Harm occurring well before any symptom appears.",
+        "role": "requires"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Paracetamol poisoning",
+        "url": "https://en.wikipedia.org/wiki/Paracetamol_poisoning",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Acetylcysteine",
+        "url": "https://en.wikipedia.org/wiki/Acetylcysteine",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Paracetamol",
+        "url": "https://en.wikipedia.org/wiki/Paracetamol",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      }
+    ],
+    "related_questions": [
+      "Why don't antibiotics work on colds?",
+      "Why do we get a fever when we are ill?"
+    ]
+  },
+  {
+    "title": "Why does water make a pan fire worse?",
+    "category_slug": "food",
+    "one_sentence_answer": "The oil is hotter than boiling water by hundreds of degrees, so the water flashes into steam instantly and blasts the burning oil upward and outward as a fireball.",
+    "summary": "A cup of water thrown into burning oil expands to over a thousand times its volume in a fraction of a second. The correct response is to cut the heat and cover the pan — never to add water and never to move it.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.86,
+    "confidence": 0.94,
+    "confidence_reason": "The physics of steam expansion is exactly calculable and the effect is demonstrated in fire service training footage. The recommended response matches published fire safety guidance across several countries.",
+    "tags": [
+      "safety",
+      "fire",
+      "emergency",
+      "practical"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Cooking oil catches fire somewhere around 350 degrees Celsius. Water boils at 100. So water landing in a burning pan is not arriving in something hot — it is arriving in something more than three times hotter than its own boiling point. It does not sit there and cool anything down; it turns to steam immediately, and steam takes up roughly seventeen hundred times the space the water did. All of that expansion happens underneath the oil, because water is denser and sinks first. The result is that the burning oil is thrown violently upwards and outwards in every direction, spreading fire across the kitchen and over anyone standing at the hob. What was a contained fire in a pan becomes a room fire and a serious burn in less than a second."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Imagine dropping a sealed balloon to the bottom of a pan of oil and then inflating it instantly to the size of a small car. Whatever was above it goes up and out with enormous force. That is what a splash of water does: it sinks, converts to vapour, and expands under the burning layer. The fire is not being fought — it is being launched. Where the analogy stops: the balloon would push the oil aside in one direction, while the steam bursts through it, tearing the oil into a fine spray. Droplets of hot oil have far more surface area than the pan did, so they ignite as they fly, which is why the result looks like a fireball rather than a splash."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Fire services demonstrate this every year with a burning chip pan and a cup of water, usually filmed from a safe distance, and the fireball routinely rises several metres. Chip pan fires were historically one of the leading causes of domestic fires in the United Kingdom, which is why the demonstration became a public safety staple and why traditional chip pans have largely been replaced by thermostatically controlled fryers. Commercial kitchens address the same physics with equipment rather than advice: kitchen fire suppression systems and class F extinguishers, called class K in North America, discharge a wet chemical that reacts with the hot oil to form a soapy layer sealing the surface — a process called saponification — instead of trying to cool it with water."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Cooking oils have flash points around 300 to 330 degrees Celsius and autoignition temperatures near 360 to 400, so a pan that has ignited is well above the boiling point of water. When water contacts it, heat transfer is essentially instantaneous at the interface and the water undergoes explosive vaporisation. The volume ratio of steam to liquid water at atmospheric pressure is about 1,700 to 1, and because water is denser than oil it sinks before it flashes, so the expansion occurs beneath the burning surface. The rapidly expanding vapour atomises the oil into droplets, which vastly increases the surface area available to react with oxygen, and each droplet is already above its ignition temperature. This is a boiling liquid expanding vapour event in miniature, and it converts a surface fire into a three-dimensional one. The correct intervention removes one leg of the fire triangle instead: cutting the heat removes the energy input, and covering the pan removes the oxygen."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The same mechanism explains several related hazards that look different. A wet utensil lowered into hot oil, or frozen food dropped into a fryer, produces the same steam expansion at smaller scale — which is why frozen chips spit violently and why commercial fryers have strict loading procedures. It is also why a fire blanket must be laid across the pan rather than dropped or thrown: throwing it can disturb the surface and displace burning oil, and it must be left in place until the pan is cold, since oil above its autoignition temperature will simply relight when uncovered. Moving the pan is the other common fatal error, because carrying a container of burning liquid means any stumble distributes it over the person carrying it and along their escape route. The formal advice from fire services is consistent on the priority order: get out and call for help, and only attempt to smother a small contained fire if it can be done without exposure. Domestic extinguisher choice matters too — water and standard foam extinguishers are actively dangerous on cooking oil, and only a wet chemical class F unit is rated for it."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Autoignition temperature",
+        "plain_definition": "The temperature at which something catches fire on its own, with no flame or spark needed."
+      },
+      {
+        "term": "Explosive vaporisation",
+        "plain_definition": "Liquid turning to vapour almost instantly because it meets something far above its boiling point."
+      },
+      {
+        "term": "Fire triangle",
+        "plain_definition": "The three things a fire needs — fuel, oxygen and heat. Removing any one of them puts it out."
+      },
+      {
+        "term": "Saponification",
+        "plain_definition": "The reaction that turns hot oil into a soap-like layer, used by kitchen extinguishers to seal the surface."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "A small splash of water would help cool the oil down.",
+        "reality": "Volume makes no difference to the mechanism. Any water sinks below the burning oil and flashes to steam, and even a cupful produces a fireball large enough to cause serious burns."
+      },
+      {
+        "myth": "You should carry the burning pan outside.",
+        "reality": "Moving a container of burning liquid risks spilling it over yourself and along your exit. Fire services are explicit that the pan should not be moved."
+      },
+      {
+        "myth": "A damp cloth over the pan is a good improvised lid.",
+        "reality": "The water in it flashes to steam against the burning surface. Use a dry fire blanket or a metal lid, laid on rather than dropped, and leave it until the pan is completely cold."
+      },
+      {
+        "myth": "Any fire extinguisher will do.",
+        "reality": "Water and standard foam extinguishers make a cooking oil fire dramatically worse. Only a wet chemical extinguisher — class F in Europe, class K in North America — is rated for it."
+      }
+    ],
+    "why_it_matters": "This is a case where the instinctive response is the dangerous one, and where knowing a single number — how much water expands when it flashes to steam — makes the reason obvious enough to remember under stress. The same physics governs several other kitchen hazards, from frozen food in a fryer to a wet spoon in hot oil, so understanding it once covers a whole family of accidents.",
+    "historical_background": {
+      "origin": "Deep frying in open pans made cooking fires a leading category of domestic fire through the twentieth century, and chip pan fires were a specific and well-documented cause in the United Kingdom.",
+      "motivation": "Public information campaigns from the 1970s onward used filmed demonstrations of water thrown onto burning oil precisely because the effect is so much more dramatic than people expect.",
+      "evolution": "Engineering largely replaced advice: thermostatically controlled fryers removed the overheating step in homes, and commercial kitchens adopted wet chemical suppression systems and class F extinguishers designed for the specific chemistry of hot oil."
+    },
+    "diagrams": [
+      {
+        "title": "Why the fire gets bigger",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Oil burning at ~350 °C\"] --> B{\"What is added?\"}\n  B -->|\"Water\"| C[\"Sinks below the oil\"]\n  C --> D[\"Flashes to steam:<br/>×1700 volume\"]\n  D --> E[\"Burning oil atomised<br/>and thrown outward\"]\n  E --> F[\"Room fire and burns\"]\n  B -->|\"Nothing — heat off,<br/>lid or fire blanket on\"| G[\"Oxygen and heat removed\"]\n  G --> H[\"Fire goes out;<br/>leave covered until cold\"]",
+        "caption": "The left branch adds energy to the system. Only the right branch removes something the fire needs."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why frozen food spits in hot oil",
+        "reason": "The same steam expansion at a smaller scale, and the reason fryers have loading rules."
+      },
+      {
+        "label": "What each extinguisher class is actually for",
+        "reason": "Using the wrong one is worse than using none, and cooking oil is the clearest example."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Explosive vaporisation",
+        "plain_definition": "Near-instant conversion of liquid to vapour on contact with something far hotter.",
+        "role": "covers"
+      },
+      {
+        "name": "Fire triangle",
+        "plain_definition": "Fuel, oxygen and heat — remove one and the fire stops.",
+        "role": "requires"
+      },
+      {
+        "name": "Autoignition",
+        "plain_definition": "Combustion starting from temperature alone, without a spark.",
+        "role": "requires"
+      },
+      {
+        "name": "Fire suppression",
+        "plain_definition": "Methods of extinguishing fires matched to the fuel involved.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Class B fire",
+        "url": "https://en.wikipedia.org/wiki/Class_B_fire",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Fire extinguisher",
+        "url": "https://en.wikipedia.org/wiki/Fire_extinguisher",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Autoignition temperature",
+        "url": "https://en.wikipedia.org/wiki/Autoignition_temperature",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why do carbon monoxide alarms matter when smoke alarms already exist?",
+      "Why does bread go stale faster in the fridge?"
+    ]
+  },
+  {
+    "title": "Why do carbon monoxide alarms matter when smoke alarms already exist?",
+    "category_slug": "engineering",
+    "one_sentence_answer": "Carbon monoxide has no smell, no colour and no smoke, and it binds to your blood hundreds of times more readily than oxygen — so nothing you can sense tells you it is there.",
+    "summary": "A smoke alarm detects particles. Carbon monoxide produces none, comes from equipment working badly rather than burning, and its early symptoms are indistinguishable from flu — which is why it needs a separate detector.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.77,
+    "confidence": 0.93,
+    "confidence_reason": "The binding chemistry and the symptom profile are well established, and the detection principles are documented in the standards alarms are certified against. The recommendation to fit and replace alarms reflects consistent guidance from fire and health authorities.",
+    "tags": [
+      "safety",
+      "health",
+      "emergency",
+      "maintenance",
+      "practical"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "Your body has no sense for carbon monoxide. It has no smell, no taste and no colour, and it does not irritate your eyes or throat the way smoke does. Worse, what it does inside you feels like something ordinary: headache, tiredness, nausea, muddled thinking — exactly like coming down with flu. So the natural interpretation of the early symptoms is that you should go and lie down, which is the worst possible response, because it keeps you in the room. Meanwhile a smoke alarm will not help, because it is built to detect particles of smoke, and carbon monoxide comes from fuel burning badly rather than from something being on fire. A boiler with a blocked flue can fill a house with it while producing no smoke at all."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of your blood as a fleet of buses collecting oxygen at the lungs and dropping it off around the body. Carbon monoxide is a passenger that boards the same seats and refuses to get off — and it pushes ahead of oxygen in the queue by a factor of a couple of hundred. Even a small amount in the air fills a large share of the seats, so the buses keep running and arrive nearly empty. Where the analogy stops: it is worse than simple crowding, because the molecules that do carry oxygen become reluctant to release it at the tissues. So the shortage at the destination is greater than the seat count alone suggests, which is part of why symptoms appear at concentrations that sound low."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The characteristic pattern is a household that feels unwell at home and better when away — on holiday, at work, staying with relatives — because leaving the building is the treatment. Poisoning clusters around specific sources: faulty or poorly serviced gas boilers and heaters, blocked chimneys and flues, portable generators run in a garage or near an open window after a storm, charcoal barbecues brought inside or into a tent to keep warm, and running an engine in an attached garage. Detectors are legally required in rental properties in an increasing number of jurisdictions precisely because the cost of a device is trivial against the outcome. There is a second signature worth knowing: pets often show symptoms first, being smaller, and unexplained sooting or staining around an appliance is a warning sign in itself."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Carbon monoxide is produced by incomplete combustion — burning any carbon-based fuel with insufficient oxygen. It binds to haemoglobin, the oxygen-carrying protein in red blood cells, with an affinity roughly 200 to 250 times greater than oxygen's, forming carboxyhaemoglobin. That both reduces oxygen-carrying capacity and shifts the oxygen dissociation curve leftward, meaning the remaining oxygen is released less readily to tissues, so the impairment exceeds what the displaced fraction alone would cause. Detection uses a different principle from smoke alarms: most domestic units contain an electrochemical cell in which carbon monoxide is oxidised at an electrode, producing a current proportional to concentration. Alarms are designed to respond to dose rather than to a single threshold, tolerating brief low concentrations while alarming quickly at high ones, because health effects depend on concentration multiplied by exposure time."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "Three practical details follow from the chemistry and are routinely got wrong. First, sensors expire: the electrochemical cell degrades whether or not it has ever detected anything, so alarms carry an end-of-life date, typically seven to ten years, and an alarm past that date may fail silently — testing the button confirms the sounder works, not the sensor. Second, placement follows from the gas being close to the density of air, so it mixes rather than pooling at floor or ceiling; guidance generally places alarms at breathing height in rooms with fuel-burning appliances and near sleeping areas, and away from windows, extractor fans and directly above appliances where false readings are likely. Third, the elimination half-life of carboxyhaemoglobin is about four to five hours breathing ordinary air, roughly an hour on high-flow oxygen, and far shorter under hyperbaric treatment — which is why treatment is oxygen and why leaving the building matters immediately. The delayed neurological syndrome is the part most people have never heard of: a proportion of survivors develop cognitive and movement problems days to weeks after apparent recovery, which is a strong argument for medical assessment even after symptoms resolve."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Incomplete combustion",
+        "plain_definition": "Fuel burning without enough oxygen, which produces carbon monoxide instead of only carbon dioxide."
+      },
+      {
+        "term": "Haemoglobin",
+        "plain_definition": "The protein in red blood cells that carries oxygen — and which carbon monoxide occupies in its place."
+      },
+      {
+        "term": "Carboxyhaemoglobin",
+        "plain_definition": "Haemoglobin with carbon monoxide attached, which cannot carry oxygen."
+      },
+      {
+        "term": "Electrochemical sensor",
+        "plain_definition": "The detector inside a carbon monoxide alarm, which produces a small current when the gas reacts at an electrode."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "A smoke alarm will detect carbon monoxide.",
+        "reality": "Smoke alarms detect particles, by light scattering or ionisation. Carbon monoxide is an invisible gas that produces no particles, so a smoke alarm has nothing to respond to."
+      },
+      {
+        "myth": "You would smell it or notice something wrong.",
+        "reality": "It is odourless and colourless, and the early symptoms resemble flu closely enough that the usual response — resting indoors — increases exposure."
+      },
+      {
+        "myth": "Pressing the test button proves the alarm works.",
+        "reality": "That tests the sounder and the battery. The sensing cell degrades over years regardless of use, which is why alarms carry a replacement date, typically seven to ten years."
+      },
+      {
+        "myth": "It sinks to the floor, so alarms belong low down.",
+        "reality": "Its density is close to that of air, so it mixes throughout a room. Guidance places alarms at around breathing height rather than at floor level."
+      }
+    ],
+    "why_it_matters": "It is the clearest case of a hazard your senses were never built to notice, where the only warning available is one you have to install and maintain deliberately. Knowing why also fixes the two things people get wrong in practice: that a smoke alarm does not cover it, and that a working button does not mean a working sensor. The underlying idea — that detection has to match the thing being detected — applies to every alarm in a building.",
+    "historical_background": {
+      "origin": "Carbon monoxide poisoning was a routine hazard of coal gas, which contained the gas directly, and domestic supplies in many countries were poisonous until conversion to natural gas in the 1960s and 1970s.",
+      "motivation": "Conversion removed the gas from the supply but not the risk, since incomplete combustion in any appliance still produces it — shifting the problem from the fuel itself to appliance maintenance and ventilation.",
+      "evolution": "Affordable electrochemical sensors made domestic alarms practical from the 1990s, and requirements to fit them, particularly in rented housing, have spread steadily since."
+    },
+    "diagrams": [
+      {
+        "title": "Why nothing else warns you",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Fuel burning with<br/>too little oxygen\"] --> B[\"Carbon monoxide:<br/>no colour, no smell,<br/>no smoke\"]\n  B --> C[\"Smoke alarm sees<br/>no particles\"]\n  B --> D[\"Your senses<br/>detect nothing\"]\n  B --> E[\"Binds haemoglobin<br/>~200× more readily<br/>than oxygen\"]\n  E --> F[\"Headache, nausea, confusion —<br/>reads as flu\"]\n  F --> G[\"Natural response:<br/>lie down indoors\"]\n  B --> H[\"Electrochemical CO alarm:<br/>the only warning\"]",
+        "caption": "Every ordinary warning path is a dead end, which is what makes the dedicated detector the whole defence."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How smoke alarms actually detect smoke",
+        "reason": "Ionisation and photoelectric sensing detect different fires, and the difference matters for where each belongs."
+      },
+      {
+        "label": "Why incomplete combustion happens at all",
+        "reason": "The same chemistry explains sooty flames, yellow gas rings and why ventilation is part of appliance safety."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Carbon monoxide poisoning",
+        "plain_definition": "Oxygen starvation caused by the gas binding to haemoglobin in place of oxygen.",
+        "role": "covers"
+      },
+      {
+        "name": "Incomplete combustion",
+        "plain_definition": "Burning with insufficient oxygen, producing carbon monoxide.",
+        "role": "requires"
+      },
+      {
+        "name": "Electrochemical sensing",
+        "plain_definition": "Measuring a gas by the current produced when it reacts at an electrode.",
+        "role": "covers"
+      },
+      {
+        "name": "Detector maintenance",
+        "plain_definition": "Sensors ageing out on a fixed schedule regardless of use.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Carbon monoxide poisoning",
+        "url": "https://en.wikipedia.org/wiki/Carbon_monoxide_poisoning",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Carbon monoxide detector",
+        "url": "https://en.wikipedia.org/wiki/Carbon_monoxide_detector",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Carboxyhemoglobin",
+        "url": "https://en.wikipedia.org/wiki/Carboxyhemoglobin",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why does water make a pan fire worse?",
+      "Why don't birds get electrocuted on power lines?"
+    ]
+  },
+  {
+    "title": "Why does saving early beat saving more later?",
+    "category_slug": "finance",
+    "one_sentence_answer": "Money you invest early spends longer earning returns on its own returns, and that compounding grows with time in a way that later contributions cannot catch up with.",
+    "summary": "Ten years of early contributions can outweigh thirty years of later ones, because the first money invested is the only money that gets the full run of growth. Time in the market does the work, not the amount saved.",
+    "difficulty": "beginner",
+    "reading_minutes": 6,
+    "curiosity_score": 0.81,
+    "confidence": 0.85,
+    "confidence_reason": "The arithmetic of compounding is exact and can be checked directly. The illustrative outcomes depend on assumed rates of return, which are genuinely uncertain — the card states its assumptions rather than presenting a single figure as a forecast.",
+    "tags": [
+      "money",
+      "savings",
+      "practical"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "If money grows by a percentage each year, then next year's growth is calculated on this year's total — including the growth you already earned. So a pound invested is not simply a pound; it is a pound plus everything that pound will earn, and everything those earnings will earn. That chain gets longer the earlier you start, and its length matters more than its width. A pound put in at 25 has forty years to multiply; a pound put in at 55 has ten. This is why someone who saves modestly in their twenties and then stops can end up ahead of someone who saves far more from their forties onward. The later saver has more money going in and less time for it to work, and time is the factor being multiplied repeatedly."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a folded sheet of paper. Fold it once and it is twice as thick; fold it again and it is four times. The first few folds look trivial, and it is only once the doubling has happened many times that the thickness becomes absurd. Compounding is that, at a gentler rate: nothing much appears to happen for years, and then the curve steepens sharply. Where the analogy stops: paper folding doubles every time, while investment returns are far smaller per year and, crucially, not guaranteed — a bad decade can undo several good ones, and the sequence in which returns arrive changes the outcome. The shape of the curve is the honest part of the analogy; the certainty is not."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The standard illustration, worth doing yourself rather than taking on trust, compares two savers assuming a 7% annual return. One puts aside £200 a month from age 25 to 35 and then never adds another penny — £24,000 in total. The other starts at 35 and pays in £200 a month until 65 — £72,000, three times as much. At 65 the first saver typically ends up with a comparable or larger pot despite contributing a third as much, because their ten years of contributions had thirty extra years to compound. Change the rate and the numbers move, but the ordering is robust across any positive return. The same arithmetic runs in reverse on debt: a credit card balance at 20% compounding against you is the identical mechanism pointed the other way, which is why paying it down usually beats investing."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Compound growth is exponential: a sum multiplied by one plus the rate, raised to the number of periods. Because the exponent is time, each additional year multiplies the whole accumulated total rather than adding a fixed amount, and the contribution of an early payment is scaled by growth over every subsequent year. A useful shortcut is the rule of 72 — dividing 72 by the annual percentage rate gives roughly the years to double — so at 7% money doubles about every ten years, meaning a pound invested at 25 goes through roughly four doublings by 65 while a pound invested at 55 goes through one. Two adjustments matter for honesty. Returns must be considered after inflation, since a 7% nominal return with 3% inflation is about 4% in purchasing power. And fees compound too: a 1% annual charge does not cost 1% of the final total but a substantially larger share, because it is deducted from the base that would have compounded."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The tidy illustration hides real complications. Sequence-of-returns risk means the order of gains and losses matters enormously once contributions or withdrawals are involved: two portfolios with identical average returns can end up far apart depending on when the bad years fall, and the risk is greatest around retirement, when the pot is largest. Historical equity returns are the basis for figures like 7%, but they are averages over long periods with wide dispersion and substantial survivorship bias in the datasets, so a single assumed rate should be read as an illustration rather than a projection. Volatility drag is another real effect: the compound growth rate of a volatile series is lower than its arithmetic average, which is why a portfolio that gains 50% then loses 50% is down 25% rather than flat. There is also a behavioural asymmetry worth naming — the practical obstacle to starting early is almost never ignorance of the arithmetic but income in early adulthood, so the useful version of this advice is that small amounts started early are worth more than waiting for a large amount to spare. None of this constitutes financial advice; it is the mechanism, and what to do about it depends on circumstances the mechanism does not know about."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Compound growth",
+        "plain_definition": "Growth calculated on the accumulated total, so earnings themselves start earning."
+      },
+      {
+        "term": "Rule of 72",
+        "plain_definition": "Divide 72 by the annual percentage rate to estimate how many years it takes for money to double."
+      },
+      {
+        "term": "Real return",
+        "plain_definition": "The return after inflation, which is what determines what your money can actually buy."
+      },
+      {
+        "term": "Sequence-of-returns risk",
+        "plain_definition": "The way the order of good and bad years changes the outcome once you are paying in or drawing out."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "The amount you save matters more than when you start.",
+        "reality": "Over long periods the opposite is usually true. Early contributions are multiplied by growth over every subsequent year, which is why ten early years can outweigh thirty later ones."
+      },
+      {
+        "myth": "Compounding means growth is guaranteed.",
+        "reality": "The arithmetic is certain; the returns are not. Real portfolios have losing years, and the order in which gains and losses arrive changes the result even when the average does not."
+      },
+      {
+        "myth": "A 1% annual fee costs 1% of your final total.",
+        "reality": "It costs far more, because the fee is taken from the base that would have compounded. Over decades a 1% charge can consume a substantial fraction of the eventual pot."
+      },
+      {
+        "myth": "It is too late to start if you did not begin young.",
+        "reality": "The curve is steepest at the end, but every year still compounds. Starting late means the arithmetic favours you less, not that it stops working."
+      }
+    ],
+    "why_it_matters": "It is the single piece of financial arithmetic with the largest effect on an ordinary life, and it is counterintuitive in a specific way: the variable that matters most is the one that feels least urgent. Understanding the mechanism also inoculates you against its mirror image, since consumer debt compounds against you at rates far above any plausible investment return.",
+    "historical_background": {
+      "origin": "Compound interest is ancient — Babylonian tablets contain problems about doubling times — and the mathematics was formalised alongside the development of logarithms in the seventeenth century.",
+      "motivation": "It became a matter of public consequence with the growth of long-horizon saving: pensions, life assurance and later defined-contribution retirement accounts all turn on decades of compounding.",
+      "evolution": "The modern emphasis on low costs follows directly from the arithmetic, since fees compound with the same force as returns — the argument that drove the growth of index funds from the 1970s onward."
+    },
+    "diagrams": [
+      {
+        "title": "Why the early years carry the weight",
+        "kind": "mermaid",
+        "content": "flowchart LR\n  A[\"£1 invested at 25\"] --> B[\"Doubles by 35\"]\n  B --> C[\"Doubles by 45\"]\n  C --> D[\"Doubles by 55\"]\n  D --> E[\"Doubles by 65:<br/>≈ £16\"]\n  F[\"£1 invested at 55\"] --> G[\"Doubles by 65:<br/>≈ £2\"]",
+        "caption": "Assuming a 7% return, doubling roughly every decade. Same pound, same rate — the only difference is how many doublings it lives through."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How fees compound against you",
+        "reason": "The same exponent applied to costs, and the reason a small annual charge matters so much over decades."
+      },
+      {
+        "label": "Why inflation changes what a return means",
+        "reason": "A nominal return tells you nothing on its own; purchasing power is the thing being compounded."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Compound growth",
+        "plain_definition": "Exponential growth where returns are earned on accumulated returns.",
+        "role": "covers"
+      },
+      {
+        "name": "Time value of money",
+        "plain_definition": "The principle that money available sooner is worth more than the same amount later.",
+        "role": "requires"
+      },
+      {
+        "name": "Real versus nominal return",
+        "plain_definition": "The difference between a headline return and what it buys after inflation.",
+        "role": "requires"
+      },
+      {
+        "name": "Sequence-of-returns risk",
+        "plain_definition": "The dependence of outcomes on the order in which returns occur.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Compound interest",
+        "url": "https://en.wikipedia.org/wiki/Compound_interest",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Rule of 72",
+        "url": "https://en.wikipedia.org/wiki/Rule_of_72",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      },
+      {
+        "title": "Time value of money",
+        "url": "https://en.wikipedia.org/wiki/Time_value_of_money",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why do central banks raise interest rates to fight inflation?",
+      "Why do bank transfers take days to settle?"
+    ]
+  },
+  {
+    "title": "Why do phishing emails still work on careful people?",
+    "category_slug": "cybersecurity",
+    "one_sentence_answer": "They do not target carelessness — they target context, arriving at a moment when the request they make is exactly what you were expecting.",
+    "summary": "Spotting a phishing message depends on noticing something is wrong at a moment engineered to make it look right. The defences that work do not rely on you noticing at all.",
+    "difficulty": "beginner",
+    "reading_minutes": 6,
+    "curiosity_score": 0.87,
+    "confidence": 0.88,
+    "confidence_reason": "The mechanisms and the effectiveness of origin-bound authentication are well documented in security research and standards. Exact click rates vary widely between studies and populations, so they are described qualitatively.",
+    "tags": [
+      "security",
+      "scam",
+      "phishing",
+      "privacy",
+      "practical"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "The image of a phishing email as an obvious scam with bad spelling is out of date, and it makes people overconfident. A modern one arrives when you are expecting it: a delivery notification during the week you ordered something, an invoice in the middle of an actual project, a password reset minutes after someone triggered one on your account. The message does not have to be convincing in the abstract; it only has to be plausible for thirty seconds while you are busy. On top of that, the details you were taught to check are the easiest parts to fake. Anyone can copy a company's logo and wording exactly, sender names can be set to anything, and a link's visible text has nothing to do with where it goes. Careful people are caught by timing, not by ignorance."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of someone in a high-visibility jacket walking into an office carrying a ladder. Nobody stops them, not because the staff are careless but because the context supplies the authority — the jacket and the ladder answer the question before it is asked. Phishing is the same trick performed with a familiar layout and a plausible moment. Where the analogy stops: a person in a building can be challenged face to face, and a challenge usually ends it. Online, the equivalent of the challenge is checking the domain in the address bar, and attackers have spent years making domains that survive that check — look-alike spellings, subdomains that read like the real name, and characters from other alphabets that render identically to Latin ones."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "Business email compromise is the version that costs the most. An attacker gets into one mailbox, reads the genuine correspondence, waits for a real invoice to be discussed, and then replies inside that thread with amended bank details. There is no suspicious link, no attachment and no urgency — just a real conversation continuing with one line changed. Losses reported to law enforcement from this pattern run to billions annually. The other instructive case is authentication fatigue: after an attacker has a stolen password, they trigger push notifications repeatedly until the exhausted account holder approves one, a technique used in several high-profile breaches of well-defended companies. Both examples share the same feature — the target's judgement was not defeated by a clumsy fake, it was routed around entirely."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Several layers make the deception cheap. Email was designed without authentication, so the display name and the address can be set freely; the standards that fix this — SPF, DKIM and DMARC — verify the sending domain, but an attacker simply registers a similar domain and passes all three legitimately. Homograph attacks exploit internationalised domain names, where characters from other scripts render identically to Latin letters, so a domain can look correct in the address bar while being a different string entirely. HTTPS confirms only that the connection to that site is encrypted, not that the site is the one you meant. Meanwhile the second factor most people use — a code typed into a page — is phishable by definition: whatever you can read and retype, a relay site can capture and replay within its validity window, which is what modern phishing kits automate."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The conclusion security engineering has reached is to stop relying on human detection. Origin-bound credentials are the substantive fix: WebAuthn and passkeys cryptographically bind an authentication to the exact domain requesting it, so a credential registered for the real site simply produces nothing on a look-alike domain — there is no code to relay and no secret to capture, and the user's judgement is not in the loop. A password manager provides a weaker version of the same protection for free, since it refuses to autofill on a domain that does not match, and that refusal is a far more reliable warning than reading the address bar yourself. Organisationally, the effective controls are process rather than vigilance: verifying bank detail changes through a separately obtained phone number, requiring two people for payment changes, and treating any inbound request for credentials as invalid by default. Awareness training has a real but limited effect — studies consistently find click rates drop after training and then recover, and that punitive simulated-phishing programmes damage the reporting culture that actually catches incidents. The practical hierarchy is clear: architecture first, process second, vigilance last."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Phishing",
+        "plain_definition": "A message designed to make you hand over credentials or money by impersonating someone you trust."
+      },
+      {
+        "term": "Homograph attack",
+        "plain_definition": "A web address using characters that look identical to the real ones but form a different domain."
+      },
+      {
+        "term": "Business email compromise",
+        "plain_definition": "An attacker inside a real mailbox continuing a genuine conversation with the payment details changed."
+      },
+      {
+        "term": "Passkey",
+        "plain_definition": "A login credential tied cryptographically to one specific website, so it cannot be used on a fake one."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Phishing emails are full of spelling mistakes and easy to spot.",
+        "reality": "Some are deliberately crude to filter for the most susceptible targets. Targeted attacks are well written, correctly branded, and often continue a genuine conversation."
+      },
+      {
+        "myth": "The padlock icon means the site is genuine.",
+        "reality": "It means the connection is encrypted. Certificates are free and automated, so a phishing site has one too. It says nothing about who is on the other end."
+      },
+      {
+        "myth": "Two-factor authentication makes you phishing-proof.",
+        "reality": "Codes you read and retype can be relayed in real time by an attacker's proxy, which modern kits automate. Only origin-bound credentials such as passkeys resist this by design."
+      },
+      {
+        "myth": "Being careful is the main defence.",
+        "reality": "Care helps, but attacks are engineered for moments when care is spent elsewhere. Defences that do not depend on noticing — password managers refusing to autofill, passkeys, out-of-band verification of payment changes — do far more work."
+      }
+    ],
+    "why_it_matters": "It replaces a defence that fails under pressure — being alert — with ones that work while you are distracted. Two changes follow directly and cost nothing: let a password manager fill your credentials, so a wrong domain fails silently rather than depending on you reading it, and verify any change of payment details through a number you already had. It is also a good general lesson that when a system depends on people being consistently vigilant, the system is the problem.",
+    "historical_background": {
+      "origin": "The term dates to the mid-1990s and AOL account theft, where attackers posed as staff asking users to verify billing details — the same social pattern used today.",
+      "motivation": "Email's lack of built-in authentication made impersonation trivial, and the retrofitted standards SPF, DKIM and DMARC verify the sending domain without preventing an attacker from registering a convincing one.",
+      "evolution": "As passwords were supplemented by codes, phishing kits added real-time relaying to capture them. The response has been to remove the human from the verification step entirely, through the origin-bound credentials standardised as WebAuthn and now deployed as passkeys."
+    },
+    "diagrams": [
+      {
+        "title": "Where each defence actually acts",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Message arrives at a<br/>plausible moment\"] --> B{\"Do you notice<br/>anything wrong?\"}\n  B -->|\"Often not — timing<br/>and branding are right\"| C[\"You open the link\"]\n  C --> D{\"Password manager<br/>asked to autofill?\"}\n  D -->|\"Domain mismatch\"| E[\"Silently refuses:<br/>a reliable warning\"]\n  D -->|\"You type it manually\"| F[\"Credentials captured\"]\n  F --> G{\"Second factor type?\"}\n  G -->|\"Code you retype\"| H[\"Relayed in real time\"]\n  G -->|\"Passkey, bound to<br/>the real domain\"| I[\"Produces nothing:<br/>attack fails\"]",
+        "caption": "Only the two right-hand outcomes protect you without requiring you to have noticed anything."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "How passkeys replace passwords entirely",
+        "reason": "The server stores a public key, so there is no shared secret to steal and nothing to phish."
+      },
+      {
+        "label": "Why password reuse turns one breach into many",
+        "reason": "Credential stuffing is what makes a single leaked password expensive, and it is the other half of this problem."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Social engineering",
+        "plain_definition": "Attacking people's context and expectations rather than software.",
+        "role": "covers"
+      },
+      {
+        "name": "Origin-bound authentication",
+        "plain_definition": "Credentials cryptographically tied to one specific site, so they fail on impostors.",
+        "role": "covers"
+      },
+      {
+        "name": "Email authentication",
+        "plain_definition": "Standards verifying which domain sent a message, and what they cannot prove.",
+        "role": "requires"
+      },
+      {
+        "name": "Real-time relay attack",
+        "plain_definition": "Capturing and immediately replaying a one-time code before it expires.",
+        "role": "requires"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Phishing",
+        "url": "https://en.wikipedia.org/wiki/Phishing",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "WebAuthn",
+        "url": "https://en.wikipedia.org/wiki/WebAuthn",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "IDN homograph attack",
+        "url": "https://en.wikipedia.org/wiki/IDN_homograph_attack",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why can't a website tell you your forgotten password?",
+      "Why can't websites read files on your computer?"
+    ]
+  },
+  {
+    "title": "Why does braking distance quadruple when you double your speed?",
+    "category_slug": "cars",
+    "one_sentence_answer": "Stopping means getting rid of kinetic energy, and that energy grows with the square of speed — so twice as fast is four times as much energy to shed.",
+    "summary": "Doubling your speed does not double your stopping distance. It quadruples the braking part, which is why a gap that was comfortable at 30 is nowhere near enough at 60.",
+    "difficulty": "beginner",
+    "reading_minutes": 5,
+    "curiosity_score": 0.8,
+    "confidence": 0.93,
+    "confidence_reason": "The energy relationship is elementary mechanics and the resulting distances are confirmed by standardised braking tests. The residual-speed argument follows directly from the same equations.",
+    "tags": [
+      "safety",
+      "practical",
+      "mechanics"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "label": "Simple intuition",
+        "body": "A moving car carries energy, and the brakes work by converting that energy into heat. The catch is that the energy does not go up in proportion to speed — it goes up with the square of it. Drive twice as fast and you are carrying four times the energy, so it takes four times the distance to get rid of, assuming the same tyres and the same road. There is a second, smaller part: before the brakes do anything, you have to react, and in that time you travel further at higher speed, which adds a distance that grows in proportion. Put the two together and stopping distance grows faster than speed does at every point. A gap that felt generous at 30 miles per hour is genuinely dangerous at 60, and the intuition that it merely doubles is the mistake."
+      },
+      {
+        "level": 2,
+        "label": "Visual analogy",
+        "body": "Think of a paint roller loaded with paint, which you have to run out completely before you can stop. Twice as much paint means twice the wall — but a car at twice the speed is carrying four times the paint, not two. Where the analogy stops, and it matters: the roller runs out gradually and predictably, while a car's braking depends on the grip available, which can vanish. On a wet road the same energy has to be shed with far less grip, so the distance grows again; in the standard highway code figures, wet stopping distances are roughly double the dry ones, and ice can be ten times. The square law sets the baseline, and the surface decides how much worse than the baseline you get."
+      },
+      {
+        "level": 3,
+        "label": "Real-world example",
+        "body": "The most useful way to feel this is the residual speed argument. Suppose two identical cars are travelling side by side, one at 30 miles per hour and one at 60, and a hazard appears at the exact distance where the slower car will stop just in time. At the point where the slower car comes to rest, the faster one has not slowed to 30 — it is still doing roughly 50, because it has only shed a quarter of its energy in that distance. It strikes the obstacle at close to motorway speed. This is the reasoning behind speed limits outside schools and behind the emphasis on 20 mile per hour zones: pedestrian survival rates fall steeply with impact speed, and the difference between 20 and 30 at the moment of impact is far larger than the difference in the numbers suggests."
+      },
+      {
+        "level": 4,
+        "label": "Technical explanation",
+        "body": "Kinetic energy is one half of mass times velocity squared. Braking dissipates that energy as heat through friction, and the work done is force multiplied by distance, so with a roughly constant braking force the distance required scales with velocity squared. Total stopping distance has two components: thinking distance, which is reaction time multiplied by speed and therefore linear, and braking distance, which is quadratic. Using a typical reaction time of about 0.7 to 1 second and a deceleration of around 0.8g on dry tarmac, doubling speed roughly doubles the first term and quadruples the second. Mass cancels out of the braking distance calculation for an idealised locked wheel, because both the energy and the friction force scale with weight — which is why a loaded and unloaded car have similar stopping distances in theory, though brake fade, tyre load sensitivity and weight transfer make heavier vehicles worse in practice."
+      },
+      {
+        "level": 5,
+        "label": "Expert details",
+        "body": "The constant-deceleration model is a simplification in several directions. Peak tyre grip occurs at a small amount of slip rather than at either free rolling or full lock, which is exactly what anti-lock braking systems exploit — modulating pressure to hold the tyre near that peak, which shortens distances on most surfaces and, more importantly, preserves steering. On loose gravel or deep snow a locked wheel can actually stop faster by building a wedge of material, which is why some systems behave differently at low speeds and why the safety case for ABS rests on control as much as distance. Weight transfer under braking loads the front axle and unloads the rear, so brake force distribution has to be biased forward and electronically adjusted, and a trailer changes the whole calculation. Tyre condition is the term drivers actually control: wet stopping distances lengthen sharply as tread approaches the legal limit, so the same car with worn tyres has a materially different quadratic curve. The practical consequence of all of this is the two-second rule and its variants, which encode a time gap precisely because a time gap automatically scales with speed while a remembered distance does not."
+      }
+    ],
+    "key_terms": [
+      {
+        "term": "Kinetic energy",
+        "plain_definition": "The energy of motion. It depends on the square of speed, which is the whole reason for this effect."
+      },
+      {
+        "term": "Thinking distance",
+        "plain_definition": "How far you travel between seeing a hazard and touching the brake. It grows in proportion to speed."
+      },
+      {
+        "term": "Braking distance",
+        "plain_definition": "How far you travel while actually braking. It grows with the square of speed."
+      },
+      {
+        "term": "Anti-lock braking",
+        "plain_definition": "A system that keeps tyres near their peak grip instead of locking, preserving steering while braking hard."
+      }
+    ],
+    "misconceptions": [
+      {
+        "myth": "Twice the speed means twice the stopping distance.",
+        "reality": "The braking component quadruples, because it depends on the square of speed. Only the reaction component doubles, so total stopping distance grows much faster than the speed does."
+      },
+      {
+        "myth": "A heavier car takes much longer to stop.",
+        "reality": "In the idealised calculation mass cancels, since both energy and friction scale with weight. In practice heavier vehicles do worse because of brake heating and tyre load effects, not because of the basic physics."
+      },
+      {
+        "myth": "Anti-lock brakes always shorten stopping distance.",
+        "reality": "They shorten it on most surfaces, but on gravel or deep snow a locked wheel can stop sooner by building a wedge. The main benefit is that you can still steer while braking hard."
+      },
+      {
+        "myth": "If you were going to stop in time at 30, you will mostly stop in time at 60.",
+        "reality": "At the point where the slower car has stopped, the faster one is still doing about 50, having shed only a quarter of its energy. The outcome is not a slightly worse impact but a full-speed one."
+      }
+    ],
+    "why_it_matters": "It converts an abstract equation into a driving habit: the following gap has to be measured in time rather than car lengths, because a time gap scales itself with speed and a remembered distance does not. The residual-speed argument is also the clearest available explanation for why small differences in speed limits produce large differences in pedestrian survival, which is the reasoning behind 20 mile per hour zones.",
+    "historical_background": {
+      "origin": "The square relationship between speed and kinetic energy was established with the mechanics of the seventeenth and eighteenth centuries, well before there was anything to brake.",
+      "motivation": "Standardised stopping distance tables — in the UK, the figures in the Highway Code, derived from tests in the 1940s and 1950s — turned the physics into something drivers could be taught.",
+      "evolution": "Braking technology improved the constant rather than the relationship: disc brakes, then anti-lock systems in the 1970s and 1980s, then electronic brake distribution and stability control. The quadratic curve is unchanged; only its steepness has shifted."
+    },
+    "diagrams": [
+      {
+        "title": "Two components, growing at different rates",
+        "kind": "mermaid",
+        "content": "flowchart TD\n  A[\"Hazard appears\"] --> B[\"Thinking distance:<br/>reaction time × speed\"]\n  B --> C[\"Grows in proportion:<br/>double speed = double distance\"]\n  A --> D[\"Braking distance:<br/>energy ∝ speed²\"]\n  D --> E[\"Quadruples:<br/>double speed = 4× distance\"]\n  C --> F[\"Total stopping distance\"]\n  E --> F\n  F --> G[\"At the point the 30 mph car stops,<br/>the 60 mph car is still doing ~50\"]",
+        "caption": "The two terms scale differently, which is why the total grows faster than any simple multiple of speed."
+      }
+    ],
+    "next_steps": [
+      {
+        "label": "Why tyre tread matters most in the wet",
+        "reason": "Grip sets the deceleration term, and worn tread changes the whole curve exactly when it matters."
+      },
+      {
+        "label": "How crumple zones handle the energy you did not shed",
+        "reason": "The same kinetic energy, dealt with by the structure once braking has run out of distance."
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Kinetic energy",
+        "plain_definition": "Energy of motion, proportional to the square of speed.",
+        "role": "requires"
+      },
+      {
+        "name": "Stopping distance",
+        "plain_definition": "The sum of the distance travelled while reacting and while braking.",
+        "role": "covers"
+      },
+      {
+        "name": "Friction and grip",
+        "plain_definition": "The force available to decelerate, set by tyres and road surface.",
+        "role": "requires"
+      },
+      {
+        "name": "Anti-lock braking",
+        "plain_definition": "Modulating brake pressure to keep tyres near peak grip.",
+        "role": "mentions"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Braking distance",
+        "url": "https://en.wikipedia.org/wiki/Braking_distance",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Kinetic energy",
+        "url": "https://en.wikipedia.org/wiki/Kinetic_energy",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.72
+      },
+      {
+        "title": "Anti-lock braking system",
+        "url": "https://en.wikipedia.org/wiki/Anti-lock_braking_system",
+        "publisher": "Wikipedia",
+        "kind": "wikipedia",
+        "reliability": 0.7
+      }
+    ],
+    "related_questions": [
+      "Why do cars have crumple zones?",
+      "Why do tyres have treads?"
+    ]
+  }
+]
