@@ -10,6 +10,12 @@ Every question becomes a knowledge card that starts at plain intuition a
 12-year-old could follow and goes down five levels to expert detail, names the
 misconceptions, shows its sources, and states how confident it is.
 
+Deploy:
+
+Ask questions in telegram bot: https://web.telegram.org/k/#@curio_to_know_bot
+
+Explore questions in the website: https://curio.tail76c5ea.ts.net
+
 ---
 
 ## Running it
