@@ -12,7 +12,7 @@ misconceptions, shows its sources, and states how confident it is.
 
 ## Deploy:
 
-Ask questions in telegram bot: t.me/curio_to_know_bot
+Ask questions in telegram bot: https://t.me/curio_to_know_bot
 
 Explore questions in the website: https://curio.tail76c5ea.ts.net
 
