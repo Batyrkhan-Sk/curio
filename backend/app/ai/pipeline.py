@@ -33,6 +33,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.ai import prompts
 from app.ai.llm import LLMQuotaExceeded, LLMUnavailable, llm
 from app.ingestion import evidence as evidence_module
+from app.ingestion import images as images_module
 from app.models import Card, Category, Question, Source
 from app.services import discovery as discovery_service
 from app.services import graph as graph_service
@@ -148,6 +149,7 @@ async def synthesize(
     also_asked_as: list[str] | None = None,
     curiosity: float = 0.0,
     origin: str = "ingested",
+    question_image: dict[str, Any] | None = None,
 ) -> SynthesisResult:
     """Run the full pipeline for one question and persist the result."""
     if not llm.enabled:
@@ -169,6 +171,12 @@ async def synthesize(
     if not found:
         notes.append("no external evidence retrieved; card written from model knowledge alone")
     evidence_text = evidence_module.format_for_prompt(found)
+    # Searched separately from the evidence, and against the planned topics
+    # rather than the question, because an image library is indexed by subject
+    # name. Failure here is not worth reporting: it costs the card a picture it
+    # was never guaranteed.
+    searched_images = await images_module.search(plan["topics"])
+    image_candidates = _image_candidates(question_image, found, searched_images)
 
     # Stages 8-15 — generate
     categories = list(
@@ -180,6 +188,7 @@ async def synthesize(
             evidence=evidence_text,
             categories=categories,
             also_asked_as=also_asked_as or [],
+            image_candidates=images_module.describe_for_prompt(image_candidates),
         ),
         system=prompts.HOUSE_STYLE,
         schema=prompts.CARD_SCHEMA,
@@ -202,6 +211,7 @@ async def synthesize(
         contradictions=contradictions,
         curiosity=curiosity,
         origin=origin,
+        image_candidates=image_candidates,
     )
 
     published = card.status == "published"
@@ -304,6 +314,7 @@ async def _persist(
     contradictions: list[dict[str, Any]],
     curiosity: float,
     origin: str,
+    image_candidates: list[images_module.ImageCandidate] | None = None,
 ) -> Card:
     title = draft["title"].strip()
     slug = slugify(title)[:220]
@@ -328,6 +339,7 @@ async def _persist(
     card.historical_background = draft.get("historical_background", {}) or {}
     card.diagrams = draft.get("diagrams", []) or []
     card.next_steps = draft.get("next_steps", []) or []
+    card.image = _chosen_image(draft, image_candidates or [])
     card.tags = [t.lower()[:64] for t in (draft.get("tags") or [])][:12]
     card.difficulty = draft.get("difficulty", "beginner")
     card.reading_minutes = int(draft.get("reading_minutes") or 5)
@@ -367,6 +379,80 @@ async def _persist(
     card.embedding = await embed_text(card_embedding_text(card), task_type="RETRIEVAL_DOCUMENT")
     await session.flush()
     return card
+
+
+MAX_IMAGE_CANDIDATES = 6
+"""The asker's picture, the lead images of the cited articles, and a couple
+from each searched library. Past this the list costs more attention than the
+choice is worth, and a longer menu makes the model likelier to pick *something*
+when the right answer is nothing."""
+
+
+def _image_candidates(
+    question_image: dict[str, Any] | None,
+    found: list[evidence_module.Evidence],
+    searched: list[images_module.ImageCandidate] | None = None,
+) -> list[images_module.ImageCandidate]:
+    """Assemble what the model gets to choose between.
+
+    The asker's own picture goes first when there is one. That is ordering, not
+    preference — but a question that arrived with a photograph is usually a
+    question *about* the photograph, and the one thing worse than a card with a
+    decorative image is a card that answers "what is this thing?" while showing
+    a different thing.
+
+    Behind it come the lead images of the articles the card actually cites,
+    then whatever the image libraries turned up. That order is deliberate too:
+    a picture from a source the card already names needs no further
+    justification, while a searched one is only related to the subject by a
+    string match and has more to prove.
+    """
+    candidates: list[images_module.ImageCandidate] = []
+    seen: set[str] = set()
+
+    for candidate in (
+        [images_module.ImageCandidate.from_json(question_image)]
+        + [item.image for item in found]
+        + list(searched or [])
+    ):
+        if candidate is None or candidate.url in seen:
+            continue
+        # Re-checked rather than trusted: the question's image was gated when it
+        # was observed, which may have been weeks and a schema change ago.
+        if not images_module.usable(candidate):
+            continue
+        seen.add(candidate.url)
+        candidates.append(candidate)
+
+    return candidates[:MAX_IMAGE_CANDIDATES]
+
+
+def _chosen_image(
+    draft: dict[str, Any], candidates: list[images_module.ImageCandidate]
+) -> dict[str, Any]:
+    """Resolve the model's pick into the row that gets stored.
+
+    Anything unexpected resolves to no image. A card without a picture is the
+    normal case and reads perfectly well, so there is never a reason to guess
+    at what a malformed answer meant — and guessing would defeat the gate,
+    since the failure mode being defended against is a picture appearing on a
+    card that should not have one.
+    """
+    choice = draft.get("image")
+    if not isinstance(choice, dict) or not candidates:
+        return {}
+
+    try:
+        index = int(choice.get("candidate", -1))
+    except (TypeError, ValueError):
+        return {}
+    if not 0 <= index < len(candidates):
+        return {}
+
+    picked = candidates[index].to_json()
+    picked["caption"] = str(choice.get("caption") or "").strip()[:300]
+    picked["alt"] = str(choice.get("alt") or "").strip()[:300] or picked["title"]
+    return picked
 
 
 def _coerce_draft(draft: Any, *, fallback_title: str) -> dict[str, Any]:

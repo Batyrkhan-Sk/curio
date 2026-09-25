@@ -17,6 +17,7 @@ import httpx
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
+from app.ingestion.images import reddit_post_image
 from app.ingestion.sources import habr, telegram_channels, threads, zakon
 from app.ingestion.sources.base import DiscoveredQuestion, looks_like_durable_question
 
@@ -233,6 +234,11 @@ async def _reddit_json(
                 observed_at=datetime.fromtimestamp(
                     data.get("created_utc") or 0, tz=timezone.utc
                 ),
+                # Only this transport carries it. The Atom fallback has no
+                # structured post data, so a question harvested while Reddit is
+                # throttling arrives without its picture — which is the right
+                # trade, since the question text is the part that matters.
+                image=reddit_post_image(data),
             )
         )
     return out

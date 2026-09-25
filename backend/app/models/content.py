@@ -77,6 +77,15 @@ class Card(Base, UUIDMixin, TimestampMixin):
     diagrams: Mapped[list[dict[str, Any]]] = mapped_column(JSONB, default=list)
     next_steps: Mapped[list[dict[str, Any]]] = mapped_column(JSONB, default=list)
 
+    image: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
+    """One picture, or — for most cards — none at all.
+
+    Empty is the normal state and not a gap to be filled: an image is stored
+    only when the synthesis model judged that it shows a reader something the
+    prose cannot (see ingestion/images.py). The shape is an `ImageCandidate`,
+    which carries the credit and licence alongside the URL, because the two
+    must never be separated — nothing may render the picture without them."""
+
     # --- Trust ------------------------------------------------------------
     confidence: Mapped[float] = mapped_column(Float, default=0.5)
     confidence_reason: Mapped[str] = mapped_column(Text, default="")
@@ -186,6 +195,13 @@ class Question(Base, UUIDMixin, TimestampMixin):
     source_name: Mapped[str] = mapped_column(String(64), default="unknown")
     source_url: Mapped[str] = mapped_column(Text, default="")
     external_id: Mapped[str] = mapped_column(String(200), default="")
+
+    image: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
+    """What the asker attached, when they attached anything.
+
+    Captured at observation time because it is not retrievable later: the post
+    it belongs to gets edited, deleted, or falls out of the listing the source
+    collector reads long before the question reaches synthesis."""
 
     occurrences: Mapped[int] = mapped_column(Integer, default=1)
     engagement: Mapped[int] = mapped_column(Integer, default=0)

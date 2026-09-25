@@ -6,6 +6,8 @@ import re
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
+from app.ingestion.images import ImageCandidate
+
 QUESTION_RE = re.compile(
     r"^\s*(why|how|what|when|where|which|does|do|is|are|can|could|would|should)\b",
     re.IGNORECASE,
@@ -120,6 +122,10 @@ class DiscoveredQuestion:
     used is a small lie the "where this came from" section should not tell."""
 
     original_language: str = ""
+
+    image: "ImageCandidate | None" = None
+    """A picture the asker attached. Only some sources can carry one, and only
+    some posts have one, so this is almost always None."""
 
     @property
     def normalized_text(self) -> str:

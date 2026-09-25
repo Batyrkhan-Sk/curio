@@ -48,6 +48,10 @@ class LocalCard:
     key_terms: list[dict[str, Any]] = field(default_factory=list)
     misconceptions: list[dict[str, Any]] = field(default_factory=list)
     sources: list[Any] = field(default_factory=list)
+    image: dict[str, Any] = field(default_factory=dict)
+    """Never translated — it is a URL and a licence, not prose. Carried so a
+    view can be handed to the bot's picture helper without also passing the
+    real row alongside it."""
 
 
 def _shell(card: Card) -> LocalCard:
@@ -72,6 +76,7 @@ def _shell(card: Card) -> LocalCard:
         key_terms=[dict(term) for term in (card.key_terms or [])],
         misconceptions=[dict(myth) for myth in (card.misconceptions or [])],
         sources=list(card.sources or []),
+        image=dict(card.image or {}),
     )
 
 

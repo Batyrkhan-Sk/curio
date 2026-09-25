@@ -47,6 +47,11 @@ async def record_observation(
         existing.occurrences += 1
         existing.engagement = max(existing.engagement, discovered.engagement)
         existing.last_seen_at = max(existing.last_seen_at or now, now)
+        # A restatement can arrive with the picture the first observation
+        # lacked — the same question asked again, this time with a photo of the
+        # thing. Never the reverse: an existing image is left alone.
+        if discovered.image is not None and not existing.image:
+            existing.image = discovered.image.to_json()
         return existing, False
 
     question = Question(
@@ -61,6 +66,7 @@ async def record_observation(
         occurrences=1,
         first_seen_at=now,
         last_seen_at=now,
+        image=discovered.image.to_json() if discovered.image else {},
     )
     question.embedding = await embed_text(discovered.raw_text, task_type="CLUSTERING")
     session.add(question)

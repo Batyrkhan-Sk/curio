@@ -217,6 +217,7 @@ async def synthesize_pending(
                 also_asked_as=variants,
                 curiosity=curiosity,
                 origin="ingested",
+                question_image=question.image,
             )
         except LLMQuotaExceeded as exc:
             # The rest of the batch cannot succeed either — stop rather than

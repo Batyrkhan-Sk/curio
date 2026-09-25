@@ -74,5 +74,7 @@ async def init_models() -> None:
             "ALTER TABLE telegram_links ADD COLUMN IF NOT EXISTS mode VARCHAR(16) DEFAULT ''",
             "ALTER TABLE questions ADD COLUMN IF NOT EXISTS original_text TEXT DEFAULT ''",
             "ALTER TABLE questions ADD COLUMN IF NOT EXISTS original_language VARCHAR(8) DEFAULT ''",
+            "ALTER TABLE questions ADD COLUMN IF NOT EXISTS image JSONB DEFAULT '{}'::jsonb",
+            "ALTER TABLE cards ADD COLUMN IF NOT EXISTS image JSONB DEFAULT '{}'::jsonb",
         ):
             await conn.execute(text(statement))

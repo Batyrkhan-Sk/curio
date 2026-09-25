@@ -5,7 +5,7 @@ from __future__ import annotations
 import uuid
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class ExplanationLevel(BaseModel):
@@ -29,6 +29,31 @@ class Diagram(BaseModel):
     kind: str = "mermaid"
     content: str
     caption: str = ""
+
+
+class CardImage(BaseModel):
+    """The one picture on a card, if it has one.
+
+    `url` is Curio's own proxy path rather than the upstream address — see
+    `api/v1/media.py`. The credit fields travel with it in the same object so
+    that no client can render the picture while forgetting to say whose it is.
+    """
+
+    url: str
+    alt: str = ""
+    caption: str = ""
+    credit: str = ""
+    license: str = ""
+    license_url: str = ""
+    source_url: str = ""
+    provider: str = ""
+    origin: str = "evidence"
+    """'question' when the person asking attached it, 'evidence' when a source
+    the card cites did. The web card says which, because "here is the photo
+    they posted" and "here is a picture of the thing" are different claims."""
+
+    width: int = 0
+    height: int = 0
 
 
 class NextStep(BaseModel):
@@ -124,6 +149,7 @@ class CardDetail(CardSummary):
     why_it_matters: str = ""
     historical_background: HistoricalBackground = Field(default_factory=HistoricalBackground)
     diagrams: list[Diagram] = Field(default_factory=list)
+    image: CardImage | None = None
     next_steps: list[NextStep] = Field(default_factory=list)
     contradictions: list[Contradiction] = Field(default_factory=list)
     confidence_reason: str = ""
@@ -133,6 +159,17 @@ class CardDetail(CardSummary):
     asked_at: list[AskedAt] = Field(default_factory=list)
     verified_at: datetime | None = None
     updated_at: datetime | None = None
+
+    @field_validator("image", mode="before")
+    @classmethod
+    def _absent_image_is_none(cls, value: object) -> object:
+        """A card with no picture stores `{}`, which is not a `CardImage`.
+
+        The column defaults to an empty dict rather than to NULL so that the
+        JSONB shape is uniform in the database; the API prefers `null`, so the
+        two representations are reconciled here rather than at every call site.
+        """
+        return value or None
 
 
 class Shelf(BaseModel):

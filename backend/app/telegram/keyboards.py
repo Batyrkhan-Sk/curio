@@ -11,12 +11,20 @@ fits in half the budget.
     m:<hex>          misconceptions
     x:<hex>          sources
     s:<hex>          toggle save
-    r                another random card
+    u:<hex>          toggle understood — stops the card being offered again
+    n:<hex>:<locale> re-read *this message* in another language
+    r                another card, newest-first
     g                open the language picker
-    g:<locale>       switch reading language
+    g:<locale>       switch reading language for everything
     w                open the mode picker
     w:<mode>         switch between interesting and useful
     -                inert label, answered and ignored
+
+Any card verb may carry a trailing `:<locale>` — `l:<hex>:3:ru`, `t:<hex>:ru`.
+That is how a message translated with `n` stays translated as the reader walks
+through it: there is no session to remember the choice in, so the buttons carry
+it. `g` is the opposite and changes the reader's language for good; `n` touches
+one message and nothing else.
 """
 
 from __future__ import annotations
@@ -26,7 +34,7 @@ from typing import Any
 from urllib.parse import quote
 
 from app.core.config import settings
-from app.services.translation import LANGUAGES
+from app.services.translation import LANGUAGES, SUPPORTED
 from app.telegram import render
 from app.telegram.strings import language_label, t
 
@@ -49,6 +57,25 @@ def parse(data: str) -> tuple[str, str, int | None]:
         except ValueError:
             argument = None
     return verb, ident, argument
+
+
+def parse_locale(data: str) -> str:
+    """The reading language a button is carrying, or "" for the reader's own.
+
+    Per-card translation has to survive pressing ▶, and the bot stores no
+    conversation state — so the language a message is currently being read in
+    travels in the callback data of its own buttons. `l:<id>:3:ru` means "level
+    three, in Russian", and the language outlives navigation because every
+    button the translated keyboard draws carries it forward.
+
+    Scanned rather than taken from a fixed position, because the verbs differ
+    in whether they have a numeric argument: `l:<id>:3:ru` and `t:<id>:ru` both
+    have to work.
+    """
+    for part in (data or "").split(":")[2:]:
+        if part in SUPPORTED:
+            return part
+    return ""
 
 
 def uuid_from_hex(value: str) -> uuid.UUID | None:
@@ -92,6 +119,18 @@ def _row(*buttons: dict | None) -> list[dict]:
     return [button for button in buttons if button]
 
 
+def _other_locale(current: str) -> str:
+    """The language to offer translating into.
+
+    With two languages this is simply the other one, which is why the control
+    is a toggle rather than a picker. A third language would have to change
+    that — the honest version then is `n:<id>` opening a chooser — so this
+    returns "" rather than guessing when it can no longer be unambiguous.
+    """
+    others = [code for code in LANGUAGES if code != current]
+    return others[0] if len(others) == 1 else ""
+
+
 # --- Card keyboards ---------------------------------------------------------
 
 
@@ -102,17 +141,27 @@ def card_keyboard(
     saved: bool = False,
     private: bool = True,
     show_another: bool = False,
+    understood: bool = False,
     locale: str = "en",
+    carry_locale: str = "",
 ) -> dict:
     """The keyboard under a card message.
 
     `level` is None on the preview and 1..n while reading, which is the only
     difference between the two states — the preview offers a way in, a level
     offers the way forward and back.
+
+    `carry_locale` is set when this message has been translated away from the
+    reader's own reading language. Every button then carries that language, so
+    walking deeper into a card the reader chose to read in Russian keeps
+    answering in Russian without any of it being stored.
     """
     key = card_key(card)
     total = render.level_count(card)
     rows: list[list[dict]] = []
+    # Appended to the card verbs only. `r` carries no card and must not gain a
+    # language: asking for another card is asking for it in the reader's own.
+    tail = f":{carry_locale}" if carry_locale else ""
 
     if level is None:
         if total:
@@ -122,31 +171,50 @@ def card_keyboard(
                 [
                     {
                         "text": t(locale, "btn_start_reading", label=label),
-                        "callback_data": f"l:{key}:1",
+                        "callback_data": f"l:{key}:1{tail}",
                     }
                 ]
             )
     else:
         navigation = _row(
-            {"text": "◀", "callback_data": f"l:{key}:{level - 1}"} if level > 1 else None,
+            {"text": "◀", "callback_data": f"l:{key}:{level - 1}{tail}"} if level > 1 else None,
             {"text": f"{level}/{total}", "callback_data": NOOP},
-            {"text": "▶", "callback_data": f"l:{key}:{level + 1}"} if level < total else None,
+            {"text": "▶", "callback_data": f"l:{key}:{level + 1}{tail}"} if level < total else None,
         )
         rows.append(navigation)
 
     extras = _row(
-        {"text": "🧠", "callback_data": f"t:{key}"},
-        {"text": "⚠️", "callback_data": f"m:{key}"},
-        {"text": "📚", "callback_data": f"x:{key}"},
+        {"text": "🧠", "callback_data": f"t:{key}{tail}"},
+        {"text": "⚠️", "callback_data": f"m:{key}{tail}"},
+        {"text": "📚", "callback_data": f"x:{key}{tail}"},
         {
             "text": t(locale, "btn_saved" if saved else "btn_save"),
-            "callback_data": f"s:{key}",
+            "callback_data": f"s:{key}{tail}",
         },
     )
     rows.append(extras)
 
     if level is not None:
-        rows.append([{"text": t(locale, "btn_overview"), "callback_data": f"c:{key}"}])
+        rows.append([{"text": t(locale, "btn_overview"), "callback_data": f"c:{key}{tail}"}])
+
+    # Translate this message, and only this message. The button offers the
+    # language the reader is *not* currently in, labelled in that language —
+    # "Русский" means more to somebody who wants Russian than "Translate" does.
+    other = _other_locale(locale)
+    rows.append(
+        _row(
+            {
+                "text": f"🌐 {LANGUAGES[other]['native']}",
+                "callback_data": f"n:{key}:{other}",
+            }
+            if other
+            else None,
+            {
+                "text": t(locale, "btn_understood_done" if understood else "btn_understood"),
+                "callback_data": f"u:{key}{tail}",
+            },
+        )
+    )
 
     open_button = _open_button(card, allow_webapp=private, locale=locale)
     another = (
@@ -159,16 +227,22 @@ def card_keyboard(
 
 
 def section_keyboard(
-    card: Any, *, saved: bool = False, private: bool = True, locale: str = "en"
+    card: Any,
+    *,
+    saved: bool = False,
+    private: bool = True,
+    locale: str = "en",
+    carry_locale: str = "",
 ) -> dict:
     """For the terms / misconceptions / sources views: a way back, and out."""
     key = card_key(card)
+    tail = f":{carry_locale}" if carry_locale else ""
     rows = [
         _row(
-            {"text": t(locale, "btn_overview"), "callback_data": f"c:{key}"},
+            {"text": t(locale, "btn_overview"), "callback_data": f"c:{key}{tail}"},
             {
                 "text": t(locale, "btn_saved" if saved else "btn_save"),
-                "callback_data": f"s:{key}",
+                "callback_data": f"s:{key}{tail}",
             },
         )
     ]

@@ -267,6 +267,30 @@ def help_text(bot_username: str = "", locale: str = "en") -> str:
     return t(locale, "help", mention=mention)
 
 
+_PREVIEW_ANCHOR = "⁠"
+"""U+2060 WORD JOINER: zero-width, non-breaking, and legal anchor text.
+
+Telegram rejects an empty `<a>`, so the link that carries the picture needs
+something between the tags, and anything visible would show up as a stray
+character at the head of every illustrated card."""
+
+
+def with_preview(text: str, url: str) -> str:
+    """Attach a card's picture to an otherwise ordinary text message.
+
+    `link_preview_options.url` is documented as sufficient on its own, but not
+    every client honours a preview for a URL that appears nowhere in the
+    message, so the URL is also placed in the text behind an invisible anchor.
+
+    Must be applied *after* `truncate_message`: the tag is at position zero, so
+    a cut made afterwards would take the closing tag off a 4096-character
+    message and Telegram would reject the whole thing.
+    """
+    if not url:
+        return text
+    return f'<a href="{html.escape(url, quote=True)}">{_PREVIEW_ANCHOR}</a>{text}'
+
+
 def truncate_message(text: str) -> str:
     """Final guard before sending. Nothing should reach this; a card with an
     unusually long title and a full level could."""

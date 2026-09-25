@@ -15,6 +15,8 @@ from dataclasses import dataclass
 
 import httpx
 
+from app.ingestion.images import ImageCandidate, wikipedia_lead_image
+
 logger = logging.getLogger(__name__)
 
 TIMEOUT = httpx.Timeout(20.0)
@@ -44,6 +46,13 @@ class Evidence:
     kind: str
     text: str
     reliability: float = 0.5
+
+    image: ImageCandidate | None = None
+    """The article's lead image, when it has one that survived the shape gate.
+
+    Hung off the evidence rather than collected separately so a picture can
+    never outlive the source that justifies showing it: if this item is dropped
+    for being off-topic, its image goes with it."""
 
     def to_source_row(self) -> dict:
         return {
@@ -168,15 +177,23 @@ async def wikipedia(query: str, *, limit: int = 2) -> list[Evidence]:
                 text = (page.get("extract") or "").strip()
                 if not text:
                     continue
+                page_title = page.get("title", title)
                 out.append(
                     Evidence(
-                        title=page.get("title", title),
-                        url="https://en.wikipedia.org/wiki/"
-                        + page.get("title", title).replace(" ", "_"),
+                        title=page_title,
+                        url="https://en.wikipedia.org/wiki/" + page_title.replace(" ", "_"),
                         publisher="Wikipedia",
                         kind="wikipedia",
                         text=text[:6000],
                         reliability=RELIABILITY["wikipedia"],
+                        # Only the first article of a search is worth two extra
+                        # requests. Beyond that the match is loose enough that
+                        # its lead image would not survive the model's gate.
+                        image=(
+                            await wikipedia_lead_image(client, page_title)
+                            if not out
+                            else None
+                        ),
                     )
                 )
         return out

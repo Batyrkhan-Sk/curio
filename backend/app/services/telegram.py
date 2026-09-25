@@ -107,6 +107,31 @@ async def try_call(method: str, **payload: Any) -> Any | None:
 # --- Messages ---------------------------------------------------------------
 
 
+def _preview(url: str, *, above: bool) -> dict:
+    """Build `LinkPreviewOptions` for a card that has a picture.
+
+    This is how an image gets onto a card message, and the reason it is not
+    `sendPhoto` is worth stating once. A message sent with `sendPhoto` is a
+    *photo* message: its caption is capped at 1024 characters against 4096 for
+    text, and `editMessageText` refuses to touch it. Curio's whole reading
+    model is editing one message in place as the reader moves between levels
+    (see `telegram/handlers.py`), so a photo message would either truncate
+    every level to a quarter of its length or break every arrow button.
+
+    A forced link preview keeps the message a text message. Nothing about the
+    navigation changes, the full text budget survives, and Telegram fetches the
+    image itself — which is also why the URL has to be publicly resolvable.
+    """
+    if not url:
+        return {"is_disabled": True}
+    return {
+        "is_disabled": False,
+        "url": url,
+        "prefer_large_media": True,
+        "show_above_text": above,
+    }
+
+
 async def send_message(
     chat_id: int | str,
     text: str,
@@ -114,13 +139,19 @@ async def send_message(
     reply_markup: dict | None = None,
     disable_preview: bool = True,
     reply_to: int | None = None,
+    preview_url: str = "",
+    preview_above: bool = False,
 ) -> Any | None:
     return await try_call(
         "sendMessage",
         chat_id=chat_id,
         text=text,
         parse_mode="HTML",
-        link_preview_options={"is_disabled": disable_preview},
+        link_preview_options=(
+            _preview(preview_url, above=preview_above)
+            if preview_url
+            else {"is_disabled": disable_preview}
+        ),
         reply_markup=reply_markup,
         reply_parameters={"message_id": reply_to} if reply_to else None,
     )
@@ -132,6 +163,8 @@ async def edit_message(
     text: str,
     *,
     reply_markup: dict | None = None,
+    preview_url: str = "",
+    preview_above: bool = False,
 ) -> Any | None:
     return await try_call(
         "editMessageText",
@@ -139,7 +172,7 @@ async def edit_message(
         message_id=message_id,
         text=text,
         parse_mode="HTML",
-        link_preview_options={"is_disabled": True},
+        link_preview_options=_preview(preview_url, above=preview_above),
         reply_markup=reply_markup,
     )
 

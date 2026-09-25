@@ -84,6 +84,11 @@ async def get_card(
     # that column is expired and reading it would need another round trip that
     # an async session cannot make mid-serialisation.
     detail = CardDetail.model_validate(card)
+    if detail.image is not None:
+        # The stored URL points at Wikimedia or Reddit; readers get Curio's own
+        # path instead, so the service worker can cache it and the upstream host
+        # never sees the reader. Relative, because the frontend proxies /api.
+        detail.image.url = f"/api/v1/media/{card.id}"
     detail.asked_at = [
         AskedAt.model_validate(q)
         for q in sorted(

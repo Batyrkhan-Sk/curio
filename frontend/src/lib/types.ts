@@ -83,8 +83,29 @@ export interface RelatedCard extends CardSummary {
   reason: string;
 }
 
+/**
+ * The one picture a card may carry. Null on most cards, and that is the
+ * designed state rather than missing data — see `backend/app/ingestion/images.py`.
+ * `url` is always a Curio path, never the upstream host.
+ */
+export interface CardImage {
+  url: string;
+  alt: string;
+  caption: string;
+  credit: string;
+  license: string;
+  license_url: string;
+  source_url: string;
+  provider: string;
+  /** "question" when the asker attached it, "evidence" when a cited source did. */
+  origin: string;
+  width: number;
+  height: number;
+}
+
 export interface CardDetail extends CardSummary {
   levels: ExplanationLevel[];
+  image: CardImage | null;
   key_terms: KeyTerm[];
   misconceptions: Misconception[];
   why_it_matters: string;

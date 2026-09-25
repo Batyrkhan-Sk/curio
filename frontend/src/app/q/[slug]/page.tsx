@@ -15,6 +15,7 @@ import {
   WhyItMatters,
 } from "@/components/card/sections";
 import { Glossary } from "@/components/card/glossary";
+import { HeroImage } from "@/components/card/hero-image";
 import { QuestionCard } from "@/components/discovery/question-card";
 import { Badge, SectionLabel } from "@/components/ui/primitives";
 import { Icon } from "@/components/ui/icon";
@@ -93,6 +94,12 @@ export default async function CardPage({ params }: Props) {
             >
               {card.one_sentence_answer}
             </p>
+
+            {/* Question, then the picture, then the explanation. The image sits
+                above the meta row rather than below it so that a card which
+                *is* a photograph — "what is this thing?" — shows the thing
+                before it shows how long it takes to read about it. */}
+            <HeroImage image={card.image} />
 
             <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-text-muted">
               <span className="inline-flex items-center gap-1.5">

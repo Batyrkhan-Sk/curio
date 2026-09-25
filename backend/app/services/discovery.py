@@ -19,6 +19,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.models import Card, Interaction, Profile
+from app.services import personalization
 
 logger = logging.getLogger(__name__)
 
@@ -346,6 +347,119 @@ async def random_card(
             return card
 
     return await session.scalar(stmt)
+
+
+NEW_RUN = 3
+OLD_RUN = 3
+"""How the explore button alternates: three of the newest, then three from the
+back catalogue, repeating.
+
+Pure newest-first empties the interesting end of the library in a dozen taps
+and then serves nothing but the oldest cards forever. Pure random buries the
+new ones — with 157 cards, a card added today comes up about one tap in fifty,
+so a reader who just watched it get ingested never sees it. The alternation
+keeps fresh work visible without turning the rest of the corpus into a tail
+nobody reaches."""
+
+RECENT_POOL = 25
+"""How many cards count as "new" for the purpose of the old half. Without this
+the two branches overlap and the old run keeps re-offering the same recent
+cards the new run is already working through."""
+
+
+async def explore_card(
+    session: AsyncSession,
+    *,
+    profile: Profile | None = None,
+    mode: str = DEFAULT_MODE,
+) -> Card | None:
+    """One card for the chat's explore button, alternating new and old.
+
+    Where the reader is in the cycle is derived from how many cards they have
+    read rather than stored: it needs no column, no session, and it survives a
+    restart. The consequence is that the rhythm is per-reader — somebody who
+    has read four things is two taps into their first old run — which is what
+    was wanted, since the point is the reader's sense of the library rather
+    than the library's own clock.
+
+    Both halves exclude everything already read, so neither can repeat a card
+    while an unread one exists.
+    """
+    mode = resolve_mode(mode)
+    seen = None
+    position = 0
+
+    if profile is not None:
+        # Two different exclusions with two different lifetimes. A *viewed*
+        # card is skipped while unread ones remain but may come back once the
+        # library runs out; an *understood* one is gone for good, because the
+        # reader said so. Merging them into one rule would mean either
+        # forgetting the explicit signal or never re-offering anything.
+        seen = select(Interaction.card_id).where(
+            Interaction.profile_id == profile.id, Interaction.kind == "view"
+        )
+        position = int(
+            await session.scalar(
+                select(func.count(func.distinct(Interaction.card_id))).where(
+                    Interaction.profile_id == profile.id, Interaction.kind == "view"
+                )
+            )
+            or 0
+        )
+
+    wants_new = (position % (NEW_RUN + OLD_RUN)) < NEW_RUN
+
+    def not_understood(stmt: Select) -> Select:
+        """Applied to every branch, including the fallbacks. A card the reader
+        has finished with must not reappear because the library ran short."""
+        if profile is None:
+            return stmt
+        return stmt.where(Card.id.notin_(personalization.understood_subquery(profile)))
+
+    # `func.random()` as a secondary sort is not decoration. Cards arrive in
+    # batches — the seeded corpus shares a single timestamp to the second, and
+    # an ingestion run stamps a handful identically — so ordering by date alone
+    # returns those ties in whatever fixed order the planner picks, and the
+    # reader sees the same sequence of "old" cards every time they explore.
+    newest = not_understood(
+        _base_query(mode).order_by(Card.created_at.desc(), func.random()).limit(1)
+    )
+    anything = not_understood(_base_query(mode).order_by(func.random()).limit(1))
+
+    if wants_new:
+        due = newest
+    else:
+        recent_ids = (
+            select(Card.id)
+            .where(Card.status == "published")
+            .order_by(Card.created_at.desc())
+            .limit(RECENT_POOL)
+            .scalar_subquery()
+        )
+        due = not_understood(
+            _base_query(mode)
+            .where(Card.id.notin_(recent_ids))
+            .order_by(func.random())
+            .limit(1)
+        )
+
+    card = await session.scalar(due.where(Card.id.notin_(seen)) if seen is not None else due)
+    if card is not None:
+        return card
+
+    # The half this reader was due has run dry — a young corpus has no back
+    # catalogue, and a thorough reader has no unread new cards. Fall through to
+    # the other half, then to anything at all that is still unread.
+    if seen is not None:
+        other = anything if wants_new else newest
+        card = await session.scalar(other.where(Card.id.notin_(seen)))
+        if card is not None:
+            return card
+
+    # Everything unread is exhausted. Re-offering a card already seen is fine —
+    # re-offering one already understood is not, which is why this is `anything`
+    # rather than a call back into `random_card`.
+    return await session.scalar(anything)
 
 
 async def _daily_rotation(

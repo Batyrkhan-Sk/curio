@@ -35,6 +35,12 @@ INTEREST_GAIN = {
     "level_reached": 0.03,
     "dismissed": -0.10,
     "unsave": -0.05,
+    # Understanding a card is evidence of interest in the subject, not of
+    # being finished with it — somebody who works through three astronomy
+    # cards wants a fourth. Weighted like completing one, because that is
+    # what it is: the reader saying so explicitly rather than by scrolling.
+    "understood": 0.12,
+    "not_understood": -0.02,
 }
 
 MIN_SERENDIPITY = 0.15
@@ -329,6 +335,60 @@ async def saved_cards(session: AsyncSession, profile: Profile) -> list[Card]:
         select(Card).options(selectinload(Card.category)).where(Card.id.in_(active))
     )
     return list(cards.scalars().unique())
+
+
+def understood_subquery(profile: Profile):
+    """Card ids this reader has marked understood and not since un-marked.
+
+    A subquery rather than a list of ids, so callers can drop it straight into
+    a `NOT IN` without first paying for a round trip and then sending every id
+    back to the database in the next statement.
+
+    The toggle is resolved the same way saves are: the newest of the two kinds
+    wins. Storing state as an append-only log rather than a flag means the
+    history stays intact — how many times somebody un-marked a card is a real
+    signal that its explanation is not landing.
+    """
+    latest = (
+        select(
+            Interaction.card_id,
+            func.max(Interaction.created_at).label("at"),
+        )
+        .where(
+            Interaction.profile_id == profile.id,
+            Interaction.kind.in_(["understood", "not_understood"]),
+        )
+        .group_by(Interaction.card_id)
+        .subquery()
+    )
+    return (
+        select(Interaction.card_id)
+        .join(
+            latest,
+            (Interaction.card_id == latest.c.card_id)
+            & (Interaction.created_at == latest.c.at),
+        )
+        .where(
+            Interaction.profile_id == profile.id,
+            Interaction.kind == "understood",
+        )
+    )
+
+
+async def is_understood(
+    session: AsyncSession, profile: Profile, card: Card
+) -> bool:
+    kind = await session.scalar(
+        select(Interaction.kind)
+        .where(
+            Interaction.profile_id == profile.id,
+            Interaction.card_id == card.id,
+            Interaction.kind.in_(["understood", "not_understood"]),
+        )
+        .order_by(Interaction.created_at.desc())
+        .limit(1)
+    )
+    return kind == "understood"
 
 
 async def unexplored_category(session: AsyncSession, profile: Profile) -> Category | None:

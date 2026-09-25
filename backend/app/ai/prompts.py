@@ -146,6 +146,28 @@ CARD_SCHEMA: dict[str, Any] = {
                 "required": ["title", "kind", "content"],
             },
         },
+        "image": {
+            "type": "object",
+            "description": (
+                "Which of the offered pictures, if any, belongs on this card. "
+                "Omit entirely, or set candidate to -1, when none of them earns "
+                "its place — that is the usual answer."
+            ),
+            "properties": {
+                "candidate": {
+                    "type": "integer",
+                    "description": (
+                        "The index from the [image N] list, or -1 for no picture."
+                    ),
+                },
+                "caption": _string(
+                    "One sentence saying what the reader is looking at and how it "
+                    "relates to the question. Not a description of the picture."
+                ),
+                "alt": _string("Plain alt text for a reader who cannot see it."),
+            },
+            "required": ["candidate"],
+        },
         "related_questions": {
             "type": "array",
             "description": "4-6 questions a curious reader would ask immediately after.",
@@ -221,12 +243,43 @@ def practical_tag_hints() -> str:
     return "\n".join(lines)
 
 
+def image_brief(candidates: str) -> str:
+    """The picture-selection section, appended only when there are candidates.
+
+    Written to make refusal comfortable. Offer a model a list and a slot to put
+    an answer in and it will fill the slot, so the instruction has to say
+    plainly that most cards get nothing and that saying so is the right answer
+    rather than a failure to find one.
+    """
+    if not candidates:
+        return ""
+    return f"""
+
+These pictures came with the sources. Decide whether one of them belongs on the
+card, and set `image.candidate` to its number:
+
+{candidates}
+
+Include one only if seeing it teaches a reader something the prose cannot: the
+object the question is about, the mechanism in action, the difference between
+two things being compared. A photograph of a person who worked on the topic, a
+building where it happened, or a thing merely adjacent to the subject teaches
+nothing about how it works — those are decoration, and decoration on a
+knowledge card is a small lie about what the picture is doing there.
+
+`-1` is always a legitimate answer and costs the card nothing, so refuse a list
+of near-misses rather than settling for the least bad one. But a diagram of the
+mechanism, or a photograph of the actual subject, is not settling — when the
+list genuinely contains one, take it."""
+
+
 def synthesis_prompt(
     question: str,
     *,
     evidence: str,
     categories: list[str],
     also_asked_as: list[str],
+    image_candidates: str = "",
 ) -> str:
     level_brief = "\n".join(LEVEL_BRIEFS[i] for i in range(1, 6))
     variants = (
@@ -270,7 +323,7 @@ claim to be useful. "energy" and "physics" are subject tags, not stakes.
 
 If the evidence is too thin to answer honestly, still produce the card but keep
 every claim to what you are confident about, and leave `historical_background`
-fields empty rather than guessing.
+fields empty rather than guessing.{image_brief(image_candidates)}
 """
 
 

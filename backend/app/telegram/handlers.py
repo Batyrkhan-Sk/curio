@@ -21,6 +21,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
+from app.api.v1.media import public_url as card_image_url
 from app.core.config import settings
 from app.models import Card, Profile, TelegramLink
 from app.services import discovery, personalization, search as search_service
@@ -119,6 +120,24 @@ async def _is_saved(session: AsyncSession, profile: Profile, card: Card) -> bool
     return any(existing.id == card.id for existing in saved)
 
 
+async def _is_understood(
+    session: AsyncSession, profile: Profile, card: Card
+) -> bool:
+    return await personalization.is_understood(session, profile, card)
+
+
+def _picture(card: Card | localize.LocalCard) -> str:
+    """The public address of this card's image, or "" for the usual case.
+
+    Empty covers three situations that all mean the same thing to the bot: the
+    card has no picture, the model declined to give it one, or no public HTTPS
+    origin is configured so Telegram could not fetch it anyway.
+    """
+    if not (card.image or {}).get("url"):
+        return ""
+    return card_image_url(card.id)
+
+
 # --- Sending ----------------------------------------------------------------
 
 
@@ -133,6 +152,7 @@ async def _send_card(
     show_another: bool = False,
 ) -> None:
     saved = await _is_saved(session, profile, card)
+    understood = await _is_understood(session, profile, card)
     # Interactions are recorded against the real card; only the rendering is
     # localized. The two must not be confused — a LocalCard is a view, not a row.
     await personalization.record_interaction(session, profile, card, kind="view")
@@ -142,16 +162,24 @@ async def _send_card(
         await telegram.send_chat_action(chat_id)
     view = await localize.localize_preview(session, card, locale)
 
+    # On the preview the picture goes *below* the text, so the message reads in
+    # the order the card does: the question, the one-sentence answer, then what
+    # it looks like.
+    picture = _picture(card)
     await telegram.send_message(
         chat_id,
-        render.truncate_message(render.card_intro(view, locale)),
+        render.with_preview(
+            render.truncate_message(render.card_intro(view, locale)), picture
+        ),
         reply_markup=keyboards.card_keyboard(
             view,
             saved=saved,
             private=private,
             show_another=show_another,
+            understood=understood,
             locale=locale,
         ),
+        preview_url=picture,
     )
 
 
@@ -286,12 +314,16 @@ async def _cmd_random(
     private: bool,
     mode: str = discovery.DEFAULT_MODE,
 ) -> None:
-    picked = await discovery.random_card(session, profile=profile, mode=mode)
+    # Newest-first rather than random. In the chat, exploring means "show me
+    # what I haven't read", and the reader is far more likely to be checking
+    # back than browsing — so a fresh card beats a surprising one. The web app
+    # keeps `random_card`, where wandering the whole corpus is the point.
+    picked = await discovery.explore_card(session, profile=profile, mode=mode)
     if picked is None and mode != discovery.DEFAULT_MODE:
         # Better to answer with something than to leave a reader who picked
         # useful mode with nothing at all while the corpus is still filling up.
         await telegram.send_message(chat_id, t(locale, "mode_empty_useful"))
-        picked = await discovery.random_card(session, profile=profile)
+        picked = await discovery.explore_card(session, profile=profile)
     if picked is None:
         await telegram.send_message(chat_id, t(locale, "empty_library"))
         return
@@ -474,22 +506,71 @@ async def _on_callback(session: AsyncSession, query: dict) -> None:
         await telegram.answer_callback(callback_id, t(locale, "card_gone"), alert=True)
         return
 
+    # A card message may have been translated away from the reader's own
+    # language. That choice lives in the button they just pressed, so from here
+    # on `locale` is the reader's default and `view_locale` is what this
+    # particular message is being read in.
+    # `n:<id>:ru` carries its target the same way `l:<id>:3:ru` carries the
+    # language it is continuing in, so one rule reads both.
+    view_locale = keyboards.parse_locale(data) or locale
+    # Only carried onward when it differs; a message in the reader's own
+    # language needs no language in its buttons.
+    carry = view_locale if view_locale != locale else ""
+
     saved = await _is_saved(session, profile, card)
+
+    if verb == "u":
+        # Marking understood is what keeps `/random` and "another" moving
+        # forward: it is the only way a reader can tell the library that a
+        # question is finished with, as opposed to merely seen.
+        was = await _is_understood(session, profile, card)
+        await personalization.record_interaction(
+            session, profile, card, kind="not_understood" if was else "understood"
+        )
+        await session.commit()
+        await telegram.answer_callback(
+            callback_id,
+            t(view_locale, "toast_understood_undone" if was else "toast_understood"),
+        )
+        await telegram.edit_markup(
+            chat_id,
+            message_id,
+            await _current_keyboard(
+                session,
+                card,
+                message,
+                saved=saved,
+                private=private,
+                locale=view_locale,
+                understood=not was,
+                carry_locale=carry,
+            ),
+        )
+        return
 
     if verb == "s":
         kind = "unsave" if saved else "save"
         await personalization.record_interaction(session, profile, card, kind=kind)
         saved = not saved
         await telegram.answer_callback(
-            callback_id, t(locale, "toast_saved" if saved else "toast_removed")
+            callback_id, t(view_locale, "toast_saved" if saved else "toast_removed")
         )
         # Only the button label changes, so the message text is left alone:
         # rewriting it would collapse whichever view the reader is looking at.
+        # The understood state is re-read rather than defaulted: a stale "not
+        # understood" label here would make the next tap on it un-mark the card.
         await telegram.edit_markup(
             chat_id,
             message_id,
             await _current_keyboard(
-                session, card, message, saved=saved, private=private, locale=locale
+                session,
+                card,
+                message,
+                saved=saved,
+                private=private,
+                locale=view_locale,
+                understood=await _is_understood(session, profile, card),
+                carry_locale=carry,
             ),
         )
         await session.commit()
@@ -499,22 +580,40 @@ async def _on_callback(session: AsyncSession, query: dict) -> None:
 
     # A translation may take a second or two on a cold card; the typing
     # indicator is the only signal available on an edit.
-    if locale != translation.DEFAULT_LOCALE:
+    if view_locale != translation.DEFAULT_LOCALE:
         await telegram.send_chat_action(chat_id)
 
+    # `n` re-renders whichever view the message is already showing, in the
+    # requested language. The view itself is recovered from the buttons, the
+    # same way the save toggle recovers it — there is nowhere else to look.
+    if verb == "n":
+        verb = "l" if (level_now := _level_on_message(message)) else "c"
+        argument = level_now
+
     if verb == "c":
-        view = await localize.localize_preview(session, card, locale)
-        text = render.card_intro(view, locale)
+        view = await localize.localize_preview(session, card, view_locale)
+        text = render.card_intro(view, view_locale)
         markup = keyboards.card_keyboard(
-            view, saved=saved, private=private, locale=locale
+            view,
+            saved=saved,
+            private=private,
+            understood=await _is_understood(session, profile, card),
+            locale=view_locale,
+            carry_locale=carry,
         )
     elif verb == "l":
         total = render.level_count(card)
         level = max(1, min(argument or 1, total or 1))
-        view = await localize.localize_level(session, card, locale, level)
-        text = render.level_view(view, level, locale)
+        view = await localize.localize_level(session, card, view_locale, level)
+        text = render.level_view(view, level, view_locale)
         markup = keyboards.card_keyboard(
-            view, level=level, saved=saved, private=private, locale=locale
+            view,
+            level=level,
+            saved=saved,
+            private=private,
+            understood=await _is_understood(session, profile, card),
+            locale=view_locale,
+            carry_locale=carry,
         )
         await personalization.record_interaction(
             session, profile, card, kind="level_reached", level=level
@@ -524,29 +623,58 @@ async def _on_callback(session: AsyncSession, query: dict) -> None:
                 session, profile, card, kind="complete", level=level
             )
     elif verb == "t":
-        view = await localize.localize_terms(session, card, locale)
-        text = render.terms_view(view, locale)
+        view = await localize.localize_terms(session, card, view_locale)
+        text = render.terms_view(view, view_locale)
         markup = keyboards.section_keyboard(
-            view, saved=saved, private=private, locale=locale
+            view, saved=saved, private=private, locale=view_locale, carry_locale=carry
         )
     elif verb == "m":
-        view = await localize.localize_myths(session, card, locale)
-        text = render.myths_view(view, locale)
+        view = await localize.localize_myths(session, card, view_locale)
+        text = render.myths_view(view, view_locale)
         markup = keyboards.section_keyboard(
-            view, saved=saved, private=private, locale=locale
+            view, saved=saved, private=private, locale=view_locale, carry_locale=carry
         )
     elif verb == "x":
-        view = await localize.localize_sources(session, card, locale)
-        text = render.sources_view(view, locale)
+        view = await localize.localize_sources(session, card, view_locale)
+        text = render.sources_view(view, view_locale)
         markup = keyboards.section_keyboard(
-            view, saved=saved, private=private, locale=locale
+            view, saved=saved, private=private, locale=view_locale, carry_locale=carry
         )
     else:
         return
 
+    # The picture follows the reader through the card rather than belonging to
+    # the opening message. On everything past the preview it is pinned *above*
+    # the text: a level body runs to 3400 characters, and a preview underneath
+    # one is a picture the reader has to scroll to the end of an explanation to
+    # find, which is the wrong way round for a card whose subject is the photo.
+    picture = _picture(card)
     await telegram.edit_message(
-        chat_id, message_id, render.truncate_message(text), reply_markup=markup
+        chat_id,
+        message_id,
+        render.with_preview(render.truncate_message(text), picture),
+        reply_markup=markup,
+        preview_url=picture,
+        preview_above=verb != "c",
     )
+
+
+def _level_on_message(message: dict) -> int | None:
+    """Which explanation level a message is showing, or None for anything else.
+
+    Read off the inert `n/m` counter, which only a level view draws. This is
+    the same trick `_current_keyboard` uses, and for the same reason: the bot
+    keeps no memory of what it sent, so the message itself is the record.
+    """
+    rows = (message.get("reply_markup") or {}).get("inline_keyboard") or []
+    for row in rows:
+        for button in row:
+            label = button.get("text", "")
+            if button.get("callback_data") == keyboards.NOOP and "/" in label:
+                head = label.split("/", 1)[0]
+                if head.isdigit():
+                    return int(head)
+    return None
 
 
 async def _current_keyboard(
@@ -557,13 +685,16 @@ async def _current_keyboard(
     saved: bool,
     private: bool,
     locale: str,
+    understood: bool = False,
+    carry_locale: str = "",
 ) -> dict:
     """Rebuild the keyboard for whichever view a message is currently showing.
 
     Save is reachable from every view and must not move the reader out of the
     one they are in. The state is recovered from the buttons already on the
     message rather than tracked server-side, so a message from last week still
-    behaves correctly after a restart.
+    behaves correctly after a restart. `locale` is the language the message is
+    being read in, and `carry_locale` keeps a translated message translated.
 
     Three shapes are distinguishable: a level view has the inert `n/m` counter,
     a section view (terms, myths, sources) has no level buttons at all, and the
@@ -580,7 +711,13 @@ async def _current_keyboard(
                 level = int(head)
                 view = await localize.localize_level(session, card, locale, level)
                 return keyboards.card_keyboard(
-                    view, level=level, saved=saved, private=private, locale=locale
+                    view,
+                    level=level,
+                    saved=saved,
+                    private=private,
+                    understood=understood,
+                    locale=locale,
+                    carry_locale=carry_locale,
                 )
 
     has_level_button = any(
@@ -589,11 +726,18 @@ async def _current_keyboard(
     if not has_level_button:
         view = await localize.localize_preview(session, card, locale)
         return keyboards.section_keyboard(
-            view, saved=saved, private=private, locale=locale
+            view, saved=saved, private=private, locale=locale, carry_locale=carry_locale
         )
 
     view = await localize.localize_preview(session, card, locale)
-    return keyboards.card_keyboard(view, saved=saved, private=private, locale=locale)
+    return keyboards.card_keyboard(
+        view,
+        saved=saved,
+        private=private,
+        understood=understood,
+        locale=locale,
+        carry_locale=carry_locale,
+    )
 
 
 # --- Inline mode ------------------------------------------------------------
@@ -627,6 +771,7 @@ async def _on_inline(session: AsyncSession, query: dict) -> None:
     results = []
     for view in views:
         markup = keyboards.inline_result_keyboard(view, locale)
+        picture = _picture(view)
         results.append(
             {
                 "type": "article",
@@ -634,12 +779,25 @@ async def _on_inline(session: AsyncSession, query: dict) -> None:
                 "title": view.title[:100],
                 "description": view.one_sentence_answer[:180],
                 "input_message_content": {
-                    "message_text": render.truncate_message(
-                        render.card_intro(view, locale)
+                    "message_text": render.with_preview(
+                        render.truncate_message(render.card_intro(view, locale)),
+                        picture,
                     ),
                     "parse_mode": "HTML",
-                    "link_preview_options": {"is_disabled": True},
+                    "link_preview_options": (
+                        {
+                            "is_disabled": False,
+                            "url": picture,
+                            "prefer_large_media": True,
+                        }
+                        if picture
+                        else {"is_disabled": True}
+                    ),
                 },
+                # Shown beside the result in the picker, before anything is
+                # sent. Only the illustrated cards get one, so a list of results
+                # is not a column of identical placeholder squares.
+                **({"thumbnail_url": picture} if picture else {}),
                 **({"reply_markup": markup} if markup else {}),
             }
         )
